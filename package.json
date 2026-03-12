@@ -4,11 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "set NODE_OPTIONS=--max-old-space-size=4096 && next build",
     "start": "next start -p $PORT -H 0.0.0.0",
     "lint": "eslint"
   },
   "dependencies": {
+    "axios": "^1.13.5",
     "next": "16.1.6",
     "react": "19.2.3",
     "react-dom": "19.2.3"
