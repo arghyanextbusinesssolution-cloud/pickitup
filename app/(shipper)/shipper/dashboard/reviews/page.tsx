@@ -15,7 +15,7 @@ export default function ReviewsPage() {
           Complete a shipment and rate your carrier to see your reviews history here. Your feedback helps keep the marketplace safe and reliable.
         </p>
         <Link
-          href="/dashboard/shipments"
+          href="/shipper/dashboard/shipments"
           className="inline-block bg-white border-2 border-gray-200 hover:border-purple-600 text-gray-700 hover:text-purple-600 border-2 font-bold px-10 py-4 rounded-xl transition-all uppercase tracking-widest"
         >
           View Active Shipments

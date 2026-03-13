@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { shipmentService } from '../../../../services/shipment.service';
+import { shipmentService } from '../../../../../services/shipment.service';
 
 export default function ViewShipmentsPage() {
   const [shipments, setShipments] = useState<any[]>([]);
@@ -36,7 +36,7 @@ export default function ViewShipmentsPage() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <h1 className="text-3xl font-[900] text-gray-900 uppercase tracking-tight">My Shipments</h1>
         <Link
-          href="/dashboard/shipments/create"
+          href="/shipper/dashboard/shipments/create"
           className="bg-purple-600 hover:bg-purple-700 text-white font-bold px-6 py-3 rounded-xl transition-all flex items-center justify-center gap-2 uppercase tracking-wide shadow-lg hover:shadow-purple-600/30"
         >
           <span>➕</span> Create New
@@ -96,7 +96,7 @@ export default function ViewShipmentsPage() {
                 <div className="text-sm font-bold text-gray-500">
                   Bids: <span className="text-gray-900">{shipment.bids?.length || 0}</span>
                 </div>
-                <Link href={`/dashboard/shipments/${shipment._id || shipment.id}`} className="text-purple-600 hover:text-purple-700 font-bold text-sm uppercase tracking-widest transition-colors">
+                <Link href={`/shipper/shipper/dashboard/shipments/${shipment._id || shipment.id}`} className="text-purple-600 hover:text-purple-700 font-bold text-sm uppercase tracking-widest transition-colors">
                   Manage →
                 </Link>
               </div>
@@ -116,7 +116,7 @@ export default function ViewShipmentsPage() {
             You haven't created any shipments in this category yet. Create a new listing to start receiving bids from carriers.
           </p>
           <Link
-            href="/dashboard/shipments/create"
+            href="/shipper/dashboard/shipments/create"
             className="inline-block bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold px-10 py-4 rounded-xl transition-all uppercase tracking-widest shadow-xl shadow-yellow-400/20"
           >
             Create First Listing

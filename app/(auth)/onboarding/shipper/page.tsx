@@ -24,7 +24,7 @@ export default function ShipperOnboardingPage() {
         onSubmit={(e) => {
           e.preventDefault();
           if (step === 1) setStep(2);
-          else window.location.href = '/dashboard';
+          else window.location.href = '/shipper/dashboard';
         }}
       >
         {step === 1 && (

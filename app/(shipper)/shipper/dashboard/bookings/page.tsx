@@ -54,7 +54,7 @@ export default function BookingsPaymentsDisputesPage({ title = 'Bookings' }: { t
                     </span>
                   </td>
                   <td className="p-6 text-right">
-                    <Link href={`/dashboard/bookings/BKG-883${i}`} className="inline-block bg-white border-2 border-gray-200 hover:border-purple-600 text-gray-700 hover:text-purple-600 font-bold px-6 py-2.5 rounded-xl transition-all text-sm uppercase tracking-wide">
+                    <Link href={`/shipper/dashboard/bookings/BKG-883${i}`} className="inline-block bg-white border-2 border-gray-200 hover:border-purple-600 text-gray-700 hover:text-purple-600 font-bold px-6 py-2.5 rounded-xl transition-all text-sm uppercase tracking-wide">
                       Details
                     </Link>
                   </td>

@@ -7,7 +7,7 @@ export async function generateStaticParams() {
 export default function Page() {
   return (
     <div style={{ padding: "40px" }}>
-      <h1>/dashboard/shipments/bids/[id]</h1>
+      <h1>/shipper/dashboard/payments/[id]</h1>
     </div>
   );
 }

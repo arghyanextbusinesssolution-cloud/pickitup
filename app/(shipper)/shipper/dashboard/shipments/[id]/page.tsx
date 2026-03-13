@@ -20,7 +20,7 @@ export default function ShipmentDetailsPage({ params }: { params: { id: string }
       <div className="flex flex-col md:flex-row md:items-start justify-between gap-6 mb-8">
         <div>
           <div className="flex items-center gap-4 mb-2">
-            <Link href="/dashboard/shipments" className="text-gray-400 hover:text-purple-600 transition-colors">
+            <Link href="/shipper/shipper/dashboard/shipments" className="text-gray-400 hover:text-purple-600 transition-colors">
               ← Back
             </Link>
             <span className="bg-yellow-100 text-yellow-700 font-bold px-3 py-1 rounded-full text-xs uppercase tracking-widest">
@@ -32,7 +32,7 @@ export default function ShipmentDetailsPage({ params }: { params: { id: string }
         </div>
 
         <div className="flex gap-4">
-          <Link href={`/dashboard/shipments/edit/${params.id}`} className="bg-white border-2 border-gray-200 hover:border-gray-300 text-gray-700 font-bold px-6 py-3 rounded-xl transition-all uppercase tracking-wide text-sm">
+          <Link href={`/shipper/shipper/dashboard/shipments/edit/${params.id}`} className="bg-white border-2 border-gray-200 hover:border-gray-300 text-gray-700 font-bold px-6 py-3 rounded-xl transition-all uppercase tracking-wide text-sm">
             Edit Listing
           </Link>
           <button className="bg-red-50 text-red-600 hover:bg-red-100 font-bold px-6 py-3 rounded-xl transition-all uppercase tracking-wide text-sm">

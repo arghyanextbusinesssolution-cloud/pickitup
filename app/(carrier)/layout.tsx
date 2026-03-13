@@ -24,7 +24,7 @@ export default function CarrierDashboardLayout({
             return;
         }
         if (currentUser.role === 'USER') {
-            router.push('/dashboard');
+            router.push('/shipper/dashboard');
             return;
         }
         setUser(currentUser);

@@ -1,8 +1,8 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { authService } from '../../../../services/auth.service';
-import { User } from '../../../../types/auth.types';
+import { authService } from '../../../../../services/auth.service';
+import { User } from '../../../../../types/auth.types';
 
 export default function ProfilePage() {
   const [user, setUser] = useState<User | null>(null);

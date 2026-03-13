@@ -8,7 +8,7 @@ export default function CreateShipmentPage() {
   return (
     <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 max-w-4xl mx-auto">
       <div className="mb-8">
-        <Link href="/dashboard/shipments" className="text-gray-400 hover:text-purple-600 font-bold uppercase tracking-widest text-sm flex items-center gap-2 mb-4 transition-colors">
+        <Link href="/shipper/dashboard/shipments" className="text-gray-400 hover:text-purple-600 font-bold uppercase tracking-widest text-sm flex items-center gap-2 mb-4 transition-colors">
           ← Back to Shipments
         </Link>
         <h1 className="text-3xl font-[900] text-gray-900 uppercase tracking-tight">Create a Listing</h1>

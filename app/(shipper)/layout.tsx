@@ -35,14 +35,14 @@ export default function ShipperDashboardLayout({
     };
 
     const navItems = [
-        { name: 'Overview', href: '/dashboard', icon: '📊' },
-        { name: 'Shipments', href: '/dashboard/shipments', icon: '📦' },
-        { name: 'Bookings', href: '/dashboard/bookings', icon: '🤝' },
-        { name: 'Payments', href: '/dashboard/payments', icon: '💳' },
-        { name: 'Disputes', href: '/dashboard/disputes', icon: '⚖️' },
-        { name: 'Reviews', href: '/dashboard/reviews', icon: '⭐' },
-        { name: 'Profile', href: '/dashboard/profile', icon: '👤' },
-        { name: 'Settings', href: '/dashboard/settings', icon: '⚙️' },
+        { name: 'Overview', href: '/shipper/dashboard', icon: '📊' },
+        { name: 'Shipments', href: '/shipper/dashboard/shipments', icon: '📦' },
+        { name: 'Bookings', href: '/shipper/dashboard/bookings', icon: '🤝' },
+        { name: 'Payments', href: '/shipper/dashboard/payments', icon: '💳' },
+        { name: 'Disputes', href: '/shipper/dashboard/disputes', icon: '⚖️' },
+        { name: 'Reviews', href: '/shipper/dashboard/reviews', icon: '⭐' },
+        { name: 'Profile', href: '/shipper/dashboard/profile', icon: '👤' },
+        { name: 'Settings', href: '/shipper/dashboard/settings', icon: '⚙️' },
     ];
 
     return (
@@ -74,7 +74,7 @@ export default function ShipperDashboardLayout({
                 {/* Create Button - Keeping yellow as action but theme is violet */}
                 <div className="p-6">
                     <Link
-                        href="/dashboard/shipments/create"
+                        href="/shipper/dashboard/shipments/create"
                         className="w-full flex items-center justify-center gap-2 bg-[#7C3AED] hover:bg-[#6D28D9] text-white font-[900] uppercase tracking-wider py-4 rounded-xl transition-all shadow-lg hover:-translate-y-0.5"
                     >
                         <span>➕</span> Create Listing

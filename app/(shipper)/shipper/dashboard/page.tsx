@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { shipmentService } from '../../../services/shipment.service';
+import { shipmentService } from '../../../../services/shipment.service';
 
 export default function ShipperDashboardOverview() {
   const [recentShipments, setRecentShipments] = useState<any[]>([]);
@@ -77,7 +77,7 @@ export default function ShipperDashboardOverview() {
       <div className="bg-white rounded-[2rem] shadow-sm border border-gray-100 overflow-hidden">
         <div className="p-8 border-b border-gray-100 flex items-center justify-between">
           <h3 className="text-xl font-[900] text-gray-900 uppercase tracking-wide">Recent Shipments</h3>
-          <Link href="/dashboard/shipments" className="text-purple-600 font-bold hover:text-purple-700 text-sm uppercase tracking-widest">
+          <Link href="/shipper/dashboard/shipments" className="text-purple-600 font-bold hover:text-purple-700 text-sm uppercase tracking-widest">
             View All →
           </Link>
         </div>
@@ -129,7 +129,7 @@ export default function ShipperDashboardOverview() {
                       </span>
                     </td>
                     <td className="p-6 text-right">
-                      <Link href={`/dashboard/shipments/${shipment._id || shipment.id}`} className="inline-block bg-gray-900 hover:bg-gray-800 text-white font-bold px-6 py-2.5 rounded-xl transition-all text-sm uppercase tracking-wide">
+                      <Link href={`/shipper/shipper/dashboard/shipments/${shipment._id || shipment.id}`} className="inline-block bg-gray-900 hover:bg-gray-800 text-white font-bold px-6 py-2.5 rounded-xl transition-all text-sm uppercase tracking-wide">
                         Manage
                       </Link>
                     </td>

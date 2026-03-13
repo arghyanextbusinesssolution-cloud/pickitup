@@ -7,7 +7,7 @@ export async function generateStaticParams() {
 export default function Page() {
   return (
     <div style={{ padding: "40px" }}>
-      <h1>/dashboard/bookings/[id]</h1>
+      <h1>/shipper/dashboard/bookings/[id]</h1>
     </div>
   );
 }
