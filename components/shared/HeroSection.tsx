@@ -16,7 +16,7 @@ export default function HeroSection() {
                         </div>
 
                         <h1 className="text-[42px] lg:text-[54px] font-[900] text-[#1a1b3a] leading-[1.05] mb-6 tracking-tight uppercase">
-                            SHIPPING SERVICES
+                            MOVE ANYTHING,
                             <br />
                             <span className="text-yellow-400">FOR THE BIG STUFF</span>
                         </h1>
