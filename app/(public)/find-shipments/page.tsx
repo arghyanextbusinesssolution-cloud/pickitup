@@ -1,7 +1,7 @@
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import CarrierHero from '@/components/shared/CarrierHero';
-import CarrierProcessSteps from '@/components/shared/CarrierProcessSteps';
+import FindShipmentsGallery from '@/components/shared/FindShipmentsGallery';
 import TrustSection from '@/components/shared/TrustSection';
 import Testimonials from '@/components/shared/Testimonials';
 import FAQSection from '@/components/shared/FAQSection';
@@ -18,7 +18,7 @@ export default function FindShipmentsLandingPage() {
         <div className="min-h-screen bg-white">
             <Navbar />
             <CarrierHero />
-            <CarrierProcessSteps />
+            <FindShipmentsGallery />
             <TrustSection />
             <Testimonials />
             <FAQSection />

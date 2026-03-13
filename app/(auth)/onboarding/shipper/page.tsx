@@ -13,7 +13,7 @@ export default function ShipperOnboardingPage() {
       </div>
 
       <div className="text-left mb-8">
-        <h1 className="text-4xl font-[900] text-gray-900 tracking-tight uppercase mb-2">Welcome to pickItUp</h1>
+        <h1 className="text-4xl font-[900] text-gray-900 tracking-tight uppercase mb-2">Welcome to pickitup</h1>
         <p className="text-gray-500 text-lg font-medium">
           Let's complete your profile so you can start receiving competitive bids.
         </p>

@@ -1,7 +1,7 @@
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import ShipHero from '@/components/shared/ShipHero';
-import ProcessSteps from '@/components/shared/ProcessSteps';
+import ShipGallery from '@/components/shared/ShipGallery';
 import TrustSection from '@/components/shared/TrustSection';
 import Testimonials from '@/components/shared/Testimonials';
 import FAQSection from '@/components/shared/FAQSection';
@@ -18,7 +18,7 @@ export default function ShipPage() {
         <div className="min-h-screen bg-white">
             <Navbar />
             <ShipHero />
-            <ProcessSteps />
+            <ShipGallery />
             <TrustSection />
             <Testimonials />
             <FAQSection />

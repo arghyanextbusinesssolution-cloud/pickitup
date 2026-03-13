@@ -22,7 +22,7 @@ export default function HeroSection() {
                         </h1>
 
                         <p className="text-[17px] text-[#6B7280] font-medium mb-10 max-w-[520px] leading-relaxed mx-auto lg:mx-0">
-                            Whether you're shipping a car, moving furniture, or transport heavy freight — get instant quotes from verified carriers on the largest marketplace.
+                            Smart Logistics for a Fast-Moving World.
                         </p>
 
                         {/* Quote Form - Compact & Premium */}
