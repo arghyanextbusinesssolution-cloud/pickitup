@@ -19,7 +19,11 @@ export default function CarrierDashboardLayout({
 
     useEffect(() => {
         const currentUser = authService.getCurrentUser();
-        if (currentUser && currentUser.role === 'USER') {
+        if (!currentUser) {
+            router.push('/login');
+            return;
+        }
+        if (currentUser.role === 'USER') {
             router.push('/dashboard');
             return;
         }

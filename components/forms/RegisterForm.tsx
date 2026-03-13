@@ -24,8 +24,14 @@ export const RegisterForm: React.FC = () => {
 
         try {
             const response = await authService.register(formData);
-            console.log(`[RegisterForm] Registration successful. User Role: ${response.user?.role}`);
-            window.location.href = '/dashboard';
+            const userRole = response.user?.role;
+            console.log(`[RegisterForm] Registration successful. User Role: ${userRole}`);
+            
+            if (userRole === 'CARRIER') {
+                window.location.href = '/carrier/dashboard';
+            } else {
+                window.location.href = '/shipper/dashboard';
+            }
         } catch (err: any) {
             console.error('[RegisterForm] Registration failed:', err);
             if (err.response) {

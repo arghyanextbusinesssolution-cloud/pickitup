@@ -19,7 +19,11 @@ export default function ShipperDashboardLayout({
 
     useEffect(() => {
         const currentUser = authService.getCurrentUser();
-        if (currentUser && currentUser.role === 'CARRIER') {
+        if (!currentUser) {
+            router.push('/login');
+            return;
+        }
+        if (currentUser.role === 'CARRIER') {
             router.push('/carrier/dashboard');
             return;
         }

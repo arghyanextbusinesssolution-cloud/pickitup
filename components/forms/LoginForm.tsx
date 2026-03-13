@@ -29,7 +29,7 @@ export const LoginForm: React.FC = () => {
             } else if (userRole === 'CARRIER') {
                 router.push('/carrier/dashboard');
             } else {
-                router.push('/dashboard');
+                router.push('/shipper/dashboard');
             }
         } catch (err: any) {
             setError(err.response?.data?.message || 'Invalid email or password');

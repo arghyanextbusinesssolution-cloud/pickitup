@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { authService } from '../../services/auth.service';
 import { User } from '../../types/auth.types';
 
@@ -13,13 +13,22 @@ export default function AdminDashboardLayout({
     children: React.ReactNode;
 }) {
     const pathname = usePathname();
+    const router = useRouter();
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [user, setUser] = useState<User | null>(null);
 
     useEffect(() => {
         const currentUser = authService.getCurrentUser();
+        if (!currentUser) {
+            router.push('/login');
+            return;
+        }
+        if (currentUser.role !== 'ADMIN') {
+            router.push('/login');
+            return;
+        }
         setUser(currentUser);
-    }, []);
+    }, [router]);
 
     const getInitials = (firstName: string = '', lastName: string = '') => {
         return `${firstName.charAt(0)}${lastName.charAt(0)}`.toUpperCase() || '??';
