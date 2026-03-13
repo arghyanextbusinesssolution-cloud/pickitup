@@ -58,7 +58,7 @@ export default function AdminDashboardLayout({
                             className="w-10 h-10 object-contain border-2 border-red-500 rounded-xl shadow-lg"
                         />
                         <div className="flex flex-col">
-                            <span className="text-xl font-[1000] tracking-tight text-white uppercase mt-1 leading-none">pickItUp</span>
+                            <span className="text-xl font-[1000] tracking-tight text-white uppercase mt-1 leading-none"></span>
                             <span className="text-[10px] font-bold text-red-500 uppercase tracking-widest leading-none mt-1">Admin Portal</span>
                         </div>
                     </Link>

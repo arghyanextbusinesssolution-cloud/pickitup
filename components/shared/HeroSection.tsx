@@ -130,7 +130,7 @@ export default function HeroSection() {
                             <div className="bg-white rounded-[1.5rem] p-3.5 shadow-xl mb-6 mt-12 relative z-10 mx-auto max-w-[420px]">
                                 <div className="aspect-[4/3] relative rounded-xl overflow-hidden shadow-inner">
                                     <Image
-                                        src="https://res.cloudinary.com/dxx54fccl/image/upload/v1773330994/20201028151941563.jpg_lie7hh.webp"
+                                        src="/img5.jpeg"
                                         alt="Shipping service"
                                         fill
                                         className="object-cover"
