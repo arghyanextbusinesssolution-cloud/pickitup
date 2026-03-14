@@ -15,15 +15,13 @@ export default function HeroSection() {
                             <span className="text-purple-600 text-[10px] font-black tracking-widest uppercase">Trusted by 2M+ Users</span>
                         </div>
 
-                        <h1 className="text-[42px] lg:text-[54px] font-[900] text-[#1a1b3a] leading-[1.05] mb-6 tracking-tight uppercase">
-                            MOVE ANYTHING,
+                        <h1 className="text-[39px] lg:text-[50px] font-[900] text-[#1a1b3a] leading-[1.05] mb-6 tracking-tight uppercase">
+                            SMART LOGISTICS FOR A
                             <br />
-                            <span className="text-yellow-400">FOR THE BIG STUFF</span>
+                            <span className="text-yellow-400">FAST-MOVING WORLD.</span>
                         </h1>
 
-                        <p className="text-[17px] text-[#6B7280] font-medium mb-10 max-w-[520px] leading-relaxed mx-auto lg:mx-0">
-                            Smart Logistics for a Fast-Moving World.
-                        </p>
+                       
 
                         {/* Quote Form - Compact & Premium */}
                         <div className="bg-white rounded-[2.5rem] shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)] p-6 sm:p-8 mb-8 border border-gray-100 w-full max-w-[580px] mx-auto lg:mx-0">
