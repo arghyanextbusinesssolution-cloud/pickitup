@@ -92,14 +92,16 @@ export default function CarrierDashboardOverview() {
                   <tr><td className="p-6 text-center text-gray-500 font-medium">No active jobs in transit.</td></tr>
                 ) : (
                   jobsInTransit.map((job, i) => (
-                    <tr key={i} className="hover:bg-gray-50 transition-colors">
+                    <tr key={i} className="hover:bg-gray-50 transition-colors group">
                       <td className="p-6">
-                        <div className="font-[900] text-gray-900 text-lg mb-1">{job.title || job.commodity || 'Shipment'}</div>
-                        <div className="flex items-center gap-2 text-sm text-gray-500 font-medium">
-                          <span>{job.origin?.city || 'Origin'}</span>
-                          <span className="text-gray-300">→</span>
-                          <span>{job.destination?.city || 'Destination'}</span>
-                        </div>
+                        <Link href={`/carrier/shipments/view?id=${job._id || job.id}`} className="block">
+                          <div className="font-[900] text-gray-900 text-lg mb-1 group-hover:text-yellow-600 transition-colors">{job.title || job.commodity || 'Shipment'}</div>
+                          <div className="flex items-center gap-2 text-sm text-gray-500 font-medium">
+                            <span>{job.origin?.city || 'Origin'}</span>
+                            <span className="text-gray-300">→</span>
+                            <span>{job.destination?.city || 'Destination'}</span>
+                          </div>
+                        </Link>
                       </td>
                       <td className="p-6 text-right">
                         <div className="text-xl font-[900] text-green-600">${job.price || '0'}</div>
@@ -126,7 +128,7 @@ export default function CarrierDashboardOverview() {
                 <p className="text-gray-400 font-medium">No recommended loads found.</p>
               ) : (
                 recommendedLoads.map((load, i) => (
-                  <Link key={i} href={`/carrier/jobs/${load.id}`} className="block bg-white/5 hover:bg-white/10 p-5 rounded-2xl transition-all border border-white/5 hover:border-yellow-400/30 group/item">
+                  <Link key={i} href={`/carrier/jobs/view?id=${load.id}`} className="block bg-white/5 hover:bg-white/10 p-5 rounded-2xl transition-all border border-white/5 hover:border-yellow-400/30 group/item">
                     <div className="text-lg font-black mb-1 group-hover/item:text-yellow-400 transition-colors uppercase tracking-tight">{load.title}</div>
                     <div className="text-sm text-gray-400 font-bold mb-3 uppercase tracking-widest text-[10px]">{load.origin} → {load.destination}</div>
                     <div className="flex items-center justify-between">

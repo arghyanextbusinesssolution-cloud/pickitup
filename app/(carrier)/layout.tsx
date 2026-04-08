@@ -4,6 +4,17 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
+import { 
+    BarChart3, 
+    Search, 
+    MessageSquare, 
+    Truck, 
+    Wallet, 
+    Landmark, 
+    Star, 
+    User as UserIcon, 
+    Settings 
+} from 'lucide-react';
 import { authService } from '../../services/auth.service';
 import { User } from '../../types/auth.types';
 
@@ -16,18 +27,27 @@ export default function CarrierDashboardLayout({
     const router = useRouter();
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [user, setUser] = useState<User | null>(null);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        const currentUser = authService.getCurrentUser();
-        if (!currentUser) {
-            router.push('/login');
-            return;
-        }
-        if (currentUser.role === 'USER') {
-            router.push('/shipper/dashboard');
-            return;
-        }
-        setUser(currentUser);
+        const checkAuth = async () => {
+            const currentUser = authService.getCurrentUser();
+            
+            if (!currentUser) {
+                router.push('/carrier/login'); // Redirect to carrier-specific login
+                return;
+            }
+
+            if (currentUser.role === 'USER' || currentUser.role === 'SHIPPER') {
+                router.push('/shipper/dashboard');
+                return;
+            }
+
+            setUser(currentUser);
+            setIsLoading(false);
+        };
+
+        checkAuth();
     }, [router]);
 
     const getInitials = (firstName: string = '', lastName: string = '') => {
@@ -35,16 +55,30 @@ export default function CarrierDashboardLayout({
     };
 
     const navItems = [
-        { name: 'Overview', href: '/carrier/dashboard', icon: '📈' },
-        { name: 'Find Loads', href: '/carrier/jobs', icon: '🔍' },
-        { name: 'Active Bids', href: '/carrier/bids', icon: '💬' },
-        { name: 'My Shipments', href: '/carrier/shipments', icon: '🚚' },
-        { name: 'Earnings', href: '/carrier/earnings', icon: '💰' },
-        { name: 'Payouts', href: '/carrier/payouts', icon: '🏦' },
-        { name: 'Reviews', href: '/carrier/reviews', icon: '⭐' },
-        { name: 'Profile', href: '/carrier/profile', icon: '👤' },
-        { name: 'Settings', href: '/carrier/settings', icon: '⚙️' },
+        { name: 'Overview', href: '/carrier/dashboard', icon: <BarChart3 size={22} /> },
+        { name: 'Find Loads', href: '/carrier/jobs', icon: <Search size={22} /> },
+        { name: 'Active Bids', href: '/carrier/bids', icon: <MessageSquare size={22} /> },
+        { name: 'My Shipments', href: '/carrier/shipments', icon: <Truck size={22} /> },
+        { name: 'Earnings', href: '/carrier/earnings', icon: <Wallet size={22} /> },
+        { name: 'Payouts', href: '/carrier/payouts', icon: <Landmark size={22} /> },
+        { name: 'Reviews', href: '/carrier/reviews', icon: <Star size={22} /> },
+        { name: 'Profile', href: '/carrier/profile', icon: <UserIcon size={22} /> },
+        { name: 'Settings', href: '/carrier/settings', icon: <Settings size={22} /> },
     ];
+
+    if (isLoading) {
+        return (
+            <div className="min-h-screen bg-[#0F172A] flex items-center justify-center">
+                <div className="flex flex-col items-center gap-6">
+                    <div className="w-16 h-16 border-4 border-gray-700 border-t-yellow-400 rounded-full animate-spin shadow-[0_0_15px_rgba(250,204,21,0.2)]"></div>
+                    <div className="flex flex-col items-center gap-2 text-center">
+                        <h2 className="text-xl font-[900] text-white tracking-tight uppercase">Carrier Partner Portal</h2>
+                        <p className="text-sm font-bold text-yellow-500 uppercase tracking-widest animate-pulse">Synchronizing Fleet Data...</p>
+                    </div>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="min-h-screen bg-gray-50 flex">
@@ -79,7 +113,7 @@ export default function CarrierDashboardLayout({
                         href="/carrier/jobs"
                         className="w-full flex items-center justify-center gap-2 bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-[900] uppercase tracking-wider py-4 rounded-xl transition-all shadow-[0_10px_20px_-5px_rgba(250,204,21,0.3)] hover:-translate-y-0.5 active:translate-y-0"
                     >
-                        <span>🔍</span> Browse Load Board
+                        <Search size={20} strokeWidth={3} /> Browse Load Board
                     </Link>
                 </div>
 
@@ -96,7 +130,9 @@ export default function CarrierDashboardLayout({
                                     : 'text-gray-400 hover:text-white hover:bg-white/5'
                                     }`}
                             >
-                                <span className={`text-xl transition-transform ${isActive ? 'scale-110' : ''}`}>{item.icon}</span>
+                                <span className={`transition-transform ${isActive ? 'scale-110 text-yellow-400' : 'text-gray-400 group-hover:text-white'}`}>
+                                    {item.icon}
+                                </span>
                                 {item.name}
                             </Link>
                         );

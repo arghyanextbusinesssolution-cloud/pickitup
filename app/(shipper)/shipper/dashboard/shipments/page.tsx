@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { shipmentService } from '../../../../../services/shipment.service';
+import { ShipmentCard } from '../../../../../components/cards/ShipmentCard';
 
 export default function ViewShipmentsPage() {
   const [shipments, setShipments] = useState<any[]>([]);
@@ -66,41 +67,9 @@ export default function ViewShipmentsPage() {
 
       {/* Content */}
       {!isLoading && filteredShipments.length > 0 && (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredShipments.map((shipment, i) => (
-            <div key={i} className="bg-white rounded-3xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-all flex flex-col h-full">
-              <div className="flex justify-between items-start mb-4">
-                <span className={`inline-flex px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest ${shipment.status === 'Booked' ? 'bg-green-100 text-green-700' :
-                  shipment.status === 'In Transit' ? 'bg-blue-100 text-blue-700' :
-                    'bg-purple-100 text-purple-700'
-                  }`}>
-                  {shipment.status || 'Draft'}
-                </span>
-                <span className="text-xs font-bold text-gray-400">ID: {shipment._id ? shipment._id.substring(0, 8) : shipment.id}</span>
-              </div>
-
-              <h3 className="text-xl font-[900] text-gray-900 mb-2">{shipment.title || shipment.commodity || 'Untitled Shipment'}</h3>
-
-              <div className="flex flex-col gap-2 mb-6 flex-grow">
-                <div className="flex items-center gap-3 text-sm font-medium text-gray-600">
-                  <span className="w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center text-xs">📍</span>
-                  <span>{shipment.origin?.city || 'Origin'}</span>
-                </div>
-                <div className="flex items-center gap-3 text-sm font-medium text-gray-600">
-                  <span className="w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center text-xs">🏁</span>
-                  <span>{shipment.destination?.city || 'Destination'}</span>
-                </div>
-              </div>
-
-              <div className="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
-                <div className="text-sm font-bold text-gray-500">
-                  Bids: <span className="text-gray-900">{shipment.bids?.length || 0}</span>
-                </div>
-                <Link href={`/shipper/shipper/dashboard/shipments/${shipment._id || shipment.id}`} className="text-purple-600 hover:text-purple-700 font-bold text-sm uppercase tracking-widest transition-colors">
-                  Manage →
-                </Link>
-              </div>
-            </div>
+            <ShipmentCard key={shipment._id || shipment.id || i} shipment={shipment} />
           ))}
         </div>
       )}

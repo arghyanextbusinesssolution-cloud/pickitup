@@ -73,98 +73,69 @@ export default function LoadBoardPage() {
             </button>
           </div>
         ) : (
-          filteredShipments.map((shipment) => (
-            <div key={shipment.id} className="group bg-white rounded-[2.5rem] shadow-sm border border-gray-100 p-8 flex flex-col xl:flex-row xl:items-center justify-between gap-8 hover:border-yellow-400 hover:shadow-[0_20px_40px_-15px_rgba(250,204,21,0.15)] transition-all duration-500 hover:-translate-y-1 relative overflow-hidden">
-              
-              {/* Highlight bar */}
-              <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-yellow-400 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></div>
-
-              <div className="flex-1">
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="w-14 h-14 bg-gray-50 group-hover:bg-yellow-50 rounded-2xl flex items-center justify-center text-3xl shrink-0 transition-colors">
-                    {shipment.title?.toLowerCase().includes('car') || shipment.title?.toLowerCase().includes('vehicle') ? '🚗' : '📦'}
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-[1000] text-gray-900 uppercase tracking-tight leading-none group-hover:text-yellow-600 transition-colors">
-                      {shipment.title}
-                    </h3>
-                    <div className="flex items-center gap-2 mt-2">
-                       <span className="text-gray-400 font-bold text-xs uppercase tracking-widest">Shipper:</span>
-                       <span className="text-gray-900 font-black text-xs uppercase tracking-widest">
-                          {shipment.owner ? `${shipment.owner.firstName} ${shipment.owner.lastName}` : 'Direct Customer'}
-                       </span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-4">
-                  <div className="space-y-3">
-                    <div className="flex items-center gap-4">
-                      <div className="w-8 h-8 rounded-full bg-green-50 flex items-center justify-center text-green-600 text-xs">A</div>
-                      <div>
-                        <div className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] leading-none mb-1">Pickup From</div>
-                        <div className="text-sm font-bold text-gray-900 truncate max-w-[200px]">{shipment.origin}</div>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-4">
-                      <div className="w-8 h-8 rounded-full bg-purple-50 flex items-center justify-center text-purple-600 text-xs">B</div>
-                      <div>
-                        <div className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] leading-none mb-1">Deliver To</div>
-                        <div className="text-sm font-bold text-gray-900 truncate max-w-[200px]">{shipment.destination}</div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="space-y-4 border-l border-gray-100 pl-6 hidden lg:block">
-                    <div className="flex items-center gap-3">
-                      <span className="text-lg">⚖️</span>
-                      <div>
-                        <div className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] leading-none mb-1">Weight</div>
-                        <div className="text-sm font-bold text-gray-900">{shipment.weight ? `${shipment.weight} lbs` : 'Contact for info'}</div>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <span className="text-lg">📏</span>
-                      <div>
-                        <div className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] leading-none mb-1">Dimensions</div>
-                        <div className="text-sm font-bold text-gray-900">{shipment.dimensions || 'Standard Cargo'}</div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="space-y-4 hidden md:block">
-                    <div className="flex flex-wrap gap-2">
-                      <span className="bg-green-50 text-green-700 text-[10px] font-black px-4 py-2 rounded-xl uppercase tracking-widest border border-green-100 shadow-sm">
-                        Verified Listing
-                      </span>
-                      <span className="bg-yellow-50 text-yellow-700 text-[10px] font-black px-4 py-2 rounded-xl uppercase tracking-widest border border-yellow-100 shadow-sm">
-                        {shipment.bids?.length || 0} Bids Total
-                      </span>
-                    </div>
-                    <p className="text-xs text-gray-400 font-medium line-clamp-2 italic">
-                      {shipment.description || 'No additional notes provided by shipper.'}
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex flex-row xl:flex-col items-center xl:items-end justify-between xl:justify-center gap-4 border-t border-gray-100 xl:border-t-0 pt-6 xl:pt-0 xl:pl-8 xl:border-l xl:min-w-[200px]">
-                <div className="text-left xl:text-right">
-                  <div className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mb-1">Target Bidding</div>
-                  <div className="text-4xl font-[1000] text-green-600 leading-none">
-                    ${shipment.targetPrice || (Math.floor(Math.random() * 500) + 300)}
-                  </div>
-                </div>
-                <Link
-                  href={`/carrier/jobs/${shipment.id}`}
-                  className="bg-gray-900 hover:bg-black text-white font-black px-10 py-5 rounded-[1.5rem] transition-all uppercase tracking-widest text-xs text-center shadow-xl hover:shadow-2xl hover:-translate-y-1 active:translate-y-0 active:shadow-lg group/btn flex items-center gap-3"
-                >
-                  View & Bid
-                  <span className="group-hover/btn:translate-x-1 transition-transform">→</span>
-                </Link>
-              </div>
+          <div className="bg-white border-2 border-gray-100 rounded-[2.5rem] overflow-hidden shadow-sm">
+            <div className="overflow-x-auto">
+              <table className="w-full text-left border-collapse">
+                <thead>
+                  <tr className="bg-gray-50 border-b border-gray-100">
+                    <th className="p-6 text-xs font-black text-gray-400 uppercase tracking-widest whitespace-nowrap">Shipment</th>
+                    <th className="p-6 text-xs font-black text-gray-400 uppercase tracking-widest whitespace-nowrap hidden md:table-cell">Route (A → B)</th>
+                    <th className="p-6 text-xs font-black text-gray-400 uppercase tracking-widest whitespace-nowrap hidden lg:table-cell">Specifications</th>
+                    <th className="p-6 text-xs font-black text-gray-400 uppercase tracking-widest whitespace-nowrap">Pricing & Activity</th>
+                    <th className="p-6 text-xs font-black text-gray-400 uppercase tracking-widest whitespace-nowrap text-right text-transparent">Action</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-100">
+                  {filteredShipments.map((shipment) => (
+                    <tr key={shipment.id} className="hover:bg-yellow-50/50 transition-colors group">
+                      <td className="p-6 align-top">
+                        <div className="flex items-start gap-4">
+                          <div className="w-12 h-12 bg-gray-50 rounded-2xl flex items-center justify-center text-2xl border border-gray-200 shadow-sm shrink-0">
+                            {shipment.title?.toLowerCase().includes('car') || shipment.title?.toLowerCase().includes('vehicle') ? '🚗' : '📦'}
+                          </div>
+                          <div>
+                            <div className="font-[900] text-gray-900 text-lg group-hover:text-yellow-600 transition-colors uppercase leading-tight mb-1">{shipment.title || shipment.commodity || 'Standard Shipment'}</div>
+                            <div className="text-xs font-black text-gray-400 uppercase tracking-widest">Shipper: {shipment.owner ? `${shipment.owner.firstName} ${shipment.owner.lastName}` : 'Direct Customer'}</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td className="p-6 align-top hidden md:table-cell">
+                        <div className="flex items-center gap-3 mb-2">
+                           <span className="w-6 h-6 rounded-full bg-green-100 text-green-700 flex items-center justify-center text-[10px] font-black shrink-0">A</span>
+                           <span className="text-sm font-bold text-gray-900 truncate max-w-[200px] uppercase">{shipment.origin?.city || shipment.originAddress || shipment.origin}</span>
+                        </div>
+                        <div className="flex items-center gap-3">
+                           <span className="w-6 h-6 rounded-full bg-purple-100 text-purple-700 flex items-center justify-center text-[10px] font-black shrink-0">B</span>
+                           <span className="text-sm font-bold text-gray-900 truncate max-w-[200px] uppercase">{shipment.destination?.city || shipment.destinationAddress || shipment.destination}</span>
+                        </div>
+                      </td>
+                      <td className="p-6 align-top hidden lg:table-cell">
+                        <div className="text-sm font-bold text-gray-900 uppercase">Weight: {shipment.weight ? `${shipment.weight} lbs` : 'Contact'}</div>
+                        <div className="text-xs font-black text-gray-400 mt-2 uppercase">Type: {shipment.commodity || 'Standard Cargo'}</div>
+                      </td>
+                      <td className="p-6 align-top">
+                        <div className="text-2xl font-[900] text-green-600 tracking-tight leading-none mb-1">
+                          💰 ${shipment.budgetMax || shipment.targetPrice || shipment.budgetMin || 687}
+                        </div>
+                        <div className="text-[10px] uppercase tracking-widest text-gray-400 font-bold mb-3">Based on similar shipments</div>
+                        <div className={`text-xs font-black uppercase tracking-widest ${shipment.bids?.length ? 'text-blue-600' : 'text-yellow-600'}`}>
+                          {shipment.bids?.length ? `🚀 ${shipment.bids.length} Active Bids` : '🚀 No bids yet — be the first'}
+                        </div>
+                      </td>
+                      <td className="p-6 relative text-right align-middle">
+                        <Link
+                          href={`/carrier/jobs/view?id=${shipment.id}`}
+                          className="inline-flex items-center justify-center bg-gray-900 hover:bg-yellow-500 text-white hover:text-gray-900 font-black px-6 py-4 rounded-xl transition-all uppercase tracking-widest text-[10px] whitespace-nowrap shadow-md hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0"
+                        >
+                          Place Bid →
+                        </Link>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
-          ))
+          </div>
         )}
       </div>
 

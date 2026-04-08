@@ -1,13 +1,14 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { useParams, useRouter } from 'next/navigation';
+import { useSearchParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { shipmentService } from '@/services/shipment.service';
 import { bidService } from '@/services/bid.service';
 
 export default function CarrierJobDetailClient() {
-  const { id } = useParams();
+  const searchParams = useSearchParams();
+  const id = searchParams.get('id');
   const router = useRouter();
   const [shipment, setShipment] = useState<any>(null);
   const [bids, setBids] = useState<any[]>([]);
@@ -211,7 +212,7 @@ export default function CarrierJobDetailClient() {
                         </div>
                         <div className="text-left md:text-right">
                             <div className="text-3xl font-[1000] text-yellow-600 leading-none mb-1">${bid.amount}</div>
-                            <div className="text-[10px] font-black text-gray-400 uppercase tracking-widest px-3 py-1 bg-white inline-block border border-gray-100 rounded-lg">Est. Delivery: {new Date(bid.deliveryDate || Date.now()).toLocaleDateString()}</div>
+                            <div className="text-[10px] font-black text-gray-400 uppercase tracking-widest px-3 py-1 bg-white inline-block border border-gray-100 rounded-lg">Est. Delivery: {bid.deliveryEstimate ? new Date(bid.deliveryEstimate).toLocaleDateString() : 'Flexible'}</div>
                         </div>
                       </div>
                    </div>
@@ -233,10 +234,7 @@ export default function CarrierJobDetailClient() {
           <div className="bg-[#1a1b3a] rounded-[2.5rem] p-8 lg:p-10 text-white shadow-2xl relative overflow-hidden sticky top-28">
             <div className="absolute top-0 right-0 w-48 h-48 bg-yellow-400 opacity-10 rounded-full -mr-24 -mt-24 blur-3xl animate-pulse"></div>
             
-            <div className="text-center mb-10">
-                <div className="text-[10px] font-black text-yellow-500 uppercase tracking-[0.3em] mb-4 opacity-80">Shipper Budget</div>
-                <div className="text-6xl font-[1000] text-white tracking-tighter">${shipment.targetPrice || '650'}</div>
-            </div>
+
 
             <form onSubmit={handleBidSubmit} className="space-y-8 relative z-10">
               <div className="space-y-3">

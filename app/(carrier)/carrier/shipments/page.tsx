@@ -66,15 +66,17 @@ export default function CarrierShipmentsPage() {
                       <div className="font-[900] text-green-600 text-lg">${job.booking?.price || job.price || '0'}</div>
                     </td>
                     <td className="p-6">
-                      <span className={`inline-flex px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest ${job.status === 'DELIVERED' ? 'bg-green-100 text-green-700' :
-                          job.status === 'IN_TRANSIT' ? 'bg-blue-100 text-blue-700' :
-                            'bg-purple-100 text-purple-700'
+                      <span className={`inline-flex px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest border ${
+                          job.status === 'DELIVERED' ? 'bg-green-100 text-green-700 border-green-200' :
+                          job.status === 'IN_TRANSIT' ? 'bg-blue-100 text-blue-700 border-blue-200' :
+                          job.status === 'PICKED_UP' ? 'bg-yellow-100 text-yellow-700 border-yellow-200' :
+                          'bg-purple-100 text-purple-700 border-purple-200'
                         }`}>
                         {job.status?.replace('_', ' ') || 'Assigned'}
                       </span>
                     </td>
                     <td className="p-6 text-right">
-                      <Link href={`/carrier/shipments/${job._id || job.id}`} className="inline-block bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold px-6 py-2.5 rounded-xl transition-all text-sm uppercase tracking-wide">
+                      <Link href={`/carrier/shipments/view?id=${job._id || job.id}`} className="inline-block bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold px-6 py-2.5 rounded-xl transition-all text-sm uppercase tracking-wide">
                         Update Status
                       </Link>
                     </td>
