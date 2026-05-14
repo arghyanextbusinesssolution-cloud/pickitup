@@ -13,7 +13,7 @@ export default function AboutPage() {
             Driven by <span className="text-purple-400">efficiency.</span>
           </h1>
           <p className="text-xl md:text-2xl text-purple-100 max-w-3xl mx-auto leading-relaxed font-medium">
-            Based in Austin, Texas, pickItUp is the world's largest marketplace connecting people with large shipments to transport professionals with extra truck space.
+            Based in Usa pickItUp is the world's largest marketplace connecting people with large shipments to transport professionals with extra truck space.
           </p>
         </div>
       </div>
