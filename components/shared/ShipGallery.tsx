@@ -4,26 +4,26 @@ const shipImages = [
     {
         src: '/ship1.png',
         alt: 'Shipping Service 1',
-        label: 'Professional Fleet',
-        desc: 'Our verified carriers operate a wide rnow ange of professional vehicles to handle any shipment size.',
+        label: 'Expert Fleet',
+        desc: 'We collaborate with seasoned carriers who carefully handle shipments of any size using a variety of contemporary vehicles.',
     },
     {
         src: '/ship2.png',
         alt: 'Shipping Service 2',
-        label: 'Safe & Secure',
-        desc: 'Every shipment is handled with care, fully insured, and tracked from pickup to delivery.',
+        label: 'Secure & Safe',
+        desc: 'Every order is carefully handled, protected by insurance, and tracked from pickup to delivery.',
     },
     {
         src: '/ship3.png',
         alt: 'Shipping Service 3',
-        label: 'Fast Delivery',
-        desc: 'We match you with the fastest available carriers so your cargo arrives on time, every time.',
+        label: 'Quick Delivery',
+        desc: 'We match your package with the most effective carriers so that it always arrives on schedule.',
     },
     {
         src: '/ship4.png',
         alt: 'Shipping Service 4',
-        label: 'Nationwide Coverage',
-        desc: 'From coast to coast — our carrier network covers every major city and route across the country.',
+        label: 'Coverage Across the Country',
+        desc: 'Our Pickup and delivery service in U.S.A is dependable wherever shipping is required because of our vast network, which reaches major cities and routes throughout the nation.',
     },
 ];
 
@@ -35,13 +35,13 @@ export default function ShipGallery() {
                 {/* Section Header */}
                 <div className="text-center mb-16">
                     <div className="inline-flex items-center gap-2 bg-purple-50 border border-purple-100 px-4 py-1.5 rounded-full mb-5">
-                        <span className="text-purple-600 text-[11px] font-black tracking-widest uppercase">How We Ship</span>
+                        <span className="text-purple-600 text-[11px] font-black tracking-widest uppercase">The Process</span>
                     </div>
                     <h2 className="text-[38px] lg:text-[52px] font-[900] text-[#1a1b3a] leading-tight tracking-tighter uppercase mb-4">
-                        Shipping Made <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-yellow-500">Simple</span>
+                        Easy <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-yellow-500">Shipping</span>
                     </h2>
                     <p className="text-[17px] text-gray-500 font-medium max-w-[560px] mx-auto leading-relaxed">
-                        See how Pickitup handles every shipment — from pickup to drop-off — with speed, safety, and total transparency.
+                        Discover how Pickitup provides speed, safety, and complete visibility throughout the entire process, from pickup to final delivery.
                     </p>
                 </div>
 

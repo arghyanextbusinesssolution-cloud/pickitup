@@ -16,13 +16,12 @@ export default function CarrierHero() {
                         </div>
 
                         <h1 className="text-[46px] lg:text-[64px] font-[900] text-[#1a1b3a] leading-[1.05] mb-6 tracking-tighter uppercase">
-                            DRIVE YOUR
-                            <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-yellow-600">BUSINESS FORWARD</span>
+                            DOOR TO DOOR PICKUP SERVICE IN U.S.A,<br />
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-yellow-600">LOCATE SHIPMENTS</span>
                         </h1>
 
                         <p className="text-[18px] text-[#6B7280] font-medium mb-10 max-w-[540px] leading-relaxed">
-                            Join thousands of transport professionals who use PickItUp to fill their trucks, monetize empty miles, and increase their earnings.
+                            Use Pickitup to Grow Your Transportation Company. Pickitup facilitates carriers and transportation experts' access to lucrative nationwide shipping opportunities. By matching drivers with certified shippers, our technology helps you handle shipments more effectively, cut down on empty miles, and boost earnings.
                         </p>
 
                         <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
@@ -37,14 +36,18 @@ export default function CarrierHero() {
                             </Link>
                         </div>
                         
-                         <div className="flex items-center gap-6 mt-12 text-sm font-bold text-gray-400 uppercase tracking-widest">
+                         <div className="flex flex-wrap items-center gap-6 mt-12 text-[11px] font-black text-gray-400 uppercase tracking-[0.2em]">
                             <div className="flex items-center gap-2">
                                 <span className="w-8 h-8 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center text-lg">💰</span>
-                                <div>Fast Payouts</div>
+                                <div>Quick Payouts</div>
                             </div>
                             <div className="flex items-center gap-2">
-                                <span className="w-8 h-8 rounded-full bg-green-100 text-green-600 flex items-center justify-center text-lg">🚚</span>
+                                <span className="w-8 h-8 rounded-full bg-yellow-100 text-yellow-600 flex items-center justify-center text-lg">🚚</span>
                                 <div>No Empty Miles</div>
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <span className="w-8 h-8 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center text-lg">🛡️</span>
+                                <div>Secure Payments</div>
                             </div>
                         </div>
                     </div>

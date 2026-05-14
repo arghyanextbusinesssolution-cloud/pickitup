@@ -9,13 +9,13 @@ export default function PricingCards() {
             iconBg: 'bg-yellow-400',
             badge: 'MOST VIEWED',
             badgeColor: 'bg-yellow-400 text-gray-900',
-            title: 'COST TO SHIP VEHICLES',
+            title: 'Vehicle Shipping Costs',
             tags: [
                 { icon: '🚗', text: 'Cars' },
                 { icon: '🚙', text: 'Trucks' },
                 { icon: '🚐', text: 'SUVs' },
             ],
-            description: 'Discover average shipping costs for cars, trucks, and SUVs. Compare prices from trusted auto transport carriers and find the best rate for your vehicle shipment.',
+            description: 'Find out how much automobiles, trucks, SUVs, and vehicle transport services will cost right now.',
             buttonText: 'View Vehicle Costs',
             buttonColor: 'bg-yellow-400 hover:bg-yellow-500',
             link: '/register'
@@ -23,13 +23,13 @@ export default function PricingCards() {
         {
             icon: '🏠',
             iconBg: 'bg-purple-600',
-            title: 'COST TO SHIP HOME GOODS',
+            title: 'The price of shipping goods home',
             tags: [
                 { icon: '🪑', text: 'Furniture' },
                 { icon: '🔧', text: 'Appliances' },
                 { icon: '📦', text: 'Antiques' },
             ],
-            description: 'Explore typical costs for shipping furniture, appliances, and household items. Get estimates for moving your belongings across town or across the country.',
+            description: 'Calculate the cost of transporting household goods, appliances, furniture, and antiques across the country.',
             buttonText: 'View Home Goods Costs',
             buttonColor: 'bg-purple-600 hover:bg-purple-700',
             link: '/register'
@@ -37,13 +37,13 @@ export default function PricingCards() {
         {
             icon: '🚚',
             iconBg: 'bg-yellow-400',
-            title: 'COST TO SHIP FREIGHT',
+            title: 'The cost of shipping goods',
             tags: [
                 { icon: '✈️', text: 'LTL' },
                 { icon: '📦', text: 'FTL' },
                 { icon: '📋', text: 'Pallets' },
             ],
-            description: 'Compare LTL and FTL freight rates from carriers. Find competitive pricing for commercial shipments including construction materials, pallets, and industrial cargo.',
+            description: 'Examine the costs of LTL and FTL freight shipment for industrial cargo, pallets, and commercial goods.',
             buttonText: 'View Freight Costs',
             buttonColor: 'bg-yellow-400 hover:bg-yellow-500',
             link: '/register'
@@ -51,13 +51,13 @@ export default function PricingCards() {
         {
             icon: '🚤',
             iconBg: 'bg-purple-600',
-            title: 'COST TO SHIP A BOAT',
+            title: 'The Price of Shipping a Boat',
             tags: [
                 { icon: '⛵', text: 'Sailboats' },
                 { icon: '🚤', text: 'Yachts' },
                 { icon: '🎣', text: 'Jet Skis' },
             ],
-            description: 'Find out what it costs to transport boats of all sizes, from jet skis to yachts. Get accurate pricing estimates for marine transport services.',
+            description: 'For boat, yacht, sailboat, and maritime transportation services, find reasonable prices.',
             buttonText: 'View Boat Costs',
             buttonColor: 'bg-purple-600 hover:bg-purple-700',
             link: '/register'
@@ -65,13 +65,13 @@ export default function PricingCards() {
         {
             icon: '🏍️',
             iconBg: 'bg-yellow-400',
-            title: 'COST TO SHIP A MOTORCYCLE',
+            title: 'The price of shipping a motorcycle',
             tags: [
                 { icon: '🏍️', text: 'Street' },
                 { icon: '🏁', text: 'Cruisers' },
                 { icon: '✈️', text: 'ATVs' },
             ],
-            description: 'Learn about motorcycle shipping costs for both open and enclosed transport. Compare estimates for shipping your bike to any destination.',
+            description: 'Examine the expenses of secure shipping for motorcycles, cruisers, and ATVs.',
             buttonText: 'View Motorcycle Costs',
             buttonColor: 'bg-yellow-400 hover:bg-yellow-500',
             link: '/register'
@@ -79,13 +79,13 @@ export default function PricingCards() {
         {
             icon: '⚙️',
             iconBg: 'bg-purple-600',
-            title: 'COST TO SHIP HEAVY EQUIPMENT',
+            title: 'Heavy Equipment Shipping Costs',
             tags: [
                 { icon: '🚜', text: 'Excavators' },
                 { icon: '🏗️', text: 'Tractors' },
                 { icon: '⚙️', text: 'Loaders' },
             ],
-            description: 'Get pricing information for transporting heavy equipment including construction machinery, farm equipment, and industrial vehicles to any location.',
+            description: 'Get precise rates for the transportation of industrial machinery, tractors, loaders, and excavators.',
             buttonText: 'View Equipment Costs',
             buttonColor: 'bg-purple-600 hover:bg-purple-700',
             link: '/register'
@@ -99,10 +99,10 @@ export default function PricingCards() {
                     <span className="text-sm font-semibold text-purple-600 uppercase tracking-wide">PRICING GUIDE</span>
                 </div>
                 <h2 className="text-4xl lg:text-5xl font-bold text-center text-gray-900 mb-4">
-                    EXPLORE <span className="text-yellow-400">SHIPPING COSTS</span>
+                    EXAMINE THE <span className="text-yellow-400">COST OF SHIPPING</span>
                 </h2>
                 <p className="text-center text-gray-600 mb-16 max-w-2xl mx-auto">
-                    View recent shipments and learn about shipping prices for your transportation needs
+                    Use our reliable Local pickup and delivery service in U.S.A. to compare current shipping prices and estimate transportation expenses for your unique shipping needs.
                 </p>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">

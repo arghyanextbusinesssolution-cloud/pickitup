@@ -4,26 +4,26 @@ const findImages = [
     {
         src: '/find-shipments1.png',
         alt: 'Find Shipments 1',
-        label: 'Browse Available Loads',
-        desc: 'Explore thousands of verified shipments posted daily. Filter by route, size, and type to find the perfect load for your truck.',
+        label: 'Look Through Available Loads',
+        desc: 'Get access to thousands of current shipping listings that are published every day throughout the US. To identify the best chances for your company, search loads by location, route, shipment type, and vehicle specifications. Our technology facilitates dependable door to door pickup service in U.S.A, operations for carriers seeking to optimize revenue and delivery efficiency.',
     },
     {
         src: '/find-shipments2.png',
         alt: 'Find Shipments 2',
-        label: 'Place Your Bid',
-        desc: 'Submit your competitive quote in seconds. Shippers review your profile, ratings, and price — and pick the best match.',
+        label: 'Make Bids That Are Competitive',
+        desc: 'In just a few seconds, provide your pricing quote. Before choosing the ideal transportation partner for their shipping requirements, shippers can examine your ratings, carrier profile, and experience.',
     },
     {
         src: '/find-shipments3.png',
         alt: 'Find Shipments 3',
-        label: 'Get Matched & Confirm',
-        desc: 'Once accepted, you receive full shipment details, pickup info, and secure payment confirmation — all in one place.',
+        label: 'Verify and Match Shipments',
+        desc: 'You will receive all shipping details, pickup information, route instructions, and a secure payment confirmation in one location after your bid is accepted.',
     },
     {
         src: '/find-shipments4.png',
         alt: 'Find Shipments 4',
-        label: 'Deliver & Get Paid',
-        desc: 'Complete the delivery, get rated, and receive fast payment. Build your reputation and keep the loads coming.',
+        label: 'Deliver and Get Paid Fast',
+        desc: 'Finish deliveries, keep up good reviews, and get paid quickly. Develop enduring connections with shippers while steadily expanding your transportation company',
     },
 ];
 
@@ -35,13 +35,13 @@ export default function FindShipmentsGallery() {
                 {/* Section Header */}
                 <div className="text-center mb-16">
                     <div className="inline-flex items-center gap-2 bg-yellow-50 border border-yellow-200 px-4 py-1.5 rounded-full mb-5">
-                        <span className="text-yellow-600 text-[11px] font-black tracking-widest uppercase">For Carriers</span>
+                        <span className="text-yellow-600 text-[11px] font-black tracking-widest uppercase">Expand Your Company</span>
                     </div>
                     <h2 className="text-[38px] lg:text-[52px] font-[900] text-[#1a1b3a] leading-tight tracking-tighter uppercase mb-4">
-                        How to Find <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-yellow-500">Shipments</span>
+                        How to <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-yellow-500">Locate Shipments</span>
                     </h2>
                     <p className="text-[17px] text-gray-500 font-medium max-w-[560px] mx-auto leading-relaxed">
-                        From browsing loads to getting paid — here's how easy it is to grow your carrier business with Pickitup.
+                        Through a single, efficient shipping platform, Pickitup makes it simple for carriers to explore loads, submit bids, secure deliveries, and get quick payments.
                     </p>
                 </div>
 

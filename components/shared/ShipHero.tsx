@@ -22,7 +22,7 @@ export default function ShipHero() {
                         </h1>
 
                         <p className="text-[18px] text-[#6B7280] font-medium mb-10 max-w-[540px] leading-relaxed">
-                            Experience a seamless shipping process designed for heavy items, vehicles, and freight. Connect with top-rated carriers and get your items moving securely today.
+                            Take advantage of a smooth and reliable shipping experience made for automobiles, freight, and large products. Make connections with reputable carriers to relocate your belongings quickly. Our Pickup and delivery service in U.S.A simplifies, secures, and expedites shipping.
                         </p>
 
                         <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
@@ -40,11 +40,11 @@ export default function ShipHero() {
                          <div className="flex items-center gap-6 mt-12 text-sm font-bold text-gray-400 uppercase tracking-widest">
                             <div className="flex items-center gap-2">
                                 <span className="w-8 h-8 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center text-lg">🛡️</span>
-                                <div>Fully Protected</div>
+                                <div>Total security</div>
                             </div>
                             <div className="flex items-center gap-2">
                                 <span className="w-8 h-8 rounded-full bg-yellow-100 text-yellow-600 flex items-center justify-center text-lg">⚡</span>
-                                <div>Instant Quotes</div>
+                                <div>Fast cost estimates</div>
                             </div>
                         </div>
                     </div>

@@ -3,22 +3,31 @@
 import { useState } from 'react';
 import Link from 'next/link';
 
-const faqs = [
+interface FAQItem {
+    question: string;
+    answer: string;
+}
+
+const defaultFaqs: FAQItem[] = [
     {
-        question: "HOW DOES PICKITUP WORK?",
-        answer: "PickitUp connects you with a network of verified carriers who have extra space on their trucks. Simply list your item, receive competitive quotes from carriers already heading your way, and book the one that fits your budget and schedule."
+        question: "How Does Pickitup Operate?",
+        answer: "Pickitup connects you with a reliable network of reputable carriers who have space available on their vehicles. All you have to do is post your cargo details, obtain several quotes from carriers that are currently on your route, and select the option that best fits your schedule and budget."
     },
     {
-        question: "HOW MUCH DOES IT COST TO SHIP?",
-        answer: "Shipping costs depend on the size of your item, the distance it's traveling, and how quickly you need it delivered. Because our carriers are already driving your route, you can often save up to 60% compared to traditional shipping methods."
+        question: "How Much Does Shipping Cost?",
+        answer: "The size of the goods, the distance it must travel, and the delivery window all affect shipping costs. Compared to traditional shipping choices, you can frequently save up to 60% because carriers are already on their way to you."
     },
     {
-        question: "IS IT SAFE TO SHIP WITH USHIP?",
-        answer: "Yes. Every carrier in our network is background-checked and rated by customers like you. We also provide secure payment processing and protection guarantees so you can ship your big stuff with total peace of mind."
+        question: "Is Using Pickitup for Shipping Safe?",
+        answer: "Of course. Every carrier in our network is subject to consumer reviews and background checks. Additionally, we guarantee safe payment methods and provide protection coverage so you may ship your goods with total confidence."
     }
 ];
 
-export default function FAQSection() {
+interface FAQSectionProps {
+    items?: FAQItem[];
+}
+
+export default function FAQSection({ items = defaultFaqs }: FAQSectionProps) {
     const [openIndex, setOpenIndex] = useState<number | null>(null);
 
     const toggleFAQ = (index: number) => {
@@ -37,7 +46,7 @@ export default function FAQSection() {
 
                 {/* FAQ List */}
                 <div className="border-t border-purple-100">
-                    {faqs.map((faq, index) => (
+                    {items.map((faq, index) => (
                         <div key={index} className="border-b border-purple-100 last:border-b-0">
                             <button
                                 onClick={() => toggleFAQ(index)}

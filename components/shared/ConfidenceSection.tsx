@@ -16,9 +16,9 @@ export default function ConfidenceSection() {
                             </svg>
                         </div>
                         <div className="flex flex-col">
-                            <span className="text-xs font-bold text-gray-300 tracking-wider uppercase">Need help with your shipment?</span>
+                            <span className="text-xs font-bold text-gray-300 tracking-wider uppercase">Are You Having Trouble Shipping?</span>
                             <span className="text-sm lg:text-base font-extrabold tracking-tight">
-                                SHIPPING A CAR? CALL NOW TO SECURE YOUR BEST RATE:
+                                SHIPPING A VEHICLE? FOR THE BEST PRICES, GIVE US A CALL NOW!
                             </span>
                         </div>
                     </div>
@@ -43,10 +43,10 @@ export default function ConfidenceSection() {
                         THREE STEPS TO SHIP
                     </span>
                     <h2 className="text-5xl lg:text-6xl font-black text-gray-900 mb-6 tracking-tighter">
-                        Ship with confidence
+                        Ship Confidently
                     </h2>
                     <p className="text-lg text-gray-500 max-w-2xl mx-auto font-medium">
-                        pickitup makes shipping big items a breeze. Here's how it works:
+                        Our streamlined method makes shipping large items easy, safe, and stress-free.
                     </p>
                 </div>
 
@@ -98,9 +98,9 @@ export default function ConfidenceSection() {
                             <div className="w-10 h-10 bg-yellow-400 rounded-full flex items-center justify-center font-black text-gray-900 mx-auto mb-4">
                                 1
                             </div>
-                            <h3 className="text-2xl font-black text-gray-900 mb-4 tracking-tighter uppercase">List</h3>
+                            <h3 className="text-2xl font-black text-gray-900 mb-4 tracking-tighter uppercase">1. LIST</h3>
                             <p className="text-gray-500 text-sm font-medium leading-relaxed px-4">
-                                Provide details about your shipment to start the listing process and get a price in minutes.
+                                Get competitive quotes from reliable carriers in a matter of minutes by sharing the specifics of your shipment.
                             </p>
                         </div>
                     </div>
@@ -121,9 +121,9 @@ export default function ConfidenceSection() {
                             <div className="w-10 h-10 bg-yellow-400 rounded-full flex items-center justify-center font-black text-gray-900 mx-auto mb-4">
                                 2
                             </div>
-                            <h3 className="text-2xl font-black text-gray-900 mb-4 tracking-tighter uppercase">Compare</h3>
+                            <h3 className="text-2xl font-black text-gray-900 mb-4 tracking-tighter uppercase">2. Evaluate</h3>
                             <p className="text-gray-500 text-sm font-medium leading-relaxed px-4">
-                                Compare quotes from multiple carriers on one platform to find the one that fits your needs and budget.
+                                Examine several shipping options in one location and select the one that best suits your schedule and price range.
                             </p>
                         </div>
                     </div>
@@ -144,10 +144,10 @@ export default function ConfidenceSection() {
                             <div className="w-10 h-10 bg-yellow-400 rounded-full flex items-center justify-center font-black text-gray-900 mx-auto mb-4">
                                 3
                             </div>
-                            <h3 className="text-2xl font-black text-gray-900 mb-4 tracking-tighter uppercase">Book & Ship</h3>
+                            <h3 className="text-2xl font-black text-gray-900 mb-4 tracking-tighter uppercase">3. Purchase and ship</h3>
                             <div className="bg-yellow-50 rounded-2xl p-4 mb-4 border border-yellow-100">
-                                <p className="text-[10px] font-black text-gray-800 uppercase tracking-widest leading-normal">
-                                    Book with added protection and secure payments, backed by <span className="text-yellow-700">24/7 support</span> and our <span className="text-yellow-700 underline decoration-2 underline-offset-4">Ship with Confidence Guarantee.</span>
+                                <p className="text-sm font-medium text-gray-600 leading-relaxed">
+                                    Enjoy real-time assistance from pickup to final delivery when you make secure reservations with reputable carriers.
                                 </p>
                             </div>
                         </div>

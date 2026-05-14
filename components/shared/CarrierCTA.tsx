@@ -7,23 +7,23 @@ export default function CarrierCTA() {
     const benefits = [
         {
             icon: '🕒',
-            title: 'New shipments every 30 seconds',
-            description: 'Access a constant stream of loads matching your routes and equipment',
+            title: 'Every 30 Seconds, New Shipments',
+            description: 'Get reliable load options based on your equipment and routes.',
         },
         {
             icon: '⛽',
-            title: 'Reduce empty miles',
-            description: 'Fill your backhauls and maximize revenue on every trip',
+            title: 'Cut Down on Empty Miles',
+            description: 'Fill backhauls and make every journey as profitable as possible.',
         },
         {
             icon: '📈',
-            title: 'Improve route efficiency',
-            description: 'Smart matching technology finds loads that fit your schedule',
+            title: 'Boost Route Effectiveness',
+            description: 'You can locate shipments that suit your timetable with the aid of sophisticated load-matching technology.',
         },
         {
             icon: '🚀',
-            title: 'Grow your business in one platform',
-            description: 'Build your reputation with customer reviews and win more shipments',
+            title: 'Expand Your Company on a Single Platform',
+            description: 'Increase your delivery volume more quickly, acquire customer reviews, and establish credibility.',
         },
     ];
 
@@ -73,7 +73,7 @@ export default function CarrierCTA() {
                         </h2>
 
                         <p className="text-[16px] lg:text-[18px] text-[#6B7280] font-medium mb-10 max-w-[480px] leading-relaxed">
-                            Join the largest shipping marketplace and grow your business with access to thousands of shipments posted every day. Turn empty miles into revenue.
+                            Access thousands of daily shipping opportunities across the country by becoming a member of one of the fastest-growing shipping marketplaces.
                         </p>
 
                         <div className="space-y-6 mb-10 w-full">

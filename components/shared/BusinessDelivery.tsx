@@ -12,25 +12,27 @@ export default function BusinessDelivery() {
                     {/* Left Content Column */}
                     <div className="order-2 lg:order-1 max-w-xl flex flex-col items-center text-center lg:items-start lg:text-left mx-auto lg:mx-0">
                         <h2 className="text-[44px] lg:text-[56px] font-[900] leading-[1.05] mb-8 tracking-tighter uppercase whitespace-pre-wrap">
-                            <span className="text-[#1a1b3a]">YOUR PARTNER IN</span><br />
-                            <span className="text-yellow-400">BUSINESS DELIVERY</span>
+                            <span className="text-[#1a1b3a]">DELIVERY THROUGHOUT THE</span><br />
+                            <span className="text-yellow-400">UNITED STATES OF AMERICA</span>
                         </h2>
 
                         <p className="text-xl text-gray-500 font-bold mb-6 leading-relaxed">
-                            Personalized business delivery solutions designed to scale with your growth and exceed customer expectations.
+                            Tailored business delivery solutions designed to grow with your organization and surpass client expectations across the country.
                         </p>
 
                         <p className="text-[17px] text-gray-500 font-medium mb-10 leading-relaxed">
-                            We understand that every business has unique shipping needs. Our tailored logistics solutions combine cutting-edge technology with reliable carrier networks to streamline your operations, reduce costs, and deliver exceptional experiences to your customers nationwide.
+                            We are aware that every company has different logistics and shipping requirements. PickItUp offers quick, safe, and affordable on-demand pickup and delivery services across the U.S.A by fusing cutting-edge technology with a stable carrier network. We assist companies in streamlining processes and raising customer satisfaction, from local freight to national transportation.
                         </p>
 
                         {/* Benefits Checklist */}
+                        <h3 className="text-xl font-black text-[#1a1b3a] mb-6 uppercase tracking-tight">Why Companies Select PickItUp</h3>
                         <div className="space-y-4 mb-12">
                             {[
-                                'Expand nationwide with reliable coverage',
-                                'Diversify your carrier base for flexibility',
-                                'Elevate your delivery experience',
-                                'Seamless API integration options'
+                                'Coverage across the country with reliable carriers',
+                                'Adaptable delivery and shipping options',
+                                'Scheduling pickups more quickly and effectively',
+                                'Integration of logistics and APIs with ease',
+                                'Reliable alternatives for scheduled and same-day delivery'
                             ].map((benefit, i) => (
                                 <div key={i} className="flex items-center gap-4">
                                     <div className="flex-shrink-0 w-6 h-6 rounded-full bg-yellow-100 flex items-center justify-center">

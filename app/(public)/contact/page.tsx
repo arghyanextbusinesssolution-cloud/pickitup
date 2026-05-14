@@ -23,18 +23,21 @@ export default function ContactPage() {
                             <span className="text-purple-600 text-[10px] font-black tracking-widest uppercase">24/7 Global Support</span>
                         </div>
                         <h1 className="text-[42px] lg:text-[64px] font-[900] text-[#1a1b3a] leading-[1] mb-6 tracking-tight uppercase animate-in fade-in slide-in-from-bottom-4 duration-700">
-                            How Can We <br />
-                            <span className="text-yellow-400">Help You Today?</span>
+                            Contact Us<br />
+                            <span className="text-yellow-400">How Can We Help You Today?</span>
                         </h1>
                         <p className="text-[18px] text-[#6B7280] font-medium leading-relaxed animate-in fade-in slide-in-from-bottom-6 duration-700">
-                            Whether you're a shipper with a question or a carrier looking for support, our dedicated team is here to ensure your experience is seamless.
+                            Our committed support staff is here to guarantee a seamless and stress-free experience, whether you&apos;re a shipper with inquiries or a carrier seeking trustworthy assistance. We offer trustworthy logistical assistance nationwide, from tracking shipments to organizing pickups. Our nationwide network makes it simple for you to arrange quick and safe courier pickups if you&apos;re looking for Courier collection near me in U.S.A.
                         </p>
                     </div>
 
                     <div className="grid lg:grid-cols-5 gap-12 items-start">
                         {/* Contact Form - Premium Style */}
                         <div className="lg:col-span-3 bg-white rounded-[2.5rem] shadow-[0_40px_80px_-15px_rgba(0,0,0,0.08)] p-8 sm:p-12 border border-gray-100 animate-in fade-in slide-in-from-left-8 duration-1000">
-                            <h3 className="text-2xl font-[900] text-[#1a1b3a] mb-8 tracking-tight uppercase">Send us a Message</h3>
+                            <h3 className="text-2xl font-[900] text-[#1a1b3a] mb-4 tracking-tight uppercase">PLEASE SEND US A MESSAGE</h3>
+                            <p className="text-gray-500 font-medium mb-8 leading-relaxed">
+                                Do you need help with general logistical support, vehicle delivery, freight transportation, or shipping? Complete the contact form, and our staff will get back to you immediately away with the best answer to your question. For each shipment, we are dedicated to provide dependable client service and effective communication.
+                            </p>
                             
                             <form className="space-y-6">
                                 <div className="grid sm:grid-cols-2 gap-6">
@@ -57,6 +60,22 @@ export default function ContactPage() {
                                 </div>
 
                                 <div>
+                                    <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-4 ml-1">Inquiry Support Includes:</label>
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-6 mb-8">
+                                        {[
+                                            'Assistance with general shipping',
+                                            'Courier pickup scheduling',
+                                            'Questions about freight and transportation',
+                                            'Support for tracking shipments',
+                                            'Business and carrier partnerships',
+                                            'Talk to us'
+                                        ].map((item, i) => (
+                                            <div key={i} className="flex items-center gap-2">
+                                                <div className="w-1.5 h-1.5 rounded-full bg-yellow-400"></div>
+                                                <span className="text-[13px] font-bold text-gray-600">{item}</span>
+                                            </div>
+                                        ))}
+                                    </div>
                                     <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2 ml-1">Inquiry Type</label>
                                     <div className="relative">
                                         <select className="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-purple-100 focus:border-purple-600 appearance-none bg-gray-50/50 text-[15px] font-bold text-gray-900 transition-all cursor-pointer outline-none">
@@ -99,33 +118,33 @@ export default function ContactPage() {
                                 </div>
                                 <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-sm">📱</div>
                                 <h4 className="text-xl font-[900] text-[#1a1b3a] uppercase tracking-tight mb-2">Speak with Us</h4>
-                                <p className="text-gray-500 font-medium text-sm mb-6 max-w-[200px]">Our agents are available for urgent inquiries 24/7.</p>
+                                <p className="text-gray-500 font-medium text-sm mb-6 leading-relaxed">Our customer support agents are available 24/7 to assist with urgent logistics and delivery concerns. Whether you need help arranging a pickup or checking shipment updates, we are always ready to help.</p>
                                 <a href="tel:1-800-698-7447" className="inline-flex items-center gap-2 text-[#4b148c] font-black text-lg hover:gap-3 transition-all">
                                     1-800-698- pickItUp
                                     <span>➡️</span>
                                 </a>
                             </div>
 
-                            {/* Card 2: Email */}
+                             {/* Card 2: Email */}
                             <div className="bg-white rounded-[2rem] p-8 border border-gray-100 shadow-xl shadow-gray-100/50 relative overflow-hidden group hover:border-yellow-200 transition-all">
                                 <div className="w-14 h-14 bg-yellow-50 rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-sm border border-yellow-100">✉️</div>
-                                <h4 className="text-xl font-[900] text-[#1a1b3a] uppercase tracking-tight mb-2">Email Support</h4>
-                                <p className="text-gray-500 font-medium text-sm mb-6 max-w-[200px]">We typically respond within 1-2 business hours.</p>
+                                <h4 className="text-xl font-[900] text-[#1a1b3a] uppercase tracking-tight mb-2">EMAIL ASSISTANCE</h4>
+                                <p className="text-gray-500 font-medium text-sm mb-6 leading-relaxed">For detailed inquiries, billing concerns, shipment coordination, or technical support, contact our email support team. In order to maintain the efficiency of your logistical operations, we strive to answer within 1-2 business hours.</p>
                                 <a href="mailto:support@pickitup.com" className="inline-flex items-center gap-2 text-purple-600 font-black text-lg hover:gap-3 transition-all">
                                     support@pickitup.com
                                     <span>➡️</span>
                                 </a>
                             </div>
 
-                            {/* Card 3: Help Center */}
+                            {/* Card 3: Courier Collection */}
                             <div className="bg-[#1a1b3a] rounded-[2rem] p-8 shadow-2xl relative overflow-hidden group">
                                 <div className="absolute top-0 right-0 p-6">
                                     <div className="w-12 h-12 bg-yellow-400 rounded-full flex items-center justify-center text-xl animate-pulse">⚡</div>
                                 </div>
-                                <h4 className="text-xl font-[900] text-white uppercase tracking-tight mb-2">Help Center</h4>
-                                <p className="text-gray-400 font-medium text-sm mb-6 max-w-[220px]">Browse our detailed guides and FAQ for instant answers.</p>
-                                <Link href="/faq" className="bg-white text-[#1a1b3a] font-[900] px-6 py-3 rounded-xl transition-all hover:bg-yellow-400 uppercase tracking-widest text-[11px] inline-block">
-                                    Visit Knowledge Base
+                                <h4 className="text-xl font-[900] text-white uppercase tracking-tight mb-2">Courier collection</h4>
+                                <p className="text-gray-400 font-medium text-sm mb-6 leading-relaxed">Are you trying to find Courier collection near me in U.S.A? Packages can be picked up and transported quickly, conveniently, and reliably across the country with our reliable courier collection services.</p>
+                                <Link href="/find-shipments" className="bg-white text-[#1a1b3a] font-[900] px-6 py-3 rounded-xl transition-all hover:bg-yellow-400 uppercase tracking-widest text-[11px] inline-block">
+                                    Find Courier Near You
                                 </Link>
                             </div>
                         </div>
@@ -171,25 +190,57 @@ export default function ContactPage() {
                                 <span className="text-purple-600 uppercase">Command Hub</span>
                             </h2>
                             <p className="text-[17px] text-[#6B7280] font-medium mb-8 leading-relaxed italic">
-                                "Our mission is to bridge the gap between shippers and carriers with unparalleled transparency and elite support."
+                                Our goal is to bring shippers and carriers together via open communication, dependable shipping, and top-notch logistics assistance. We assist companies and individuals in moving shipments effectively and safely thanks to our global operational reach.
                             </p>
                             
                             <div className="space-y-6">
-                                <div className="flex gap-4 p-4 rounded-2xl hover:bg-gray-50 transition-colors border border-transparent hover:border-gray-100">
+                                 <div className="flex gap-4 p-4 rounded-2xl hover:bg-gray-50 transition-colors border border-transparent hover:border-gray-100">
                                     <div className="text-2xl mt-1">🏢</div>
                                     <div>
                                         <h4 className="font-black text-gray-900 uppercase text-sm tracking-wide">Main Office</h4>
-                                        <p className="text-gray-500 text-[15px]">124 Logistics Blvd, Suite 400<br />Austin, TX 78744</p>
+                                        <p className="text-gray-500 text-[15px]">Austin, Texas – Providing prompt, professional logistics and courier transportation services across the country.</p>
                                     </div>
                                 </div>
                                 <div className="flex gap-4 p-4 rounded-2xl hover:bg-gray-50 transition-colors border border-transparent hover:border-gray-100">
                                     <div className="text-2xl mt-1">📢</div>
                                     <div>
-                                        <h4 className="font-black text-gray-900 uppercase text-sm tracking-wide">Media Inquiries</h4>
-                                        <p className="text-gray-500 text-[15px]">press@pickitup.com<br />24-hour response window</p>
+                                        <h4 className="font-black text-gray-900 uppercase text-sm tracking-wide">Media & Questions</h4>
+                                        <p className="text-gray-500 text-[15px]">press@pickitup.com<br />Our staff is ready with a quick response window to guarantee smooth contact for partnerships, press queries, or business collaborations.</p>
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Newsletter Section */}
+            <section className="py-24 bg-gray-50">
+                <div className="max-w-[1240px] mx-auto px-6 lg:px-10">
+                    <div className="bg-[#1a1b3a] rounded-[3rem] p-12 lg:p-20 text-center relative overflow-hidden">
+                        {/* Decorative circles */}
+                        <div className="absolute top-0 left-0 w-64 h-64 bg-purple-500/10 rounded-full -ml-32 -mt-32 blur-3xl"></div>
+                        <div className="absolute bottom-0 right-0 w-64 h-64 bg-yellow-400/10 rounded-full -mr-32 -mb-32 blur-3xl"></div>
+                        
+                        <div className="relative z-10">
+                            <h2 className="text-[32px] lg:text-[48px] font-[900] text-white leading-tight mb-6 tracking-tighter uppercase">
+                                GET UP TO DATE ON <br />
+                                <span className="text-yellow-400 text-6xl block mt-2">SHIPPING NEWS & TIPS</span>
+                            </h2>
+                            <p className="text-xl text-gray-400 font-medium max-w-2xl mx-auto mb-12">
+                                Subscribe to receive the latest updates on shipping trends, freight solutions, courier services, and logistics insights delivered directly to your inbox.
+                            </p>
+                            
+                            <form className="max-w-md mx-auto flex flex-col sm:flex-row gap-4">
+                                <input 
+                                    type="email" 
+                                    placeholder="your@email.com"
+                                    className="flex-grow px-6 py-4 rounded-2xl bg-white/10 border border-white/20 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition-all font-bold"
+                                />
+                                <button className="bg-yellow-400 hover:bg-yellow-500 text-[#1a1b3a] font-[900] px-8 py-4 rounded-2xl transition-all uppercase tracking-widest text-sm shadow-xl whitespace-nowrap">
+                                    Subscribe
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>

@@ -3,51 +3,70 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-const testimonials = [
+interface TestimonialItem {
+    image: string;
+    quote: string;
+    stars: number;
+    name: string;
+    location: string;
+    initials: string;
+    color: string;
+}
+
+const defaultTestimonials: TestimonialItem[] = [
     {
-        image: '/img4_car.jpg', // Motorcycle placeholder if needed, using car for now
-        quote: "I was nervous about shipping my vintage motorcycle across the country, but pickitup made it incredibly easy. The carrier was professional, kept me updated throughout the journey, and delivered it in perfect condition. Couldn't be happier!",
+        image: '/img4_car.jpg',
+        quote: "I was anxious to ship my vintage motorcycle across the nation, but PickItUp made it easy and stress-free. My bike came in fantastic shape, and their on-demand pickup and delivery service in the U.S.A kept me informed throughout the trip.",
         stars: 5,
         name: 'James Mitchell',
-        location: 'Austin, TX',
+        location: 'Austin, Texas',
         initials: 'JM',
         color: 'bg-purple-600',
     },
     {
-        image: '/img2_truck.avif', // Camper/Truck placeholder
-        quote: "We purchased a travel trailer from a seller 1,500 miles away. pickitup connected us with an amazing transporter who treated our new camper like it was their own. Great communication, fair price, and on-time delivery!",
+        image: '/img2_truck.avif',
+        quote: "We needed long-distance camper shipping quickly, and PickItUp put us in touch with a trustworthy carrier right away. Excellent communication, reasonable prices, and prompt delivery were provided by their on-demand pickup and delivery across the U.S.A.",
         stars: 5,
         name: 'Sarah Reynolds',
-        location: 'Denver, CO',
+        location: 'Colorado, Denver',
         initials: 'SR',
         color: 'bg-yellow-500',
     },
     {
-        image: '/sofa.webp', // Antique/Furniture placeholder
-        quote: "Found the perfect antique chair at an estate sale across the state. Regular shipping was way too expensive, but pickitup helped me find a carrier already heading my way. Saved over 60% and got white-glove treatment!",
-        stars: 4,
+        image: '/sofa.webp',
+        quote: "I discovered the ideal vintage chair in a different state, but the cost of shipping was prohibitive. PickItUp's expert white-glove service and reasonably priced on-demand pickup and delivery in the U.S.A helped me save money.",
+        stars: 5,
         name: 'Michael Patterson',
-        location: 'Portland, OR',
+        location: 'Portland, Oregon',
         initials: 'MP',
         color: 'bg-purple-600',
     },
 ];
 
-export default function Testimonials() {
+interface TestimonialsProps {
+    title?: string;
+    items?: TestimonialItem[];
+}
+
+export default function Testimonials({
+    title = "PEOPLE TRUST PICKITUP FOR ON-DEMAND PICKUP AND DELIVERY IN THE U.S.A",
+    items = defaultTestimonials
+}: TestimonialsProps) {
     return (
         <section className="py-24 bg-white relative overflow-hidden">
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
                 {/* Header Section */}
                 <div className="text-center mb-24">
+                    <span className="text-sm font-semibold text-purple-600 uppercase tracking-wide mb-4 block">Reviews from Customers</span>
                     <h2 className="text-[32px] md:text-[44px] font-[900] text-[#1a1b3a] tracking-tight uppercase mb-4 leading-tight">
-                        PEOPLE LOVE SHIPPING WITH PICKITUP
+                        {title}
                     </h2>
                     <div className="w-16 h-1.5 bg-yellow-400 rounded-full mx-auto" />
                 </div>
 
                 {/* Testimonials Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-12 pt-10">
-                    {testimonials.map((item, index) => (
+                    {items.map((item, index) => (
                         <div
                             key={index}
                             className="relative bg-[#FAFAFF] rounded-[2.5rem] p-8 sm:p-10 pt-16 shadow-[0_20px_50px_rgba(0,0,0,0.03)] border border-gray-50 flex flex-col h-full max-w-md mx-auto md:max-w-none w-full"
