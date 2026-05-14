@@ -63,8 +63,8 @@ export default function CarrierProfilePage() {
                         <span className="text-gray-900 font-black text-sm">48</span>
                     </div>
                     <div className="flex justify-between items-center">
-                        <span className="text-gray-500 font-bold uppercase text-[10px] tracking-wider">Rating</span>
-                        <span className="text-yellow-600 font-black text-sm text-lg">★ 4.9</span>
+                        <span className="text-gray-500 font-bold uppercase text-[10px] tracking-wider">Base Location</span>
+                        <span className="text-blue-600 font-black text-sm text-lg">📍 Austin, TX</span>
                     </div>
                 </div>
             </div>

@@ -7,6 +7,7 @@ import { bookingService } from '@/services/booking.service';
 import { paymentService } from '@/services/payment.service';
 
 import { PaymentFeedback } from '@/components/payment/payment-feedback';
+import ClaimFormModal from '@/components/claims/ClaimFormModal';
 
 const STATUS_COLORS: Record<string, { bg: string; text: string; label: string }> = {
   CONFIRMED:  { bg: 'bg-blue-100',   text: 'text-blue-700',   label: 'Confirmed' },
@@ -32,6 +33,7 @@ export default function BookingDetailPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [isPaying, setIsPaying] = useState(false);
   const [error, setError] = useState('');
+  const [isClaimModalOpen, setIsClaimModalOpen] = useState(false);
   
   const isPaidOptimistically = booking?.paymentStatus === 'PAID' || paymentStatus === 'success';
 
@@ -48,6 +50,8 @@ export default function BookingDetailPage() {
   useEffect(() => {
     fetchBooking();
   }, [bookingId]);
+
+  const [useInsurance, setUseInsurance] = useState(false);
 
   // When returning from Stripe success, confirm payment with backend then refresh
   useEffect(() => {
@@ -69,7 +73,7 @@ export default function BookingDetailPage() {
     if (!bookingId) return;
     setIsPaying(true);
     try {
-      const { url } = await paymentService.createCheckoutSession(bookingId);
+      const { url } = await paymentService.createCheckoutSession(bookingId, useInsurance);
       if (url) {
         window.location.href = url;
       } else {
@@ -109,6 +113,17 @@ export default function BookingDetailPage() {
     <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 max-w-5xl mx-auto">
       <PaymentFeedback />
 
+      {isClaimModalOpen && (
+          <ClaimFormModal 
+            bookingId={bookingId} 
+            onClose={() => setIsClaimModalOpen(false)} 
+            onSuccess={() => {
+                setIsClaimModalOpen(false);
+                fetchBooking();
+            }}
+          />
+      )}
+
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-start justify-between gap-6 mb-10">
         <div>
@@ -122,6 +137,11 @@ export default function BookingDetailPage() {
             <span className={`font-black px-3 py-1 rounded-full text-xs uppercase tracking-widest ${isPaidOptimistically ? PAYMENT_STATUS_COLORS.PAID : (PAYMENT_STATUS_COLORS[booking.paymentStatus] || 'bg-gray-100 text-gray-600')}`}>
               Payment: {isPaidOptimistically ? 'PAID' : booking.paymentStatus}
             </span>
+            {booking.hasInsurance && (
+               <span className={`font-black px-3 py-1 rounded-full text-xs uppercase tracking-widest bg-blue-100 text-blue-800`}>
+                Protected by Insurance
+               </span>
+            )}
           </div>
           <h1 className="text-3xl font-[900] text-gray-900 uppercase tracking-tight">
             Booking #{bookingId.substring(0, 8).toUpperCase()}
@@ -136,6 +156,15 @@ export default function BookingDetailPage() {
             })}
           </p>
         </div>
+
+        {booking.status === 'COMPLETED' && (
+            <button 
+                onClick={() => setIsClaimModalOpen(true)}
+                className="bg-red-50 hover:bg-red-100 text-red-600 font-[900] px-6 py-4 rounded-xl transition-all uppercase tracking-wide text-xs flex items-center gap-2 border-2 border-red-100 shadow-sm"
+            >
+                ⚠️ File Insurance Claim
+            </button>
+        )}
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -251,10 +280,32 @@ export default function BookingDetailPage() {
                   ${(Number(booking.price) * 0.03).toFixed(2)}
                 </span>
               </div>
+              {(!isPaidOptimistically && booking.paymentStatus === 'PENDING') && (
+                <div className="flex justify-between items-center py-3 border-b border-gray-100">
+                  <label className="flex items-center gap-3 cursor-pointer">
+                    <input 
+                      type="checkbox" 
+                      className="w-5 h-5 accent-blue-600 rounded cursor-pointer"
+                      checked={useInsurance}
+                      onChange={(e) => setUseInsurance(e.target.checked)}
+                    />
+                    <span className="font-[900] text-blue-800 flex items-center gap-2">
+                       <span className="text-lg">🛡️</span> Add Website Insurance
+                    </span>
+                  </label>
+                  <span className="font-bold text-gray-500">+$100.00</span>
+                </div>
+              )}
+              {booking.hasInsurance && (
+                <div className="flex justify-between items-center py-3 border-b border-gray-100">
+                  <span className="text-blue-700 font-[900] flex items-center gap-2">🛡️ Website Insurance</span>
+                  <span className="font-bold text-gray-500">${Number(booking.insuranceFee).toFixed(2)}</span>
+                </div>
+              )}
               <div className="flex justify-between items-center py-4">
                 <span className="font-[900] text-gray-900 uppercase tracking-wide text-lg">Total Due</span>
                 <span className="font-[900] text-purple-600 text-2xl">
-                  ${(Number(booking.price) * 1.03).toFixed(2)}
+                  ${((Number(booking.price) * 1.03) + (useInsurance ? 100 : (booking.hasInsurance ? Number(booking.insuranceFee) : 0))).toFixed(2)}
                 </span>
               </div>
             </div>
@@ -298,11 +349,11 @@ export default function BookingDetailPage() {
                   {booking.carrier?.companyName || 'Carrier'}
                 </h4>
                 <div className="flex items-center gap-2 mt-1">
-                  <span className="text-yellow-500 font-bold text-sm">
-                    ★ {Number(booking.carrier?.rating || 5).toFixed(1)}
+                  <span className="text-blue-600 font-bold text-sm">
+                    📍 Base Location
                   </span>
-                  <span className="text-gray-400 text-xs font-bold">
-                    ({booking.carrier?.totalReviews || 0} reviews)
+                  <span className="text-gray-500 text-xs font-bold">
+                    Austin, TX
                   </span>
                 </div>
               </div>

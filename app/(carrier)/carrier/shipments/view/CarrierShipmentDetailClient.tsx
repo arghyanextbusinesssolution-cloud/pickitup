@@ -24,6 +24,8 @@ export default function CarrierShipmentDetailClient() {
   // OTP Modal State
   const [showOtpModal, setShowOtpModal] = useState<'pickup' | 'delivery' | null>(null);
   const [otpValue, setOtpValue] = useState('');
+  const [tempPhotos, setTempPhotos] = useState<string[]>([]);
+  const [isUploadingPhotos, setIsUploadingPhotos] = useState(false);
 
   useEffect(() => {
     const fetchShipment = async () => {
@@ -59,6 +61,11 @@ export default function CarrierShipmentDetailClient() {
         return;
     }
 
+    if (tempPhotos.length === 0) {
+        setMessage({ type: 'error', text: 'Please upload at least one verification photo.' });
+        return;
+    }
+
     setIsUpdating(true);
     try {
         const bookingId = shipment.booking?.id;
@@ -72,7 +79,10 @@ export default function CarrierShipmentDetailClient() {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
             },
-            body: JSON.stringify({ otp: otpValue })
+            body: JSON.stringify({ 
+                otp: otpValue,
+                photos: tempPhotos 
+            })
         });
         
         const result = await response.json();
@@ -88,11 +98,47 @@ export default function CarrierShipmentDetailClient() {
         setShowOtpModal(null);
         setMessage({ type: 'success', text: successText });
         setOtpValue(''); // Reset OTP value
+        setTempPhotos([]); // Reset photos
     } catch (error: any) {
         setMessage({ type: 'error', text: error.message });
     } finally {
         setIsUpdating(false);
     }
+  };
+
+  const handlePhotoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (!files || files.length === 0) return;
+
+    setIsUploadingPhotos(true);
+    const formData = new FormData();
+    for (let i = 0; i < files.length; i++) {
+        formData.append('photos', files[i]);
+    }
+
+    try {
+        const response = await fetch('http://localhost:5000/api/uploads/photos', {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            },
+            body: formData
+        });
+
+        const result = await response.json();
+        if (!response.ok) throw new Error(result.error || 'Upload failed');
+
+        setTempPhotos(prev => [...prev, ...result.urls]);
+        setMessage({ type: 'success', text: 'Photos uploaded successfully!' });
+    } catch (error: any) {
+        setMessage({ type: 'error', text: error.message });
+    } finally {
+        setIsUploadingPhotos(false);
+    }
+  };
+
+  const removePhoto = (index: number) => {
+    setTempPhotos(tempPhotos.filter((_, i) => i !== index));
   };
 
   if (isLoading) {
@@ -118,6 +164,17 @@ export default function CarrierShipmentDetailClient() {
 
   return (
     <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 max-w-7xl mx-auto pb-20 px-4 md:px-0">
+      {/* Insurance Claim Alert */}
+      {shipment.booking?.claims && shipment.booking.claims.length > 0 && (
+          <div className="mb-8 bg-red-50 border-2 border-red-200 rounded-[2rem] p-6 flex flex-col md:flex-row items-center gap-6 text-red-800 animate-in slide-in-from-top-4 shadow-lg shadow-red-200/50">
+              <div className="text-4xl animate-pulse">⚠️</div>
+              <div className="flex-1 text-center md:text-left">
+                  <h4 className="font-black uppercase tracking-tight text-lg mb-1">Insurance Claim Proceed</h4>
+                  <p className="font-bold text-xs opacity-80 uppercase tracking-widest">A damage claim has been filed for this shipment. Payouts are on hold during investigation.</p>
+              </div>
+          </div>
+      )}
+
       {/* Payment Waiting Alert */}
       {shipment.status === 'ASSIGNED' && !isPaid && (
           <div className="mb-8 bg-orange-50 border-2 border-orange-200 rounded-[2rem] p-6 flex flex-col md:flex-row items-center gap-6 text-orange-800 animate-in slide-in-from-top-4">
@@ -141,6 +198,11 @@ export default function CarrierShipmentDetailClient() {
             }`}>
                 {shipment.status?.replace('_', ' ')}
             </span>
+            {shipment.booking?.claims && shipment.booking.claims.length > 0 && (
+                <span className="bg-red-600 text-white text-[10px] font-black px-4 py-1.5 rounded-full shadow-lg shadow-red-200 animate-pulse uppercase tracking-widest">
+                    ⚠️ Claim Active
+                </span>
+            )}
             {isPaid && (
                 <span className="bg-green-100 text-green-700 text-[10px] font-black px-4 py-1.5 rounded-full border border-green-200 uppercase tracking-widest">
                     ✓ Paid
@@ -349,6 +411,47 @@ export default function CarrierShipmentDetailClient() {
                     </p>
                 </div>
 
+                {/* Photo Upload Area */}
+                <div className="mb-8 p-6 bg-gray-50 rounded-[2rem] border-2 border-dashed border-gray-200">
+                    <div className="flex items-center justify-between mb-4">
+                        <h4 className="text-[10px] font-black uppercase tracking-widest text-gray-400">Verification Photos</h4>
+                        {isUploadingPhotos ? (
+                            <div className="w-5 h-5 border-2 border-yellow-400 border-t-transparent rounded-full animate-spin"></div>
+                        ) : (
+                            <label className="bg-white px-4 py-2 rounded-xl border border-gray-100 shadow-sm text-[10px] font-black uppercase tracking-widest cursor-pointer hover:bg-yellow-400 transition-colors">
+                                Add Photos
+                                <input 
+                                    type="file" 
+                                    multiple 
+                                    className="hidden" 
+                                    accept="image/*"
+                                    onChange={handlePhotoUpload}
+                                />
+                            </label>
+                        )}
+                    </div>
+
+                    {tempPhotos.length > 0 ? (
+                        <div className="grid grid-cols-3 gap-3">
+                            {tempPhotos.map((url, idx) => (
+                                <div key={idx} className="relative aspect-square rounded-2xl overflow-hidden group border border-gray-100">
+                                    <img src={url} alt="Verification" className="w-full h-full object-cover" />
+                                    <button 
+                                        onClick={() => removePhoto(idx)}
+                                        className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-[8px] font-black uppercase"
+                                    >
+                                        Remove
+                                    </button>
+                                </div>
+                            ))}
+                        </div>
+                    ) : (
+                        <div className="text-center py-4">
+                            <p className="text-[10px] font-bold text-gray-300 uppercase tracking-widest">Required before confirmation</p>
+                        </div>
+                    )}
+                </div>
+
                 <input 
                     type="text" 
                     maxLength={6}
@@ -361,13 +464,17 @@ export default function CarrierShipmentDetailClient() {
                 <div className="flex flex-col gap-4">
                     <button 
                         onClick={handleVerifyOtp}
-                        disabled={isUpdating}
-                        className="w-full bg-[#1a1b3a] text-white font-black py-6 rounded-2xl uppercase tracking-widest shadow-xl hover:-translate-y-1 transition-all disabled:opacity-50"
+                        disabled={isUpdating || isUploadingPhotos || tempPhotos.length === 0}
+                        className="w-full bg-[#1a1b3a] text-white font-black py-6 rounded-2xl uppercase tracking-widest shadow-xl hover:-translate-y-1 transition-all disabled:opacity-50 disabled:grayscale"
                     >
                         {isUpdating ? 'Verifying...' : `Confirm ${showOtpModal === 'pickup' ? 'Pickup' : 'Delivery'}`}
                     </button>
                     <button 
-                        onClick={() => setShowOtpModal(null)}
+                        onClick={() => {
+                            setShowOtpModal(null);
+                            setTempPhotos([]);
+                            setOtpValue('');
+                        }}
                         className="w-full bg-white text-gray-400 font-black py-4 rounded-xl uppercase tracking-widest text-[10px]"
                     >
                         Cancel

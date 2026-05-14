@@ -57,6 +57,12 @@ export default function CarrierShipmentsPage() {
                     <td className="p-6">
                       <div className="font-[900] text-gray-900 text-lg mb-1">{job.booking?.id?.substring(0, 8).toUpperCase() || 'BKG-REF'}</div>
                       <div className="text-sm font-bold text-gray-400">{new Date(job.updatedAt).toLocaleDateString()}</div>
+                      {job.booking?.claims && job.booking.claims.length > 0 && (
+                        <div className="mt-2 flex items-center gap-1.5 px-3 py-1 bg-red-50 border border-red-100 rounded-lg animate-pulse">
+                          <span className="w-2 h-2 bg-red-500 rounded-full"></span>
+                          <span className="text-[10px] font-black text-red-600 uppercase tracking-widest">Insurance Proceed</span>
+                        </div>
+                      )}
                     </td>
                     <td className="p-6 hidden md:table-cell">
                       <div className="text-gray-900 font-bold">{job.title || job.commodity || 'Shipment'}</div>
@@ -74,6 +80,9 @@ export default function CarrierShipmentsPage() {
                         }`}>
                         {job.status?.replace('_', ' ') || 'Assigned'}
                       </span>
+                      {job.booking?.claims && job.booking.claims.length > 0 && (
+                        <div className="mt-2 text-[10px] font-black text-red-500 uppercase tracking-[0.2em]">Claim Filed</div>
+                      )}
                     </td>
                     <td className="p-6 text-right">
                       <Link href={`/carrier/shipments/view?id=${job._id || job.id}`} className="inline-block bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold px-6 py-2.5 rounded-xl transition-all text-sm uppercase tracking-wide">

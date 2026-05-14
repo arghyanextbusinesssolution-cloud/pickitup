@@ -13,10 +13,13 @@ import {
     Landmark, 
     Star, 
     User as UserIcon, 
-    Settings 
+    Settings,
+    LogOut
 } from 'lucide-react';
 import { authService } from '../../services/auth.service';
 import { User } from '../../types/auth.types';
+import { LogoutModal } from '../../components/modals/LogoutModal';
+import NavigationLoader from './NavigationLoader';
 
 export default function CarrierDashboardLayout({
     children,
@@ -28,6 +31,8 @@ export default function CarrierDashboardLayout({
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [user, setUser] = useState<User | null>(null);
     const [isLoading, setIsLoading] = useState(true);
+    const [isNavigating, setIsNavigating] = useState(false);
+    const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
 
     useEffect(() => {
         const checkAuth = async () => {
@@ -50,8 +55,19 @@ export default function CarrierDashboardLayout({
         checkAuth();
     }, [router]);
 
+    // Clear navigation loader when path changes
+    useEffect(() => {
+        setIsNavigating(false);
+        setIsMobileMenuOpen(false);
+    }, [pathname]);
+
     const getInitials = (firstName: string = '', lastName: string = '') => {
         return `${firstName.charAt(0)}${lastName.charAt(0)}`.toUpperCase() || '??';
+    };
+
+    const handleLogout = () => {
+        authService.logout();
+        router.push('/login');
     };
 
     const navItems = [
@@ -125,6 +141,9 @@ export default function CarrierDashboardLayout({
                             <Link
                                 key={item.name}
                                 href={item.href}
+                                onClick={() => {
+                                    if (pathname !== item.href) setIsNavigating(true);
+                                }}
                                 className={`flex items-center gap-4 px-5 py-4 rounded-xl font-bold uppercase tracking-widest text-xs transition-all duration-300 ${isActive
                                     ? 'bg-yellow-400/10 text-yellow-400 border border-yellow-400/20 shadow-[inset_0_0_10px_rgba(250,204,21,0.05)]'
                                     : 'text-gray-400 hover:text-white hover:bg-white/5'
@@ -151,6 +170,13 @@ export default function CarrierDashboardLayout({
                             </p>
                             <p className="text-yellow-500 text-[10px] font-black uppercase tracking-[0.2em] opacity-80">Carrier Partner</p>
                         </div>
+                        <button 
+                            onClick={() => setIsLogoutModalOpen(true)}
+                            className="p-2.5 rounded-xl bg-white/5 text-gray-400 hover:bg-red-500 hover:text-white transition-all group border border-white/5 hover:border-red-400 shadow-lg"
+                            title="Logout"
+                        >
+                            <LogOut size={18} className="group-hover:scale-110 transition-transform" />
+                        </button>
                     </div>
                 </div>
             </aside>
@@ -182,10 +208,17 @@ export default function CarrierDashboardLayout({
                 </header>
 
                 {/* Page Content */}
-                <main className="flex-1 p-6 lg:p-10 overflow-auto bg-[#F8FAFC]">
+                <main className="flex-1 p-6 lg:p-10 overflow-auto bg-[#F8FAFC] relative">
+                    {isNavigating && <NavigationLoader />}
                     {children}
                 </main>
             </div>
+
+            <LogoutModal 
+                isOpen={isLogoutModalOpen}
+                onClose={() => setIsLogoutModalOpen(false)}
+                onConfirm={handleLogout}
+            />
         </div>
     );
 }

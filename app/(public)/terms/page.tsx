@@ -42,9 +42,9 @@ export default function TermsPage() {
             When a Carrier's bid is accepted, the Shipper pays a booking fee to pickItUp and the remaining amount to the Carrier upon delivery, unless utilizing the pickItUp Secure Payment system, where funds are held in escrow until proof of delivery is submitted.
           </p>
 
-          <h2 className="text-2xl font-bold text-gray-900 mt-12 mb-4">5. Dispute Resolution</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mt-12 mb-4">5. Insurance & Claims</h2>
           <p className="mb-6">
-            Any disputes between Shippers and Carriers regarding damages, delays, or payment must be resolved independently between the parties, although pickItUp may offer a mediation platform to facilitate communication.
+            Any claims regarding damages, delays, or payment issues must be filed through the pickItUp Claims Center within 48 hours of delivery. pickItUp provides a mediation platform and insurance facilitation to ensure fair resolution for both parties.
           </p>
         </div>
       </div>

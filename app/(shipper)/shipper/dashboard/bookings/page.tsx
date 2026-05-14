@@ -3,6 +3,8 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { bookingService } from '@/services/booking.service';
+import ClaimFormModal from '@/components/claims/ClaimFormModal';
+import { AlertCircle, CheckCircle2 } from 'lucide-react';
 
 const STATUS_COLORS: Record<string, string> = {
   CONFIRMED:  'bg-blue-100 text-blue-700',
@@ -14,6 +16,8 @@ const STATUS_COLORS: Record<string, string> = {
 export default function BookingsPage() {
   const [bookings, setBookings] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [selectedBookingId, setSelectedBookingId] = useState<string | null>(null);
+  const [showClaimModal, setShowClaimModal] = useState(false);
 
   useEffect(() => {
     bookingService
@@ -112,12 +116,25 @@ export default function BookingsPage() {
                       </span>
                     </td>
                     <td className="p-6 text-right">
-                      <Link
-                        href={`/shipper/dashboard/bookings/view?id=${booking.id}`}
-                        className="inline-block bg-white border-2 border-gray-200 hover:border-purple-600 text-gray-700 hover:text-purple-600 font-bold px-6 py-2.5 rounded-xl transition-all text-sm uppercase tracking-wide"
-                      >
-                        Details
-                      </Link>
+                      <div className="flex flex-col sm:flex-row items-center justify-end gap-2">
+                        <Link
+                          href={`/shipper/dashboard/bookings/view?id=${booking.id}`}
+                          className="inline-block bg-white border-2 border-gray-200 hover:border-purple-600 text-gray-700 hover:text-purple-600 font-bold px-6 py-2.5 rounded-xl transition-all text-sm uppercase tracking-wide whitespace-nowrap"
+                        >
+                          Details
+                        </Link>
+                        {booking.status === 'COMPLETED' && (
+                          <button
+                            onClick={() => {
+                              setSelectedBookingId(booking.id);
+                              setShowClaimModal(true);
+                            }}
+                            className="inline-block bg-red-50 hover:bg-red-500 text-red-600 hover:text-white border-2 border-red-100 hover:border-red-500 font-bold px-6 py-2.5 rounded-xl transition-all text-sm uppercase tracking-wide whitespace-nowrap shadow-sm hover:shadow-red-200"
+                          >
+                            File Claim
+                          </button>
+                        )}
+                      </div>
                     </td>
                   </tr>
                 ))
@@ -132,6 +149,21 @@ export default function BookingsPage() {
           </div>
         )}
       </div>
+      {showClaimModal && selectedBookingId && (
+        <ClaimFormModal
+          bookingId={selectedBookingId}
+          onClose={() => {
+            setShowClaimModal(false);
+            setSelectedBookingId(null);
+          }}
+          onSuccess={() => {
+            setShowClaimModal(false);
+            setSelectedBookingId(null);
+            // Optionally refresh bookings or show success toast
+            window.location.reload(); 
+          }}
+        />
+      )}
     </div>
   );
 }

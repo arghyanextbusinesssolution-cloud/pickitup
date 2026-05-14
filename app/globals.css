@@ -23,3 +23,9 @@
   scrollbar-width: thin;
   scrollbar-color: rgba(239, 68, 68, 0.4) rgba(31, 41, 55, 0.5);
 }
+
+@keyframes loading {
+  0% { transform: translateX(-100%); }
+  50% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}

@@ -1,14 +1,11 @@
-export const dynamicParams = false;
+import React from 'react';
+import CarrierDetailContent from './CarrierDetailContent';
 
-export async function generateStaticParams() {
-  return [{ id: '1' }];
+// generateStaticParams is required for static export [id] routes
+export function generateStaticParams() {
+  return [];
 }
 
-
-export default function Page() {
-  return (
-    <div style={{ padding: "40px" }}>
-      <h1>/admin/carriers/[id]</h1>
-    </div>
-  );
+export default function CarrierDetailPage({ params }: { params: { id: string } }) {
+  return <CarrierDetailContent id={params.id} />;
 }

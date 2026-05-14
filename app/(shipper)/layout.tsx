@@ -13,10 +13,12 @@ import {
     Star, 
     User as UserIcon, 
     Settings,
-    Plus
+    Plus,
+    LogOut
 } from 'lucide-react';
 import { authService } from '../../services/auth.service';
 import { User } from '../../types/auth.types';
+import { LogoutModal } from '../../components/modals/LogoutModal';
 
 export default function ShipperDashboardLayout({
     children,
@@ -28,6 +30,7 @@ export default function ShipperDashboardLayout({
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [user, setUser] = useState<User | null>(null);
     const [isLoading, setIsLoading] = useState(true);
+    const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
 
     useEffect(() => {
         const checkAuth = async () => {
@@ -54,12 +57,17 @@ export default function ShipperDashboardLayout({
         return `${firstName.charAt(0)}${lastName.charAt(0)}`.toUpperCase() || '??';
     };
 
+    const handleLogout = () => {
+        authService.logout();
+        router.push('/login');
+    };
+
     const navItems = [
         { name: 'Overview', href: '/shipper/dashboard', icon: <LayoutDashboard size={22} /> },
         { name: 'Shipments', href: '/shipper/dashboard/shipments', icon: <Package size={22} /> },
         { name: 'Bookings', href: '/shipper/dashboard/bookings', icon: <ClipboardList size={22} /> },
         { name: 'Payments', href: '/shipper/dashboard/payments', icon: <CreditCard size={22} /> },
-        { name: 'Disputes', href: '/shipper/dashboard/disputes', icon: <AlertTriangle size={22} /> },
+        { name: 'Insurance Claims', href: '/shipper/dashboard/claims', icon: <AlertTriangle size={22} /> },
         { name: 'Reviews', href: '/shipper/dashboard/reviews', icon: <Star size={22} /> },
         { name: 'Profile', href: '/shipper/dashboard/profile', icon: <UserIcon size={22} /> },
         { name: 'Settings', href: '/shipper/dashboard/settings', icon: <Settings size={22} /> },
@@ -147,6 +155,13 @@ export default function ShipperDashboardLayout({
                             </p>
                             <p className="text-purple-300 text-[10px] font-black uppercase tracking-widest opacity-80">Shipper Portal</p>
                         </div>
+                        <button 
+                            onClick={() => setIsLogoutModalOpen(true)}
+                            className="p-2.5 rounded-xl bg-white/5 text-purple-300 hover:bg-red-500 hover:text-white transition-all group border border-white/5 hover:border-red-400 shadow-lg"
+                            title="Logout"
+                        >
+                            <LogOut size={18} className="group-hover:scale-110 transition-transform" />
+                        </button>
                     </div>
                 </div>
             </aside>
@@ -182,6 +197,12 @@ export default function ShipperDashboardLayout({
                     {children}
                 </main>
             </div>
+
+            <LogoutModal 
+                isOpen={isLogoutModalOpen}
+                onClose={() => setIsLogoutModalOpen(false)}
+                onConfirm={handleLogout}
+            />
         </div>
     );
 }

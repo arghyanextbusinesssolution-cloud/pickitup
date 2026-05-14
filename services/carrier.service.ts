@@ -17,8 +17,26 @@ export const carrierService = {
   },
 
   getReviews: async () => {
-    // Assuming we fetch reviews for the current carrier profile
-    const response = await api.get('/reviews/my'); // Need to ensure this endpoint exists or use profile data
+    const response = await api.get('/reviews/my');
     return response.data;
+  },
+
+  updateIdentity: async (data: any) => {
+    const response = await api.patch('/carriers/onboarding/identity', data);
+    return response.data;
+  },
+
+  addVehicle: async (data: any) => {
+    const response = await api.post('/carriers/onboarding/vehicle', data);
+    return response.data;
+  },
+
+  uploadDocuments: async (files: File[]) => {
+    const formData = new FormData();
+    files.forEach(file => formData.append('photos', file));
+    const response = await api.post('/uploads/photos', formData, {
+      headers: { 'Content-Type': 'multipart/form-data' }
+    });
+    return response.data.urls;
   }
 };

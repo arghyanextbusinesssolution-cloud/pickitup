@@ -1,13 +1,9 @@
-export const dynamicParams = false;
+import ShipmentDetailsClient from './ShipmentDetailsClient';
 
 export async function generateStaticParams() {
-  return [{ id: '1' }];
+  return [];
 }
 
-export default function Page() {
-  return (
-    <div style={{ padding: "40px" }}>
-      <h1>/admin/shipments/[id]</h1>
-    </div>
-  );
+export default function Page({ params }: { params: { id: string } }) {
+  return <ShipmentDetailsClient id={params.id} />;
 }

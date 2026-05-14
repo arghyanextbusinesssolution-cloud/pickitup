@@ -24,5 +24,10 @@ export const bidService = {
     getById: async (bidId: string) => {
         const response = await api.get(`/bids/${bidId}`);
         return response.data;
+    },
+
+    getAll: async () => {
+        const response = await api.get('/bids');
+        return response.data;
     }
 };

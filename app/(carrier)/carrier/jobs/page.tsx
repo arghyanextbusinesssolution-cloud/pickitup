@@ -9,19 +9,29 @@ export default function LoadBoardPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
 
+  const [showFilters, setShowFilters] = useState(false);
+  const [filters, setFilters] = useState({ startDate: '', minBids: '', maxDistance: '' });
+
+  const fetchLoads = async () => {
+    try {
+      setIsLoading(true);
+      const data = await shipmentService.getAvailable(filters);
+      setShipments(Array.isArray(data) ? data : (data?.data || []));
+    } catch (error) {
+      console.error("Failed to fetch loads:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   useEffect(() => {
-    const fetchLoads = async () => {
-      try {
-        const data = await shipmentService.getAvailable();
-        setShipments(Array.isArray(data) ? data : (data?.data || []));
-      } catch (error) {
-        console.error("Failed to fetch loads:", error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
     fetchLoads();
   }, []);
+
+  const handleApplyFilters = () => {
+    fetchLoads();
+    setShowFilters(false);
+  };
 
   const filteredShipments = shipments.filter(shipment => 
     shipment.title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -30,14 +40,14 @@ export default function LoadBoardPage() {
   );
 
   return (
-    <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 max-w-7xl mx-auto">
+    <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 max-w-7xl mx-auto relative">
       <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 mb-10">
         <div>
           <h1 className="text-3xl font-[900] text-[#1a1b3a] uppercase tracking-tight mb-2">Load Board</h1>
           <p className="text-gray-500 font-medium">Find available shipments and grow your transport business.</p>
         </div>
         
-        <div className="flex flex-col sm:flex-row gap-3">
+        <div className="flex flex-col sm:flex-row gap-3 relative">
           <div className="relative group">
             <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-yellow-500 transition-colors">🔍</span>
             <input
@@ -48,9 +58,56 @@ export default function LoadBoardPage() {
               className="bg-white border-2 border-gray-100 hover:border-gray-200 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-400/10 px-12 py-4 rounded-2xl transition-all font-bold text-gray-900 min-w-[320px] outline-none shadow-sm"
             />
           </div>
-          <button className="bg-[#1a1b3a] hover:bg-[#2D1B69] text-white font-bold px-8 py-4 rounded-2xl transition-all uppercase tracking-widest text-xs flex items-center justify-center gap-2 shadow-lg hover:-translate-y-0.5 active:translate-y-0">
+          <button 
+            onClick={() => setShowFilters(!showFilters)}
+            className="bg-[#1a1b3a] hover:bg-[#2D1B69] text-white font-bold px-8 py-4 rounded-2xl transition-all uppercase tracking-widest text-xs flex items-center justify-center gap-2 shadow-lg hover:-translate-y-0.5 active:translate-y-0"
+          >
             <span>⚙️</span> Filters
           </button>
+
+          {showFilters && (
+            <div className="absolute top-full right-0 mt-3 bg-white border border-gray-200 rounded-[2rem] shadow-2xl p-6 w-[360px] z-50">
+              <h3 className="font-[900] uppercase text-gray-900 tracking-wider mb-4 border-b border-gray-100 pb-3">Filter Options</h3>
+              
+              <div className="space-y-4">
+                <div>
+                    <label className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Posted After</label>
+                    <input 
+                      type="date"
+                      value={filters.startDate}
+                      onChange={(e) => setFilters({...filters, startDate: e.target.value})}
+                      className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-2 text-sm font-bold text-gray-900 focus:border-yellow-400 outline-none"
+                    />
+                </div>
+                <div>
+                    <label className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Min Bids</label>
+                    <input 
+                      type="number"
+                      placeholder="e.g. 1"
+                      value={filters.minBids}
+                      onChange={(e) => setFilters({...filters, minBids: e.target.value})}
+                      className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-2 text-sm font-bold text-gray-900 focus:border-yellow-400 outline-none"
+                    />
+                </div>
+                <div>
+                    <label className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Max Distance (miles)</label>
+                    <input 
+                      type="number"
+                      placeholder="e.g. 500"
+                      value={filters.maxDistance}
+                      onChange={(e) => setFilters({...filters, maxDistance: e.target.value})}
+                      className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-2 text-sm font-bold text-gray-900 focus:border-yellow-400 outline-none"
+                    />
+                </div>
+                <button 
+                  onClick={handleApplyFilters}
+                  className="w-full bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-black py-3 rounded-xl uppercase tracking-widest mt-2"
+                >
+                  Apply Filters
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       </div>
 

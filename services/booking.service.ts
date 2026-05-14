@@ -10,4 +10,9 @@ export const bookingService = {
         const response = await api.get(`/bookings/${id}`);
         return response.data;
     },
+
+    getAll: async () => {
+        const response = await api.get('/bookings');
+        return response.data;
+    }
 };

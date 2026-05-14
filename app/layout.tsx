@@ -16,6 +16,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Pickitup",
   description: "Big or Small, We Deliver All!",
+  icons: {
+    icon: "/logo.png",
+  },
 };
 
 export default function RootLayout({

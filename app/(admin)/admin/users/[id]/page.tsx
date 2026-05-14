@@ -1,13 +1,11 @@
-export const dynamicParams = false;
+import React from 'react';
+import UserDetailContent from './UserDetailContent';
 
-export async function generateStaticParams() {
-  return [{ id: '1' }];
+// generateStaticParams is required for static export [id] routes
+export function generateStaticParams() {
+  return [];
 }
 
-export default function Page() {
-  return (
-    <div style={{ padding: "40px" }}>
-      <h1>/admin/users/[id]</h1>
-    </div>
-  );
+export default function UserDetailPage({ params }: { params: { id: string } }) {
+  return <UserDetailContent id={params.id} />;
 }

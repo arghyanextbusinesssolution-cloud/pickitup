@@ -4,38 +4,41 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
-import { 
-    LayoutDashboard, 
-    Package, 
-    Tag, 
-    ClipboardList, 
-    MapPin, 
-    User as UserIcon, 
-    Truck, 
-    Contact, 
-    ShieldCheck, 
-    FileText, 
-    FileCheck, 
-    Clock, 
-    CreditCard, 
-    RotateCcw, 
-    Banknote, 
-    Lock, 
-    Scale, 
-    Star, 
-    MessageCircle, 
-    Bell, 
-    TrendingUp, 
-    BarChart3, 
-    Trophy, 
-    Settings, 
-    UserCog, 
-    Percent, 
-    ScrollText, 
-    Shield 
+import {
+    LayoutDashboard,
+    Package,
+    Tag,
+    ClipboardList,
+    MapPin,
+    User as UserIcon,
+    Truck,
+    Contact,
+    ShieldCheck,
+    FileText,
+    FileCheck,
+    Clock,
+    CreditCard,
+    RotateCcw,
+    Banknote,
+    Lock,
+    Scale,
+    Star,
+    MessageCircle,
+    Bell,
+    TrendingUp,
+    BarChart3,
+    Trophy,
+    Settings,
+    UserCog,
+    Percent,
+    ScrollText,
+    Shield,
+    LogOut
 } from 'lucide-react';
 import { authService } from '../../services/auth.service';
 import { User } from '../../types/auth.types';
+import { LogoutModal } from '../../components/modals/LogoutModal';
+import NavigationLoader from './NavigationLoader';
 
 export default function AdminDashboardLayout({
     children,
@@ -47,11 +50,13 @@ export default function AdminDashboardLayout({
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [user, setUser] = useState<User | null>(null);
     const [isLoading, setIsLoading] = useState(true);
+    const [isNavigating, setIsNavigating] = useState(false);
+    const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
 
     useEffect(() => {
         const checkAuth = async () => {
             const currentUser = authService.getCurrentUser();
-            
+
             if (!currentUser) {
                 router.push('/login');
                 return;
@@ -69,8 +74,19 @@ export default function AdminDashboardLayout({
         checkAuth();
     }, [router]);
 
+    // Clear navigation loader when path changes
+    useEffect(() => {
+        setIsNavigating(false);
+        setIsMobileMenuOpen(false);
+    }, [pathname]);
+
     const getInitials = (firstName: string = '', lastName: string = '') => {
         return `${firstName.charAt(0)}${lastName.charAt(0)}`.toUpperCase() || '??';
+    };
+
+    const handleLogout = () => {
+        authService.logout();
+        router.push('/login');
     };
 
     const navGroups = [
@@ -99,15 +115,6 @@ export default function AdminDashboardLayout({
             ]
         },
         {
-            group: 'Fleet',
-            items: [
-                { name: 'Vehicles', href: '/admin/fleet/vehicles', icon: <Truck size={20} /> },
-                { name: 'Documents', href: '/admin/fleet/documents', icon: <FileText size={20} /> },
-                { name: 'Insurance', href: '/admin/fleet/insurance', icon: <FileCheck size={20} /> },
-                { name: 'Availability', href: '/admin/fleet/availability', icon: <Clock size={20} /> },
-            ]
-        },
-        {
             group: 'Payments',
             items: [
                 { name: 'Transactions', href: '/admin/transactions', icon: <CreditCard size={20} /> },
@@ -117,10 +124,9 @@ export default function AdminDashboardLayout({
             ]
         },
         {
-            group: 'Disputes',
+            group: 'Insurance Claims',
             items: [
-                { name: 'Claims', href: '/admin/disputes', icon: <Scale size={20} /> },
-                { name: 'Reviews', href: '/admin/reviews', icon: <Star size={20} /> },
+                { name: 'Active Claims', href: '/admin/claims', icon: <Scale size={20} /> },
             ]
         },
         {
@@ -223,6 +229,9 @@ export default function AdminDashboardLayout({
                                         <Link
                                             key={item.name}
                                             href={item.href}
+                                            onClick={() => {
+                                                if (pathname !== item.href) setIsNavigating(true);
+                                            }}
                                             className={`group flex items-center gap-3 px-4 py-3 rounded-lg border-l-2 transition-all duration-200 ${isActive
                                                 ? 'bg-red-500/10 border-red-500 text-white shadow-sm'
                                                 : 'border-transparent text-gray-400 hover:bg-white/5 hover:text-white'
@@ -255,6 +264,13 @@ export default function AdminDashboardLayout({
                             </p>
                             <p className="text-red-400 text-[10px] font-black uppercase tracking-[0.2em] truncate">Platform Owner</p>
                         </div>
+                        <button 
+                            onClick={() => setIsLogoutModalOpen(true)}
+                            className="p-2.5 rounded-xl bg-red-500/10 text-red-500 hover:bg-red-500 hover:text-white transition-all group border border-red-500/20 hover:border-red-400 shadow-lg"
+                            title="Logout"
+                        >
+                            <LogOut size={18} className="group-hover:scale-110 transition-transform" />
+                        </button>
                     </div>
                 </div>
             </aside>
@@ -285,12 +301,19 @@ export default function AdminDashboardLayout({
                     </div>
                 </header>
 
-                <main className="flex-1 p-6 lg:p-10 overflow-y-auto custom-scrollbar bg-gray-50/50">
+                <main className="flex-1 p-6 lg:p-10 overflow-y-auto custom-scrollbar bg-gray-50/50 relative">
+                    {isNavigating && <NavigationLoader />}
                     <div className="max-w-7xl mx-auto">
                         {children}
                     </div>
                 </main>
             </div>
+
+            <LogoutModal 
+                isOpen={isLogoutModalOpen}
+                onClose={() => setIsLogoutModalOpen(false)}
+                onConfirm={handleLogout}
+            />
         </div>
     );
 }

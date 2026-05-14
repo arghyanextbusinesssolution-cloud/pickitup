@@ -22,7 +22,7 @@ export default function ShipperLoginPage() {
             <div className="bg-white">
                 <LoginForm />
             </div>
-
+ 
             <div className="mt-8 flex flex-col items-center gap-4">
                 <p className="text-sm font-medium text-gray-500">
                     Carrier Partner?{' '}
