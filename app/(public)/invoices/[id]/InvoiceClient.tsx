@@ -32,7 +32,7 @@ export default function InvoiceClient({ params }: { params: { id: string } }) {
                             </div>
                             <p className="text-gray-500 font-medium">124 Logistics Blvd.</p>
                             <p className="text-gray-500 font-medium">Austin, TX 78744</p>
-                            <p className="text-gray-500 font-medium">support@pickitup.com</p>
+                            <p className="text-gray-500 font-medium">robert@pickitup.com</p>
                         </div>
 
                         <div className="md:text-right">

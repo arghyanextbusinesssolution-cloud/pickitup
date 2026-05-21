@@ -38,21 +38,21 @@ export default function ContactPage() {
                             <p className="text-gray-500 font-medium mb-8 leading-relaxed">
                                 Do you need help with general logistical support, vehicle delivery, freight transportation, or shipping? Complete the contact form, and our staff will get back to you immediately away with the best answer to your question. For each shipment, we are dedicated to provide dependable client service and effective communication.
                             </p>
-                            
+
                             <form className="space-y-6">
                                 <div className="grid sm:grid-cols-2 gap-6">
                                     <div>
                                         <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2 ml-1">Full Name</label>
-                                        <input 
-                                            type="text" 
+                                        <input
+                                            type="text"
                                             placeholder="Enter your name"
                                             className="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-purple-100 focus:border-purple-600 bg-gray-50/50 text-[15px] font-bold text-gray-900 placeholder-gray-400 transition-all outline-none"
                                         />
                                     </div>
                                     <div>
                                         <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2 ml-1">Email Address</label>
-                                        <input 
-                                            type="email" 
+                                        <input
+                                            type="email"
                                             placeholder="name@company.com"
                                             className="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-purple-100 focus:border-purple-600 bg-gray-50/50 text-[15px] font-bold text-gray-900 placeholder-gray-400 transition-all outline-none"
                                         />
@@ -95,7 +95,7 @@ export default function ContactPage() {
 
                                 <div>
                                     <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2 ml-1">Your Message</label>
-                                    <textarea 
+                                    <textarea
                                         rows={5}
                                         placeholder="How can we help you?"
                                         className="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-purple-100 focus:border-purple-600 bg-gray-50/50 text-[15px] font-bold text-gray-900 placeholder-gray-400 transition-all outline-none resize-none"
@@ -119,19 +119,19 @@ export default function ContactPage() {
                                 <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-sm">📱</div>
                                 <h4 className="text-xl font-[900] text-[#1a1b3a] uppercase tracking-tight mb-2">Speak with Us</h4>
                                 <p className="text-gray-500 font-medium text-sm mb-6 leading-relaxed">Our customer support agents are available 24/7 to assist with urgent logistics and delivery concerns. Whether you need help arranging a pickup or checking shipment updates, we are always ready to help.</p>
-                                <a href="tel:1-800-698-7447" className="inline-flex items-center gap-2 text-[#4b148c] font-black text-lg hover:gap-3 transition-all">
-                                    1-800-698- pickItUp
+                                <a href="tel:+17324469600" className="inline-flex items-center gap-2 text-[#4b148c] font-black text-lg hover:gap-3 transition-all">
+                                    +1 732 446 9600
                                     <span>➡️</span>
                                 </a>
                             </div>
 
-                             {/* Card 2: Email */}
+                            {/* Card 2: Email */}
                             <div className="bg-white rounded-[2rem] p-8 border border-gray-100 shadow-xl shadow-gray-100/50 relative overflow-hidden group hover:border-yellow-200 transition-all">
                                 <div className="w-14 h-14 bg-yellow-50 rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-sm border border-yellow-100">✉️</div>
                                 <h4 className="text-xl font-[900] text-[#1a1b3a] uppercase tracking-tight mb-2">EMAIL ASSISTANCE</h4>
                                 <p className="text-gray-500 font-medium text-sm mb-6 leading-relaxed">For detailed inquiries, billing concerns, shipment coordination, or technical support, contact our email support team. In order to maintain the efficiency of your logistical operations, we strive to answer within 1-2 business hours.</p>
-                                <a href="mailto:support@pickitup.com" className="inline-flex items-center gap-2 text-purple-600 font-black text-lg hover:gap-3 transition-all">
-                                    support@pickitup.com
+                                <a href="mailto:robert@pickitup.com" className="inline-flex items-center gap-2 text-purple-600 font-black text-lg hover:gap-3 transition-all">
+                                    robert@pickitup.com
                                     <span>➡️</span>
                                 </a>
                             </div>
@@ -192,9 +192,9 @@ export default function ContactPage() {
                             <p className="text-[17px] text-[#6B7280] font-medium mb-8 leading-relaxed italic">
                                 Our goal is to bring shippers and carriers together via open communication, dependable shipping, and top-notch logistics assistance. We assist companies and individuals in moving shipments effectively and safely thanks to our global operational reach.
                             </p>
-                            
+
                             <div className="space-y-6">
-                                 <div className="flex gap-4 p-4 rounded-2xl hover:bg-gray-50 transition-colors border border-transparent hover:border-gray-100">
+                                <div className="flex gap-4 p-4 rounded-2xl hover:bg-gray-50 transition-colors border border-transparent hover:border-gray-100">
                                     <div className="text-2xl mt-1">🏢</div>
                                     <div>
                                         <h4 className="font-black text-gray-900 uppercase text-sm tracking-wide">Main Office</h4>
@@ -221,7 +221,7 @@ export default function ContactPage() {
                         {/* Decorative circles */}
                         <div className="absolute top-0 left-0 w-64 h-64 bg-purple-500/10 rounded-full -ml-32 -mt-32 blur-3xl"></div>
                         <div className="absolute bottom-0 right-0 w-64 h-64 bg-yellow-400/10 rounded-full -mr-32 -mb-32 blur-3xl"></div>
-                        
+
                         <div className="relative z-10">
                             <h2 className="text-[32px] lg:text-[48px] font-[900] text-white leading-tight mb-6 tracking-tighter uppercase">
                                 GET UP TO DATE ON <br />
@@ -230,10 +230,10 @@ export default function ContactPage() {
                             <p className="text-xl text-gray-400 font-medium max-w-2xl mx-auto mb-12">
                                 Subscribe to receive the latest updates on shipping trends, freight solutions, courier services, and logistics insights delivered directly to your inbox.
                             </p>
-                            
+
                             <form className="max-w-md mx-auto flex flex-col sm:flex-row gap-4">
-                                <input 
-                                    type="email" 
+                                <input
+                                    type="email"
                                     placeholder="your@email.com"
                                     className="flex-grow px-6 py-4 rounded-2xl bg-white/10 border border-white/20 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition-all font-bold"
                                 />

@@ -10,16 +10,16 @@ interface FAQItem {
 
 const defaultFaqs: FAQItem[] = [
     {
-        question: "How Does Pickitup Operate?",
-        answer: "Pickitup connects you with a reliable network of reputable carriers who have space available on their vehicles. All you have to do is post your cargo details, obtain several quotes from carriers that are currently on your route, and select the option that best fits your schedule and budget."
+        question: "What Is PickitUp's Process?",
+        answer: "By putting you in touch with a reliable network of approved carriers who already have truck space available along your route, PickitUp makes shipping easy. Simply publish the specifications of your shipment, evaluate several comparative bids, and select the carrier that best fits your delivery window and budget. Customers may obtain hassle-free, dependable, and reasonably priced transportation options throughout the United States with the use of our clever shipping platform."
     },
     {
         question: "How Much Does Shipping Cost?",
-        answer: "The size of the goods, the distance it must travel, and the delivery window all affect shipping costs. Compared to traditional shipping choices, you can frequently save up to 60% because carriers are already on their way to you."
+        answer: "The size and weight of your item, the delivery distance, and the necessary delivery window all affect PickitUp's shipping costs. Customers can frequently save up to 60% on shipping costs when compared to traditional freight and courier services because many of our carriers are already heading in your route. Because of this, PickitUp is an affordable choice for large item delivery, car transportation, furniture shipping, and more."
     },
     {
-        question: "Is Using Pickitup for Shipping Safe?",
-        answer: "Of course. Every carrier in our network is subject to consumer reviews and background checks. Additionally, we guarantee safe payment methods and provide protection coverage so you may ship your goods with total confidence."
+        question: "Is Using PickitUp for Shipping Safe?",
+        answer: "Of course. To guarantee a safe and reliable shipping experience, PickitUp collaborates with verified and background-checked carriers. Before making a reservation, customers can examine carrier reviews and ratings, which gives them confidence when selecting reliable transportation companies. PickitUp provides safe and hassle-free shipment for goods of all sizes with dependable delivery assistance and secure payment security."
     }
 ];
 
