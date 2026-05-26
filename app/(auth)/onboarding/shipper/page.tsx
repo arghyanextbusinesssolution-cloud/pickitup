@@ -48,7 +48,7 @@ export default function ShipperOnboardingPage() {
               <input
                 type="text"
                 className="block w-full rounded-xl border-2 border-gray-200 px-4 py-3 text-gray-900 focus:border-purple-600 sm:text-lg transition-colors font-medium"
-                placeholder="e.g. Austin, TX"
+                placeholder="e.g. New York, NY"
                 required
               />
             </div>

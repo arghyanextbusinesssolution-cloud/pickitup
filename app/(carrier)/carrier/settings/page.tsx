@@ -19,7 +19,7 @@ export default function CarrierSettingsPage() {
             </div>
             <div className="space-y-2">
               <label className="block text-sm font-bold text-gray-700 uppercase tracking-wide">Business Address</label>
-              <input type="text" defaultValue="124 Logistics Blvd, Austin, TX 78744" className="block w-full rounded-xl border-2 border-gray-200 px-4 py-3 text-gray-900 focus:border-yellow-500 sm:text-lg transition-colors font-medium" />
+              <input type="text" defaultValue="124 Logistics Blvd, New York0, NY 10001" className="block w-full rounded-xl border-2 border-gray-200 px-4 py-3 text-gray-900 focus:border-yellow-500 sm:text-lg transition-colors font-medium" />
             </div>
             <button type="button" className="bg-gray-900 hover:bg-gray-800 text-white font-bold px-8 py-3 rounded-xl transition-all uppercase tracking-wide">
               Save Settings
