@@ -77,15 +77,18 @@ export default function Footer() {
                             {/* Social Icons */}
                             <div className="flex gap-2">
                                 {[
-                                    { icon: 'F', label: 'Facebook' },
-                                    { icon: 'I', label: 'Instagram' },
-                                    { icon: 'X', label: 'Twitter' },
-                                    { icon: 'Y', label: 'YouTube' },
-                                    { icon: 'L', label: 'LinkedIn' }
+                                    { icon: 'F', label: 'Facebook', href: 'https://www.facebook.com/share/1HztYPBihM/' },
+                                    { icon: 'I', label: 'Instagram', href: 'https://www.instagram.com/social.pickitup?igsh=MXJ0a2F0MTB3NW1jMQ==' },
                                 ].map((social) => (
-                                    <button key={social.label} className="w-10 h-10 rounded-full border border-purple-100 bg-white flex items-center justify-center hover:border-[#7C3AED] hover:text-[#7C3AED] transition-all text-sm font-black">
+                                    <Link
+                                        key={social.label}
+                                        href={social.href}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="w-10 h-10 rounded-full border border-purple-100 bg-white flex items-center justify-center hover:border-[#7C3AED] hover:text-[#7C3AED] transition-all text-sm font-black"
+                                    >
                                         {social.icon}
-                                    </button>
+                                    </Link>
                                 ))}
                             </div>
 
