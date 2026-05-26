@@ -103,9 +103,14 @@ export default function Footer() {
 
                 {/* Bottom Section: Copyright & Legal */}
                 <div className="flex flex-col lg:flex-row justify-between items-center gap-6">
-                    <p className="text-[13px] font-bold text-gray-400">
-                        Copyright © 2026, pickitup Inc. and its licensors. All rights reserved.
-                    </p>
+                    <div className="flex flex-col gap-1">
+                        <p className="text-[13px] font-bold text-gray-400">
+                            Copyright © 2026, pickitup Inc. and its licensors. All rights reserved.
+                        </p>
+                        <p className="text-[11px] font-medium text-gray-400/60 transition-all hover:text-[#7C3AED]">
+                            Designed by <Link href="https://nextbusinesssolution.com/" target="_blank" className="hover:underline">Next Business Solution</Link>
+                        </p>
+                    </div>
 
                     <div className="flex flex-wrap justify-center gap-x-6 gap-y-2">
                         {[
