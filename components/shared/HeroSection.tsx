@@ -117,11 +117,11 @@ export default function HeroSection() {
                             {/* Location Tags */}
                             <div className="absolute top-20 left-6 bg-white rounded-xl px-4 py-2 shadow-xl border border-gray-50 text-[11px] font-black flex items-center gap-2 z-20">
                                 <span className="text-yellow-400">📍</span>
-                                <span>AUSTIN, TX</span>
+                                <span>New York, NY</span>
                             </div>
                             <div className="absolute top-36 right-10 bg-white rounded-xl px-4 py-2 shadow-xl border border-gray-50 text-[11px] font-black flex items-center gap-2 z-20">
                                 <span className="text-purple-600">📍</span>
-                                <span>BOSTON, MA</span>
+                                <span>Florida, FL</span>
                             </div>
 
                             {/* Main Card */}

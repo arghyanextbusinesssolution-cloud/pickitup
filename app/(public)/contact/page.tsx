@@ -164,7 +164,7 @@ export default function ContactPage() {
                                         <div className="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center">📍</div>
                                         <div>
                                             <p className="text-[10px] font-black text-gray-400 uppercase">Headquarters</p>
-                                            <p className="text-sm font-black text-gray-900 uppercase">Austin, Texas</p>
+                                            <p className="text-sm font-black text-gray-900 uppercase">New York, Texas</p>
                                         </div>
                                     </div>
                                     <div className="mb-8 p-3 bg-white w-fit rounded-2xl shadow-xl flex items-center gap-3 -rotate-2 ml-auto">
@@ -198,7 +198,7 @@ export default function ContactPage() {
                                     <div className="text-2xl mt-1">🏢</div>
                                     <div>
                                         <h4 className="font-black text-gray-900 uppercase text-sm tracking-wide">Main Office</h4>
-                                        <p className="text-gray-500 text-[15px]">Austin, Texas – Providing prompt, professional logistics and courier transportation services across the country.</p>
+                                        <p className="text-gray-500 text-[15px]">New York, Texas – Providing prompt, professional logistics and courier transportation services across the country.</p>
                                     </div>
                                 </div>
                                 <div className="flex gap-4 p-4 rounded-2xl hover:bg-gray-50 transition-colors border border-transparent hover:border-gray-100">

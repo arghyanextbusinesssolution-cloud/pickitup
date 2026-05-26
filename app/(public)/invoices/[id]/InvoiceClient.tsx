@@ -31,7 +31,7 @@ export default function InvoiceClient({ params }: { params: { id: string } }) {
                                 <span className="text-2xl font-[1000] tracking-tight text-gray-900 uppercase mt-1">pickItUp</span>
                             </div>
                             <p className="text-gray-500 font-medium">124 Logistics Blvd.</p>
-                            <p className="text-gray-500 font-medium">Austin, TX 78744</p>
+                            <p className="text-gray-500 font-medium">New York, TX 78744</p>
                             <p className="text-gray-500 font-medium">robert@pickitup.com</p>
                         </div>
 
@@ -68,7 +68,7 @@ export default function InvoiceClient({ params }: { params: { id: string } }) {
                                 <tr>
                                     <td className="py-6">
                                         <div className="font-[900] text-gray-900">Transport: 2019 Tesla Model 3</div>
-                                        <div className="text-gray-500 text-sm mt-1">Austin, TX to Miami, FL (via Pro Haulers LLC)</div>
+                                        <div className="text-gray-500 text-sm mt-1">New York, TX to Miami, FL (via Pro Haulers LLC)</div>
                                     </td>
                                     <td className="py-6 text-center font-medium">1</td>
                                     <td className="py-6 text-right font-[900] text-gray-900">$850.00</td>

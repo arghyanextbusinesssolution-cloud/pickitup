@@ -48,7 +48,7 @@ export default async function TrackingPage({ params }: { params: Promise<{ id: s
                             <div className="relative">
                                 <div className="absolute -left-[30px] top-1 w-6 h-6 rounded-full border-4 border-white bg-green-500 shadow-sm z-10"></div>
                                 <p className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-1">Oct 12, 10:45 AM</p>
-                                <h4 className="font-[900] text-gray-900 text-lg">In Transit - Austin, TX</h4>
+                                <h4 className="font-[900] text-gray-900 text-lg">In Transit - New York, TX</h4>
                                 <p className="text-gray-500">Departed from pickup location. En route to destination.</p>
                             </div>
 

@@ -20,7 +20,7 @@ export default function ShipPage() {
             quote: "I received regular updates and my motorcycle arrived safely across the country.",
             stars: 5,
             name: 'James Wilson',
-            location: 'Austin, TX',
+            location: 'New York, TX',
             initials: 'JW',
             color: 'bg-purple-600',
         },

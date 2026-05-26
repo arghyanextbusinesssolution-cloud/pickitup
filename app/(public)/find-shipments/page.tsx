@@ -21,7 +21,7 @@ export default function FindShipmentsLandingPage() {
             quote: "I was able to reduce downtime between deliveries and acquire continuous shipment possibilities thanks to Pickitup. The procedure is dependable and easy.",
             stars: 5,
             name: 'James Mitchell',
-            location: 'Austin, Texas',
+            location: 'New York, Texas',
             initials: 'JM',
             color: 'bg-purple-600',
         },

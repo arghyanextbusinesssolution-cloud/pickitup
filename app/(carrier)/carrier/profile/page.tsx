@@ -64,7 +64,7 @@ export default function CarrierProfilePage() {
                     </div>
                     <div className="flex justify-between items-center">
                         <span className="text-gray-500 font-bold uppercase text-[10px] tracking-wider">Base Location</span>
-                        <span className="text-blue-600 font-black text-sm text-lg">📍 Austin, TX</span>
+                        <span className="text-blue-600 font-black text-sm text-lg">📍 New York, TX</span>
                     </div>
                 </div>
             </div>

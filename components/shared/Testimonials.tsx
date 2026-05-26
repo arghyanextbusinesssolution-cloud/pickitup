@@ -19,7 +19,7 @@ const defaultTestimonials: TestimonialItem[] = [
         quote: "I was anxious to ship my vintage motorcycle across the nation, but PickItUp made it easy and stress-free. My bike came in fantastic shape, and their on-demand pickup and delivery service in the U.S.A kept me informed throughout the trip.",
         stars: 5,
         name: 'James Mitchell',
-        location: 'Austin, Texas',
+        location: 'New York, Texas',
         initials: 'JM',
         color: 'bg-purple-600',
     },

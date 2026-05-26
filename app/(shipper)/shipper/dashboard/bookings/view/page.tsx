@@ -353,7 +353,7 @@ export default function BookingDetailPage() {
                     📍 Base Location
                   </span>
                   <span className="text-gray-500 text-xs font-bold">
-                    Austin, TX
+                    New York, TX
                   </span>
                 </div>
               </div>
