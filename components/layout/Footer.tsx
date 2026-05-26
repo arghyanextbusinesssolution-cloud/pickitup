@@ -107,8 +107,8 @@ export default function Footer() {
                         <p className="text-[13px] font-bold text-gray-400">
                             Copyright © 2026, pickitup Inc. and its licensors. All rights reserved.
                         </p>
-                        <p className="text-[11px] font-medium text-gray-400/60 transition-all hover:text-[#7C3AED]">
-                            Designed by <Link href="https://nextbusinesssolution.com/" target="_blank" className="hover:underline">Next Business Solution</Link>
+                        <p className="text-[13px] font-bold text-gray-900 transition-all">
+                            Designed by <Link href="https://nextbusinesssolution.com/" target="_blank" className="hover:underline hover:text-[#7C3AED]">Next Business Solution</Link>
                         </p>
                     </div>
 
