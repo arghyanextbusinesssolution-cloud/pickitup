@@ -1,14 +1,11 @@
 import React from 'react';
 import Link from 'next/link';
-import Navbar from '@/components/layout/Navbar';
-import Footer from '@/components/layout/Footer';
 import AboutGallery from '@/components/shared/AboutGallery';
 import BackToTop from '@/components/shared/BackToTop';
 
 export default function AboutPage() {
   return (
     <div className="bg-white min-h-screen">
-      <Navbar />
 
       {/* Hero Section */}
       <div className="bg-purple-900 py-32 border-b border-purple-800 text-center text-white relative overflow-hidden">
@@ -69,7 +66,6 @@ export default function AboutPage() {
         </div>
       </div>
 
-      <Footer />
       <BackToTop />
     </div>
   );

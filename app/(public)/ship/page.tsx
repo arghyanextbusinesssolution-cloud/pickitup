@@ -1,5 +1,3 @@
-import Navbar from '@/components/layout/Navbar';
-import Footer from '@/components/layout/Footer';
 import ShipHero from '@/components/shared/ShipHero';
 import ShipGallery from '@/components/shared/ShipGallery';
 import TrustSection from '@/components/shared/TrustSection';
@@ -46,16 +44,14 @@ export default function ShipPage() {
 
     return (
         <div className="min-h-screen bg-white">
-            <Navbar />
             <ShipHero />
             <ShipGallery />
             <TrustSection />
-            <Testimonials 
-                title="People Adore Pickitup for Shipping" 
+            <Testimonials
+                title="People Adore Pickitup for Shipping"
                 items={shipTestimonials}
             />
             <FAQSection />
-            <Footer />
             <BackToTop />
         </div>
     );

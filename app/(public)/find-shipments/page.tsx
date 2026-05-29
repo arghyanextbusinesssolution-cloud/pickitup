@@ -1,5 +1,3 @@
-import Navbar from '@/components/layout/Navbar';
-import Footer from '@/components/layout/Footer';
 import CarrierHero from '@/components/shared/CarrierHero';
 import FindShipmentsGallery from '@/components/shared/FindShipmentsGallery';
 import TrustSection from '@/components/shared/TrustSection';
@@ -62,9 +60,8 @@ export default function FindShipmentsLandingPage() {
 
     return (
         <div className="min-h-screen bg-white">
-            <Navbar />
             <CarrierHero />
-            
+
             {/* Reasons for Selecting Section */}
             <section className="py-20 bg-gray-50">
                 <div className="max-w-[1240px] mx-auto px-6 lg:px-10 text-center">
@@ -84,8 +81,8 @@ export default function FindShipmentsLandingPage() {
 
             <FindShipmentsGallery />
             <TrustSection />
-            <Testimonials 
-                title="Stories of Customer Success" 
+            <Testimonials
+                title="Stories of Customer Success"
                 items={carrierTestimonials}
             />
             <FAQSection items={carrierFaqs} />
@@ -107,7 +104,6 @@ export default function FindShipmentsLandingPage() {
                 </div>
             </section>
 
-            <Footer />
             <BackToTop />
         </div>
     );

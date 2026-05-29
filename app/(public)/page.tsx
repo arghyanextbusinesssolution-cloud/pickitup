@@ -1,5 +1,3 @@
-import Navbar from '@/components/layout/Navbar';
-import Footer from '@/components/layout/Footer';
 import HeroSection from '@/components/shared/HeroSection';
 import TrustSection from '@/components/shared/TrustSection';
 import CategoryCards from '@/components/shared/CategoryCards';
@@ -16,7 +14,6 @@ import BackToTop from '@/components/shared/BackToTop';
 export default function Home() {
     return (
         <div className="min-h-screen bg-white">
-            <Navbar />
             <HeroSection />
             <CategoryCards />
             <ConfidenceSection />
@@ -28,7 +25,6 @@ export default function Home() {
             <BusinessDelivery />
             <ValueCTA />
             <FAQSection />
-            <Footer />
             <BackToTop />
         </div>
     );

@@ -1,15 +1,12 @@
 'use client';
 
 import React from 'react';
-import Navbar from '@/components/layout/Navbar';
-import Footer from '@/components/layout/Footer';
 import BackToTop from '@/components/shared/BackToTop';
 import Link from 'next/link';
 
 export default function ContactPage() {
     return (
         <div className="min-h-screen bg-white">
-            <Navbar />
 
             {/* Hero Section */}
             <section className="bg-gradient-to-b from-gray-50 to-white py-20 lg:py-28 overflow-hidden relative">
@@ -246,7 +243,6 @@ export default function ContactPage() {
                 </div>
             </section>
 
-            <Footer />
             <BackToTop />
         </div>
     );
