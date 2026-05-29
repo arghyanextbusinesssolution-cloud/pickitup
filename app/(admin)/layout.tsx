@@ -33,7 +33,9 @@ import {
     Percent,
     ScrollText,
     Shield,
-    LogOut
+    LogOut,
+    BookOpen,
+    Newspaper
 } from 'lucide-react';
 import { authService } from '../../services/auth.service';
 import { User } from '../../types/auth.types';
@@ -160,6 +162,12 @@ export default function AdminDashboardLayout({
             ]
         },
         {
+            group: 'CMS',
+            items: [
+                { name: 'Blogs', href: '/admin/cms/blog', icon: <Newspaper size={20} /> },
+            ]
+        },
+        {
             group: 'Profile',
             items: [
                 { name: 'My Account', href: '/admin/profile', icon: <UserIcon size={20} /> },
@@ -264,7 +272,7 @@ export default function AdminDashboardLayout({
                             </p>
                             <p className="text-red-400 text-[10px] font-black uppercase tracking-[0.2em] truncate">Platform Owner</p>
                         </div>
-                        <button 
+                        <button
                             onClick={() => setIsLogoutModalOpen(true)}
                             className="p-2.5 rounded-xl bg-red-500/10 text-red-500 hover:bg-red-500 hover:text-white transition-all group border border-red-500/20 hover:border-red-400 shadow-lg"
                             title="Logout"
@@ -309,7 +317,7 @@ export default function AdminDashboardLayout({
                 </main>
             </div>
 
-            <LogoutModal 
+            <LogoutModal
                 isOpen={isLogoutModalOpen}
                 onClose={() => setIsLogoutModalOpen(false)}
                 onConfirm={handleLogout}

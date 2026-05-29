@@ -59,6 +59,9 @@ export default function Navbar() {
                         <Link href="/find-shipments" className="text-[15px] font-medium text-gray-800 hover:text-purple-600 transition-colors">
                             Find Shipments
                         </Link>
+                        <Link href="/blog" className="text-[15px] font-medium text-gray-800 hover:text-purple-600 transition-colors">
+                            Blog
+                        </Link>
                         <Link href="/contact" className="text-[15px] font-medium text-gray-800 hover:text-purple-600 transition-colors flex items-center gap-1.5">
                             Contact Us
                         </Link>
@@ -109,29 +112,36 @@ export default function Navbar() {
                     <div className="lg:hidden py-6 border-t border-gray-200 bg-white shadow-xl animate-in slide-in-from-top-4 duration-300">
                         <div className="flex flex-col space-y-2">
                             {/* Navigation Links */}
-                            <Link 
-                                href="/about" 
+                            <Link
+                                href="/about"
                                 onClick={() => setMobileMenuOpen(false)}
                                 className="text-base font-medium text-gray-800 hover:text-purple-600 hover:bg-gray-50 px-8 py-3 transition-colors"
                             >
                                 Our Company
                             </Link>
-                            <Link 
-                                href="/ship" 
+                            <Link
+                                href="/ship"
                                 onClick={() => setMobileMenuOpen(false)}
                                 className="text-base font-medium text-gray-800 hover:text-purple-600 hover:bg-gray-50 px-8 py-3 transition-colors"
                             >
                                 Ship
                             </Link>
-                            <Link 
-                                href="/find-shipments" 
+                            <Link
+                                href="/find-shipments"
                                 onClick={() => setMobileMenuOpen(false)}
                                 className="text-base font-medium text-gray-800 hover:text-purple-600 hover:bg-gray-50 px-8 py-3 transition-colors"
                             >
                                 Find Shipments
                             </Link>
-                            <Link 
-                                href="/contact" 
+                            <Link
+                                href="/blog"
+                                onClick={() => setMobileMenuOpen(false)}
+                                className="text-base font-medium text-gray-800 hover:text-purple-600 hover:bg-gray-50 px-8 py-3 transition-colors"
+                            >
+                                Blog
+                            </Link>
+                            <Link
+                                href="/contact"
                                 onClick={() => setMobileMenuOpen(false)}
                                 className="text-base font-medium text-gray-800 hover:text-purple-600 hover:bg-gray-50 px-8 py-3 transition-colors"
                             >
@@ -155,15 +165,15 @@ export default function Navbar() {
                                     </Link>
                                 ) : (
                                     <div className="flex flex-col gap-3">
-                                        <Link 
-                                            href="/login" 
+                                        <Link
+                                            href="/login"
                                             onClick={() => setMobileMenuOpen(false)}
                                             className="w-full text-center text-[15px] font-semibold text-gray-700 hover:text-purple-600 border border-gray-200 py-3 rounded-full"
                                         >
                                             Sign In
                                         </Link>
-                                        <Link 
-                                            href="/register" 
+                                        <Link
+                                            href="/register"
                                             onClick={() => setMobileMenuOpen(false)}
                                             className="w-full text-center bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-gray-900 font-bold py-3 rounded-full transition-all shadow-md"
                                         >
