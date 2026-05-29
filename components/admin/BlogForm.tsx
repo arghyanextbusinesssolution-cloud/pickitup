@@ -27,7 +27,7 @@ export const BlogForm: React.FC<BlogFormProps> = ({ initialData, onSubmit, isLoa
     const [content, setContent] = useState(initialData?.content || '');
     const [excerpt, setExcerpt] = useState(initialData?.excerpt || '');
     const [coverImage, setCoverImage] = useState(initialData?.coverImage || '');
-    const [published, setPublished] = useState(initialData?.published || false);
+    const [published, setPublished] = useState(initialData?.published ?? true);
     const [isUploading, setIsUploading] = useState(false);
     const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -74,7 +74,7 @@ export const BlogForm: React.FC<BlogFormProps> = ({ initialData, onSubmit, isLoa
                         isLoading={isLoading}
                         className="bg-[#7C3AED] hover:bg-[#6D28D9] text-white px-8 py-2 rounded-xl flex items-center gap-2 font-bold shadow-lg shadow-purple-200"
                     >
-                        <Save size={18} /> Save Post
+                        <Send size={18} /> Publish Post
                     </Button>
                 </div>
             </div>
