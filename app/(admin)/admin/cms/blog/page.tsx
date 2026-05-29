@@ -37,14 +37,6 @@ export default function BlogListPage() {
     }
   };
 
-  const togglePublished = async (blog: BlogPost) => {
-    try {
-      const updated = await cmsService.updateBlog(blog.id, { published: !blog.published });
-      setBlogs(blogs.map(b => b.id === blog.id ? updated : b));
-    } catch (err: any) {
-      alert('Failed to update blog: ' + err.message);
-    }
-  };
 
   return (
     <div className="p-8 max-w-7xl mx-auto space-y-8 animate-in fade-in duration-500">
@@ -92,36 +84,10 @@ export default function BlogListPage() {
               {blog.coverImage ? (
                 <div className="h-48 overflow-hidden relative">
                   <img src={blog.coverImage} alt={blog.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
-                  <div className="absolute top-4 right-4">
-                    <button
-                      onClick={() => togglePublished(blog)}
-                      className={`px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg ${blog.published ? 'bg-green-500 text-white' : 'bg-yellow-400 text-gray-900'
-                        }`}
-                    >
-                      {blog.published ? (
-                        <span className="flex items-center gap-1"><Globe size={12} /> Published</span>
-                      ) : (
-                        <span className="flex items-center gap-1"><Lock size={12} /> Draft</span>
-                      )}
-                    </button>
-                  </div>
                 </div>
               ) : (
                 <div className="h-48 bg-purple-50 flex items-center justify-center relative">
                   <span className="text-4xl">📝</span>
-                  <div className="absolute top-4 right-4">
-                    <button
-                      onClick={() => togglePublished(blog)}
-                      className={`px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg ${blog.published ? 'bg-green-500 text-white' : 'bg-yellow-400 text-gray-900'
-                        }`}
-                    >
-                      {blog.published ? (
-                        <span className="flex items-center gap-1"><Globe size={12} /> Published</span>
-                      ) : (
-                        <span className="flex items-center gap-1"><Lock size={12} /> Draft</span>
-                      )}
-                    </button>
-                  </div>
                 </div>
               )}
               <div className="p-6 flex-grow space-y-3">

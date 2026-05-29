@@ -4,7 +4,7 @@ import React, { useState, useMemo, useRef } from 'react';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/navigation';
 import { Button, Input } from '@/components/ui';
-import { Save, ImageIcon, Send, ArrowLeft, Upload, X, Loader2 } from 'lucide-react';
+import { Save, ImageIcon, Send, ArrowLeft, Upload, X, Loader2, Trash2 } from 'lucide-react';
 import { BlogPost, CreateBlogDto } from '@/services/cms.service';
 import api from '@/lib/api';
 
@@ -19,10 +19,11 @@ import 'react-quill-new/dist/quill.snow.css';
 interface BlogFormProps {
     initialData?: BlogPost;
     onSubmit: (data: CreateBlogDto) => Promise<void>;
+    onDelete?: (id: string) => Promise<void>;
     isLoading: boolean;
 }
 
-export const BlogForm: React.FC<BlogFormProps> = ({ initialData, onSubmit, isLoading }) => {
+export const BlogForm: React.FC<BlogFormProps> = ({ initialData, onSubmit, onDelete, isLoading }) => {
     const [title, setTitle] = useState(initialData?.title || '');
     const [content, setContent] = useState(initialData?.content || '');
     const [excerpt, setExcerpt] = useState(initialData?.excerpt || '');
@@ -60,21 +61,22 @@ export const BlogForm: React.FC<BlogFormProps> = ({ initialData, onSubmit, isLoa
                     <ArrowLeft size={20} /> Back
                 </Button>
                 <div className="flex gap-3">
-                    <Button
-                        type="button"
-                        variant="ghost"
-                        onClick={() => setPublished(!published)}
-                        className={`px-4 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all ${published ? 'bg-green-50 text-green-600 border border-green-100' : 'bg-yellow-50 text-yellow-600 border border-yellow-100'
-                            }`}
-                    >
-                        {published ? 'Published' : 'Draft'}
-                    </Button>
+                    {initialData && onDelete && (
+                        <Button
+                            type="button"
+                            variant="ghost"
+                            onClick={() => onDelete(initialData.id)}
+                            className="bg-red-50 text-red-600 border border-red-100 px-6 py-2 rounded-xl flex items-center gap-2 font-bold hover:bg-red-100 transition-all"
+                        >
+                            <Trash2 size={18} /> Delete Post
+                        </Button>
+                    )}
                     <Button
                         type="submit"
                         isLoading={isLoading}
                         className="bg-[#7C3AED] hover:bg-[#6D28D9] text-white px-8 py-2 rounded-xl flex items-center gap-2 font-bold shadow-lg shadow-purple-200"
                     >
-                        <Send size={18} /> Publish Post
+                        <Send size={18} /> {initialData ? 'Update Post' : 'Publish Post'}
                     </Button>
                 </div>
             </div>

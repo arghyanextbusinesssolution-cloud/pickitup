@@ -43,6 +43,19 @@ export default function EditBlogPage() {
         }
     };
 
+    const handleDelete = async (postId: string) => {
+        if (!window.confirm('Are you sure you want to delete this blog post?')) return;
+        try {
+            setIsSaving(true);
+            await cmsService.deleteBlog(postId);
+            router.push('/admin/cms/blog');
+        } catch (err: any) {
+            alert('Failed to delete blog: ' + err.message);
+        } finally {
+            setIsSaving(false);
+        }
+    };
+
     if (isLoading) {
         return (
             <div className="flex justify-center items-center h-64">
@@ -67,7 +80,7 @@ export default function EditBlogPage() {
                 <p className="text-gray-500 font-medium">Modify your existing blog post.</p>
             </div>
 
-            <BlogForm initialData={blog} onSubmit={handleSubmit} isLoading={isSaving} />
+            <BlogForm initialData={blog} onSubmit={handleSubmit} onDelete={handleDelete} isLoading={isSaving} />
         </div>
     );
 }
