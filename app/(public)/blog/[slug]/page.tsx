@@ -149,7 +149,7 @@ export default function SingleBlogPostPage() {
             )}
 
             {/* ── ARTICLE CONTENT ── */}
-            <main className="max-w-4xl mx-auto px-6 py-16">
+            <main className="max-w-4xl mx-auto px-6 py-16 overflow-x-hidden">
                 {/* Excerpt highlight */}
                 {blog.excerpt && (
                     <div className="bg-purple-50 border-l-4 border-purple-500 rounded-2xl p-6 mb-12">
@@ -160,7 +160,7 @@ export default function SingleBlogPostPage() {
                 {/* Body */}
                 <article
                     className="
-                        prose prose-lg max-w-none
+                        prose prose-sm sm:prose-base md:prose-lg max-w-none break-words
                         prose-headings:font-black prose-headings:text-gray-900 prose-headings:tracking-tight
                         prose-h1:text-4xl prose-h2:text-3xl prose-h3:text-2xl
                         prose-p:text-gray-600 prose-p:leading-[1.9] prose-p:font-[450]
