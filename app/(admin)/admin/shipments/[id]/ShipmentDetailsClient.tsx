@@ -77,7 +77,7 @@ export default function ShipmentDetailsClient({ id }: { id: string }) {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Main Content */}
         <div className="lg:col-span-2 space-y-8">
-          
+
           {/* Route Info */}
           <div className="bg-white rounded-[2rem] shadow-sm border border-gray-100 p-8">
             <h2 className="text-xl font-[900] text-gray-900 uppercase tracking-tight mb-6">Route Details</h2>
@@ -93,7 +93,7 @@ export default function ShipmentDetailsClient({ id }: { id: string }) {
               <div className="hidden md:flex flex-col items-center justify-center relative z-0 w-8">
                 <div className="w-full border-t-2 border-dashed border-gray-300 absolute top-1/2 -translate-y-1/2"></div>
                 <div className="bg-white border-2 border-gray-100 px-3 py-1.5 rounded-full text-xs font-bold text-gray-500 uppercase tracking-widest z-10 shadow-sm relative whitespace-nowrap">
-                  {shipment.distanceKm ? `${shipment.distanceKm} km` : '---'}
+                  {shipment.distanceMiles ? `${shipment.distanceMiles} miles` : '---'}
                 </div>
               </div>
 
@@ -112,11 +112,11 @@ export default function ShipmentDetailsClient({ id }: { id: string }) {
             <h2 className="text-xl font-[900] text-gray-900 uppercase tracking-tight mb-6">Cargo Details</h2>
             <div className="bg-gray-50 rounded-2xl p-6 border border-gray-100">
               <div className="flex items-center gap-4 mb-6">
-                 <div className="text-4xl">📦</div>
-                 <div>
-                    <div className="font-[900] text-gray-900 text-xl">{shipment.title || shipment.category || 'General Cargo'}</div>
-                    <div className="text-sm font-bold text-gray-500">{shipment.subcategory || 'Miscellaneous'}</div>
-                 </div>
+                <div className="text-4xl">📦</div>
+                <div>
+                  <div className="font-[900] text-gray-900 text-xl">{shipment.title || shipment.category || 'General Cargo'}</div>
+                  <div className="text-sm font-bold text-gray-500">{shipment.subcategory || 'Miscellaneous'}</div>
+                </div>
               </div>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <div className="bg-white p-4 rounded-xl border border-gray-100 shadow-sm">
@@ -144,7 +144,7 @@ export default function ShipmentDetailsClient({ id }: { id: string }) {
 
         {/* Sidebar */}
         <div className="space-y-8">
-          
+
           {/* Shipper Info */}
           <div className="bg-white rounded-[2rem] shadow-sm border border-gray-100 p-8">
             <h2 className="text-xl font-[900] text-gray-900 uppercase tracking-tight mb-6">Shipper</h2>
@@ -193,7 +193,7 @@ export default function ShipmentDetailsClient({ id }: { id: string }) {
               </div>
             )}
           </div>
-          
+
           {/* Financials / Budget */}
           <div className="bg-gradient-to-br from-gray-900 to-black rounded-[2rem] shadow-xl p-8 text-white relative overflow-hidden">
             <div className="absolute top-0 right-0 p-4 opacity-10 pointer-events-none">

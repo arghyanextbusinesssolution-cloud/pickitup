@@ -20,6 +20,7 @@ export default function PricingPage() {
 
       {/* Main Pricing Content from Shared Component */}
       <PricingCards />
+      
 
       {/* CTA */}
       <div className="bg-gray-50 border-t border-gray-100 py-20 text-center">

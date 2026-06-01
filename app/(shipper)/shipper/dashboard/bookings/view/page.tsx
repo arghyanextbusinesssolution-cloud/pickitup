@@ -10,18 +10,18 @@ import { PaymentFeedback } from '@/components/payment/payment-feedback';
 import ClaimFormModal from '@/components/claims/ClaimFormModal';
 
 const STATUS_COLORS: Record<string, { bg: string; text: string; label: string }> = {
-  CONFIRMED:  { bg: 'bg-blue-100',   text: 'text-blue-700',   label: 'Confirmed' },
-  PICKED_UP:  { bg: 'bg-yellow-100', text: 'text-yellow-700', label: 'Picked Up' },
+  CONFIRMED: { bg: 'bg-blue-100', text: 'text-blue-700', label: 'Confirmed' },
+  PICKED_UP: { bg: 'bg-yellow-100', text: 'text-yellow-700', label: 'Picked Up' },
   IN_TRANSIT: { bg: 'bg-orange-100', text: 'text-orange-700', label: 'In Transit' },
-  COMPLETED:  { bg: 'bg-green-100',  text: 'text-green-700',  label: 'Completed' },
-  CANCELLED:  { bg: 'bg-red-100',    text: 'text-red-600',    label: 'Cancelled' },
+  COMPLETED: { bg: 'bg-green-100', text: 'text-green-700', label: 'Completed' },
+  CANCELLED: { bg: 'bg-red-100', text: 'text-red-600', label: 'Cancelled' },
 };
 
 const PAYMENT_STATUS_COLORS: Record<string, string> = {
-  PENDING:  'bg-yellow-100 text-yellow-700',
-  PAID:     'bg-green-100 text-green-700',
+  PENDING: 'bg-yellow-100 text-yellow-700',
+  PAID: 'bg-green-100 text-green-700',
   REFUNDED: 'bg-gray-100 text-gray-600',
-  FAILED:   'bg-red-100 text-red-600',
+  FAILED: 'bg-red-100 text-red-600',
 };
 
 export default function BookingDetailPage() {
@@ -34,7 +34,7 @@ export default function BookingDetailPage() {
   const [isPaying, setIsPaying] = useState(false);
   const [error, setError] = useState('');
   const [isClaimModalOpen, setIsClaimModalOpen] = useState(false);
-  
+
   const isPaidOptimistically = booking?.paymentStatus === 'PAID' || paymentStatus === 'success';
 
   const fetchBooking = () => {
@@ -114,14 +114,14 @@ export default function BookingDetailPage() {
       <PaymentFeedback />
 
       {isClaimModalOpen && (
-          <ClaimFormModal 
-            bookingId={bookingId} 
-            onClose={() => setIsClaimModalOpen(false)} 
-            onSuccess={() => {
-                setIsClaimModalOpen(false);
-                fetchBooking();
-            }}
-          />
+        <ClaimFormModal
+          bookingId={bookingId}
+          onClose={() => setIsClaimModalOpen(false)}
+          onSuccess={() => {
+            setIsClaimModalOpen(false);
+            fetchBooking();
+          }}
+        />
       )}
 
       {/* Header */}
@@ -138,9 +138,9 @@ export default function BookingDetailPage() {
               Payment: {isPaidOptimistically ? 'PAID' : booking.paymentStatus}
             </span>
             {booking.hasInsurance && (
-               <span className={`font-black px-3 py-1 rounded-full text-xs uppercase tracking-widest bg-blue-100 text-blue-800`}>
+              <span className={`font-black px-3 py-1 rounded-full text-xs uppercase tracking-widest bg-blue-100 text-blue-800`}>
                 Protected by Insurance
-               </span>
+              </span>
             )}
           </div>
           <h1 className="text-3xl font-[900] text-gray-900 uppercase tracking-tight">
@@ -158,12 +158,12 @@ export default function BookingDetailPage() {
         </div>
 
         {booking.status === 'COMPLETED' && (
-            <button 
-                onClick={() => setIsClaimModalOpen(true)}
-                className="bg-red-50 hover:bg-red-100 text-red-600 font-[900] px-6 py-4 rounded-xl transition-all uppercase tracking-wide text-xs flex items-center gap-2 border-2 border-red-100 shadow-sm"
-            >
-                ⚠️ File Insurance Claim
-            </button>
+          <button
+            onClick={() => setIsClaimModalOpen(true)}
+            className="bg-red-50 hover:bg-red-100 text-red-600 font-[900] px-6 py-4 rounded-xl transition-all uppercase tracking-wide text-xs flex items-center gap-2 border-2 border-red-100 shadow-sm"
+          >
+            ⚠️ File Insurance Claim
+          </button>
         )}
       </div>
 
@@ -225,44 +225,44 @@ export default function BookingDetailPage() {
           {/* Pickup OTP Card */}
           {booking.otp && booking.shipment?.status === 'ASSIGNED' && (
             <div className="bg-[#1a1b3a] rounded-[2rem] p-8 lg:p-10 text-white shadow-2xl relative overflow-hidden mb-8 border-4 border-yellow-400">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-yellow-400/10 rounded-full -mr-16 -mt-16 blur-2xl" />
-                
-                <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6 uppercase tracking-widest text-sm">
-                    <div className="text-center md:text-left">
-                        <h3 className="text-yellow-400 font-black mb-2 flex items-center justify-center md:justify-start gap-2">
-                           <span className="text-xl">🔐</span> Pickup Verification Code
-                        </h3>
-                        <p className="text-gray-400 font-bold text-xs">Share this 6-digit code with the carrier ONLY when they arrive and receive the shipment.</p>
-                    </div>
-                    
-                    <div className="bg-white/10 border-2 border-white/20 px-8 py-4 rounded-2xl flex items-center justify-center gap-4 group">
-                        {booking.otp.split('').map((digit: string, i: number) => (
-                            <span key={i} className="text-4xl font-black text-white">{digit}</span>
-                        ))}
-                    </div>
+              <div className="absolute top-0 right-0 w-32 h-32 bg-yellow-400/10 rounded-full -mr-16 -mt-16 blur-2xl" />
+
+              <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6 uppercase tracking-widest text-sm">
+                <div className="text-center md:text-left">
+                  <h3 className="text-yellow-400 font-black mb-2 flex items-center justify-center md:justify-start gap-2">
+                    <span className="text-xl">🔐</span> Pickup Verification Code
+                  </h3>
+                  <p className="text-gray-400 font-bold text-xs">Share this 6-digit code with the carrier ONLY when they arrive and receive the shipment.</p>
                 </div>
+
+                <div className="bg-white/10 border-2 border-white/20 px-8 py-4 rounded-2xl flex items-center justify-center gap-4 group">
+                  {booking.otp.split('').map((digit: string, i: number) => (
+                    <span key={i} className="text-4xl font-black text-white">{digit}</span>
+                  ))}
+                </div>
+              </div>
             </div>
           )}
 
           {/* Delivery OTP Card */}
           {booking.deliveryOtp && (booking.shipment?.status === 'IN_TRANSIT' || booking.shipment?.status === 'PICKED_UP') && (
             <div className="bg-[#1a1b3a] rounded-[2rem] p-8 lg:p-10 text-white shadow-2xl relative overflow-hidden mb-8 border-4 border-green-400">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-green-400/10 rounded-full -mr-16 -mt-16 blur-2xl" />
-                
-                <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6 uppercase tracking-widest text-sm">
-                    <div className="text-center md:text-left">
-                        <h3 className="text-green-400 font-black mb-2 flex items-center justify-center md:justify-start gap-2">
-                           <span className="text-xl">🏁</span> Delivery Verification Code
-                        </h3>
-                        <p className="text-gray-400 font-bold text-xs">Share this 6-digit code with the receiver to authorize the final drop-off.</p>
-                    </div>
-                    
-                    <div className="bg-white/10 border-2 border-white/20 px-8 py-4 rounded-2xl flex items-center justify-center gap-4 group">
-                        {booking.deliveryOtp.split('').map((digit: string, i: number) => (
-                            <span key={i} className="text-4xl font-black text-white">{digit}</span>
-                        ))}
-                    </div>
+              <div className="absolute top-0 right-0 w-32 h-32 bg-green-400/10 rounded-full -mr-16 -mt-16 blur-2xl" />
+
+              <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6 uppercase tracking-widest text-sm">
+                <div className="text-center md:text-left">
+                  <h3 className="text-green-400 font-black mb-2 flex items-center justify-center md:justify-start gap-2">
+                    <span className="text-xl">🏁</span> Delivery Verification Code
+                  </h3>
+                  <p className="text-gray-400 font-bold text-xs">Share this 6-digit code with the receiver to authorize the final drop-off.</p>
                 </div>
+
+                <div className="bg-white/10 border-2 border-white/20 px-8 py-4 rounded-2xl flex items-center justify-center gap-4 group">
+                  {booking.deliveryOtp.split('').map((digit: string, i: number) => (
+                    <span key={i} className="text-4xl font-black text-white">{digit}</span>
+                  ))}
+                </div>
+              </div>
             </div>
           )}
 
@@ -270,48 +270,60 @@ export default function BookingDetailPage() {
           <div className="bg-white rounded-[2rem] shadow-sm border border-gray-100 p-8">
             <h2 className="text-xl font-[900] text-gray-900 uppercase tracking-wide mb-6">Price Breakdown</h2>
             <div className="space-y-4">
-              <div className="flex justify-between items-center py-3 border-b border-gray-100">
-                <span className="text-gray-600 font-medium">Accepted Bid Amount</span>
-                <span className="font-[900] text-gray-900 text-xl">${Number(booking.price).toLocaleString()}</span>
+              <div className="flex justify-between items-center py-3 border-b border-gray-100 font-hanken">
+                <span className="text-gray-600 font-bold">Accepted Bid Amount</span>
+                <span className="font-[900] text-[#13182C] text-xl">${Number(booking.price).toLocaleString()}</span>
               </div>
-              <div className="flex justify-between items-center py-3 border-b border-gray-100">
-                <span className="text-gray-600 font-medium">Platform Fee (3%)</span>
-                <span className="font-bold text-gray-500">
+              <div className="flex justify-between items-center py-3 border-b border-gray-100 font-hanken">
+                <span className="text-gray-600 font-bold">Platform Fee (3%)</span>
+                <span className="font-bold text-gray-500 font-mono">
                   ${(Number(booking.price) * 0.03).toFixed(2)}
                 </span>
               </div>
               {(!isPaidOptimistically && booking.paymentStatus === 'PENDING') && (
-                <div className="flex justify-between items-center py-3 border-b border-gray-100">
+                <div className="flex justify-between items-center py-3 border-b border-gray-100 font-hanken">
                   <label className="flex items-center gap-3 cursor-pointer">
-                    <input 
-                      type="checkbox" 
-                      className="w-5 h-5 accent-blue-600 rounded cursor-pointer"
+                    <input
+                      type="checkbox"
+                      className="w-5 h-5 accent-[#13182C] rounded cursor-pointer"
                       checked={useInsurance}
                       onChange={(e) => setUseInsurance(e.target.checked)}
                     />
-                    <span className="font-[900] text-blue-800 flex items-center gap-2">
-                       <span className="text-lg">🛡️</span> Add Website Insurance
-                    </span>
+                    <div className="flex flex-col">
+                      <span className="font-[900] text-[#13182C] flex items-center gap-2">
+                        <span className="text-lg">🛡️</span> Add Website Insurance
+                      </span>
+                      <Link href="/insurance-policy" target="_blank" className="text-[10px] text-blue-600 hover:underline font-bold ml-7 font-mono uppercase tracking-tighter">
+                        View Protection Terms & Conditions
+                      </Link>
+                    </div>
                   </label>
-                  <span className="font-bold text-gray-500">+$100.00</span>
+                  <span className="font-bold text-gray-500 font-mono">
+                    {useInsurance ? '' : '+'}${(Number(booking.price) * 0.10).toFixed(2)}
+                  </span>
                 </div>
               )}
-              {booking.hasInsurance && (
-                <div className="flex justify-between items-center py-3 border-b border-gray-100">
-                  <span className="text-blue-700 font-[900] flex items-center gap-2">🛡️ Website Insurance</span>
-                  <span className="font-bold text-gray-500">${Number(booking.insuranceFee).toFixed(2)}</span>
+              {(isPaidOptimistically || (booking.paymentStatus === 'PAID' && booking.hasInsurance)) && (
+                <div className="flex justify-between items-center py-3 border-b border-gray-100 font-hanken">
+                  <div className="flex flex-col">
+                    <span className="text-[#13182C] font-[900] flex items-center gap-2">🛡️ Website Insurance</span>
+                    <Link href="/insurance-policy" target="_blank" className="text-[10px] text-blue-600 hover:underline font-bold ml-7 font-mono uppercase tracking-tighter">
+                      Policy Terms Applied
+                    </Link>
+                  </div>
+                  <span className="font-bold text-gray-500 font-mono">${(Number(booking.price) * 0.10).toFixed(2)}</span>
                 </div>
               )}
-              <div className="flex justify-between items-center py-4">
-                <span className="font-[900] text-gray-900 uppercase tracking-wide text-lg">Total Due</span>
-                <span className="font-[900] text-purple-600 text-2xl">
-                  ${((Number(booking.price) * 1.03) + (useInsurance ? 100 : (booking.hasInsurance ? Number(booking.insuranceFee) : 0))).toFixed(2)}
+              <div className="flex justify-between items-center py-4 font-hanken">
+                <span className="font-[900] text-[#13182C] uppercase tracking-wide text-lg">Total Due</span>
+                <span className="font-[900] text-purple-600 text-2xl font-hanken">
+                  ${((Number(booking.price) * 1.03) + (useInsurance ? (Number(booking.price) * 0.10) : 0)).toFixed(2)}
                 </span>
               </div>
             </div>
 
             {(!isPaidOptimistically && booking.paymentStatus === 'PENDING') && (
-              <button 
+              <button
                 onClick={handlePayment}
                 disabled={isPaying}
                 className="mt-8 w-full bg-yellow-400 hover:bg-yellow-500 active:scale-[0.98] text-gray-900 font-[900] px-8 py-5 rounded-2xl transition-all uppercase tracking-wide text-sm shadow-lg shadow-yellow-400/30 hover:-translate-y-0.5 flex items-center justify-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed"

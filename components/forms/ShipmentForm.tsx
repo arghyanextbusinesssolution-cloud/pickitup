@@ -26,11 +26,10 @@ const StepIndicator: React.FC<{ currentStep: number }> = ({ currentStep }) => {
             {Array.from({ length: TOTAL_STEPS }, (_, i) => i + 1).map((step) => (
                 <div
                     key={step}
-                    className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm transition-all duration-300 border-2 ${
-                        currentStep >= step
-                        ? 'bg-red-500 border-red-500 text-white scale-110 shadow-lg'
-                        : 'bg-white border-gray-300 text-gray-400'
-                    }`}
+                    className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm transition-all duration-300 border-2 ${currentStep >= step
+                            ? 'bg-red-500 border-red-500 text-white scale-110 shadow-lg'
+                            : 'bg-white border-gray-300 text-gray-400'
+                        }`}
                     title={STEP_LABELS[step - 1]}
                 >
                     {step}
@@ -100,7 +99,7 @@ function useNominatimAutocomplete() {
 
 // --- HAVERSINE DISTANCE ---
 function haversineDistance(lat1: number, lon1: number, lat2: number, lon2: number): number {
-    const R = 6371; // km
+    const R = 3958.8; // miles
     const dLat = ((lat2 - lat1) * Math.PI) / 180;
     const dLon = ((lon2 - lon1) * Math.PI) / 180;
     const a =
@@ -278,7 +277,7 @@ export const ShipmentForm: React.FC<{ onSuccess?: () => void }> = ({ onSuccess }
         isFlexiblePickup: false,
         isFlexibleDelivery: false,
 
-        distanceKm: '',
+        distanceMiles: '',
         estimatedTimeMin: '',
     });
 
@@ -332,7 +331,7 @@ export const ShipmentForm: React.FC<{ onSuccess?: () => void }> = ({ onSuccess }
             setIsUploading(true);
             shipmentService.uploadPhotos(newFiles)
                 .then(urls => setFormData((prev: any) => ({ ...prev, photoUrls: urls })))
-                .catch(() => {})
+                .catch(() => { })
                 .finally(() => setIsUploading(false));
         } else {
             setFormData((prev: any) => ({ ...prev, photoUrls: [] }));
@@ -353,11 +352,11 @@ export const ShipmentForm: React.FC<{ onSuccess?: () => void }> = ({ onSuccess }
                 formData.destinationLatitude,
                 formData.destinationLongitude
             );
-            // Rough estimate: avg speed 60km/h on road with 1.3x factor
-            const estimatedMin = Math.ceil((dist * 1.3) / 60 * 60);
+            // Rough estimate: avg speed 40 mph on road with 1.3x factor
+            const estimatedMin = Math.ceil((dist * 1.3) / 40 * 60);
             setFormData((prev: any) => ({
                 ...prev,
-                distanceKm: dist.toFixed(2),
+                distanceMiles: dist.toFixed(2),
                 estimatedTimeMin: estimatedMin,
             }));
         }
@@ -442,7 +441,7 @@ export const ShipmentForm: React.FC<{ onSuccess?: () => void }> = ({ onSuccess }
                 budgetMax: formData.budgetMax ? parseFloat(formData.budgetMax) : undefined,
                 pickupFloor: parseInt(formData.pickupFloor),
                 deliveryFloor: parseInt(formData.deliveryFloor),
-                distanceKm: formData.distanceKm ? parseFloat(formData.distanceKm) : undefined,
+                distanceMiles: formData.distanceMiles ? parseFloat(formData.distanceMiles) : undefined,
             };
 
             await shipmentService.create(payload);
@@ -477,12 +476,12 @@ export const ShipmentForm: React.FC<{ onSuccess?: () => void }> = ({ onSuccess }
                             onSelect={handleDestSelect}
                         />
 
-                        {formData.distanceKm && (
+                        {formData.distanceMiles && (
                             <div className="p-4 bg-gray-900 rounded-2xl animate-in zoom-in-95 duration-500 shadow-2xl border border-gray-800">
                                 <div className="flex justify-between items-center">
                                     <div className="flex flex-col">
                                         <span className="text-[10px] font-black text-gray-500 uppercase tracking-[0.2em] mb-1">Route Distance</span>
-                                        <span className="text-xl font-black text-white">{formData.distanceKm} <span className="text-red-500 italic">km</span></span>
+                                        <span className="text-xl font-black text-white">{formData.distanceMiles} <span className="text-red-500 italic">miles</span></span>
                                     </div>
                                     <div className="h-10 w-px bg-gray-800"></div>
                                     <div className="flex flex-col text-right">
@@ -544,13 +543,12 @@ export const ShipmentForm: React.FC<{ onSuccess?: () => void }> = ({ onSuccess }
                     <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-300">
                         {/* Drag & Drop Zone */}
                         <div
-                            className={`relative border-2 border-dashed rounded-2xl p-8 text-center transition-all ${
-                                isUploading
+                            className={`relative border-2 border-dashed rounded-2xl p-8 text-center transition-all ${isUploading
                                     ? 'border-amber-400 bg-amber-50 cursor-wait'
                                     : isDragging
                                         ? 'border-red-500 bg-red-50 scale-[1.02] cursor-pointer'
                                         : 'border-gray-300 bg-gray-50 hover:border-red-400 hover:bg-red-50/50 cursor-pointer'
-                            }`}
+                                }`}
                             onDragOver={(e) => { e.preventDefault(); if (!isUploading) setIsDragging(true); }}
                             onDragLeave={() => setIsDragging(false)}
                             onDrop={(e) => {
@@ -684,15 +682,15 @@ export const ShipmentForm: React.FC<{ onSuccess?: () => void }> = ({ onSuccess }
                             <div className="grid grid-cols-3 gap-4">
                                 <div className="space-y-1">
                                     <label className="text-[10px] font-bold text-gray-400 uppercase">Length ({formData.dimensionUnit})</label>
-                                    <input type="number" step="0.01" placeholder="0.00" value={formData.length} onChange={(e) => setFormData({...formData, length: e.target.value})} className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-red-500 outline-none shadow-sm font-bold text-sm" />
+                                    <input type="number" step="0.01" placeholder="0.00" value={formData.length} onChange={(e) => setFormData({ ...formData, length: e.target.value })} className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-red-500 outline-none shadow-sm font-bold text-sm" />
                                 </div>
                                 <div className="space-y-1">
                                     <label className="text-[10px] font-bold text-gray-400 uppercase">Width ({formData.dimensionUnit})</label>
-                                    <input type="number" step="0.01" placeholder="0.00" value={formData.width} onChange={(e) => setFormData({...formData, width: e.target.value})} className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-red-500 outline-none shadow-sm font-bold text-sm" />
+                                    <input type="number" step="0.01" placeholder="0.00" value={formData.width} onChange={(e) => setFormData({ ...formData, width: e.target.value })} className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-red-500 outline-none shadow-sm font-bold text-sm" />
                                 </div>
                                 <div className="space-y-1">
                                     <label className="text-[10px] font-bold text-gray-400 uppercase">Height ({formData.dimensionUnit})</label>
-                                    <input type="number" step="0.01" placeholder="0.00" value={formData.height} onChange={(e) => setFormData({...formData, height: e.target.value})} className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-red-500 outline-none shadow-sm font-bold text-sm" />
+                                    <input type="number" step="0.01" placeholder="0.00" value={formData.height} onChange={(e) => setFormData({ ...formData, height: e.target.value })} className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-red-500 outline-none shadow-sm font-bold text-sm" />
                                 </div>
                             </div>
                         </div>
@@ -731,12 +729,12 @@ export const ShipmentForm: React.FC<{ onSuccess?: () => void }> = ({ onSuccess }
                         </div>
                         <div className="flex items-center gap-8">
                             <label className="flex items-center gap-3 cursor-pointer">
-                                <input type="checkbox" checked={formData.hasElevatorPickup} onChange={(e) => setFormData({...formData, hasElevatorPickup: e.target.checked})} className="w-5 h-5 accent-red-500" />
-                                <span className="text-sm font-bold text-gray-700 uppercase tracking-tighter">Elevator at Pickup</span>
+                                {/* <input type="checkbox" checked={formData.hasElevatorPickup} onChange={(e) => setFormData({ ...formData, hasElevatorPickup: e.target.checked })} className="w-5 h-5 accent-red-500" /> */}
+                                {/* <span className="text-sm font-bold text-gray-700 uppercase tracking-tighter">Elevator at Pickup</span> */}
                             </label>
                             <label className="flex items-center gap-3 cursor-pointer">
-                                <input type="checkbox" checked={formData.hasElevatorDelivery} onChange={(e) => setFormData({...formData, hasElevatorDelivery: e.target.checked})} className="w-5 h-5 accent-red-500" />
-                                <span className="text-sm font-bold text-gray-700 uppercase tracking-tighter">Elevator at Drop</span>
+                                {/* <input type="checkbox" checked={formData.hasElevatorDelivery} onChange={(e) => setFormData({ ...formData, hasElevatorDelivery: e.target.checked })} className="w-5 h-5 accent-red-500" /> */}
+                                {/* <span className="text-sm font-bold text-gray-700 uppercase tracking-tighter">Elevator at Drop</span> */}
                             </label>
                         </div>
                     </div>
@@ -765,7 +763,7 @@ export const ShipmentForm: React.FC<{ onSuccess?: () => void }> = ({ onSuccess }
                                 <span className="text-sm font-black text-red-600 uppercase tracking-widest">Flexible on Dates?</span>
                                 <button
                                     type="button"
-                                    onClick={() => setFormData({...formData, isFlexiblePickup: !formData.isFlexiblePickup})}
+                                    onClick={() => setFormData({ ...formData, isFlexiblePickup: !formData.isFlexiblePickup })}
                                     className={`w-14 h-8 rounded-full transition-colors relative ${formData.isFlexiblePickup ? 'bg-red-500' : 'bg-gray-300'}`}
                                 >
                                     <div className={`absolute top-1 w-6 h-6 bg-white rounded-full transition-transform ${formData.isFlexiblePickup ? 'translate-x-7' : 'translate-x-1'}`}></div>

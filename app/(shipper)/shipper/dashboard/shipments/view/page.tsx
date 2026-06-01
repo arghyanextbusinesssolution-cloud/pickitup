@@ -256,13 +256,12 @@ export default function ShipmentDetailsPage() {
                   bids.map((bid: any, i: number) => (
                     <div
                       key={bid.id || i}
-                      className={`bg-white rounded-2xl border p-6 flex flex-col md:flex-row md:items-center justify-between gap-6 transition-all ${
-                        bid.status === 'ACCEPTED'
+                      className={`bg-white rounded-2xl border p-6 flex flex-col md:flex-row md:items-center justify-between gap-6 transition-all ${bid.status === 'ACCEPTED'
                           ? 'border-green-300 shadow-md shadow-green-100'
                           : bid.status === 'REJECTED'
-                          ? 'border-gray-100 opacity-50'
-                          : 'border-gray-200 hover:border-purple-300 hover:shadow-md'
-                      }`}
+                            ? 'border-gray-100 opacity-50'
+                            : 'border-gray-200 hover:border-purple-300 hover:shadow-md'
+                        }`}
                     >
                       {/* Carrier info */}
                       <div className="flex items-center gap-4">
@@ -369,7 +368,7 @@ export default function ShipmentDetailsPage() {
                   </div>
                   <div>
                     <p className="text-xs text-gray-500">Distance</p>
-                    <p className="font-bold text-gray-900">{shipment.distanceKm ? `${shipment.distanceKm} km` : 'TBD'}</p>
+                    <p className="font-bold text-gray-900">{shipment.distanceMiles ? `${shipment.distanceMiles} miles` : 'TBD'}</p>
                   </div>
                 </div>
               </div>

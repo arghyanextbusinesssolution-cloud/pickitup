@@ -101,18 +101,19 @@ export default function BlogListPage() {
               </div>
               <div className="p-4 bg-gray-50 border-t border-gray-100 flex gap-2">
                 <Link href={`/admin/cms/blog/${blog.id}/edit`} className="flex-1">
-                  <Button className="w-full bg-white border border-gray-200 text-gray-700 hover:border-purple-400 hover:text-purple-600 py-2 rounded-lg flex items-center justify-center gap-2 text-xs font-bold transition-all">
+                  <Button variant="outline" className="w-full border-gray-200 text-gray-700 hover:border-purple-400 hover:text-purple-600 hover:bg-purple-50 py-2 rounded-lg flex items-center justify-center gap-2 text-xs font-bold transition-all">
                     <Edit size={14} /> Edit
                   </Button>
                 </Link>
                 <Link href={`/blog/${blog.slug}`} target="_blank" className="flex-1">
-                  <Button className="w-full bg-white border border-gray-200 text-gray-700 hover:border-blue-400 hover:text-blue-600 py-2 rounded-lg flex items-center justify-center gap-2 text-xs font-bold transition-all">
+                  <Button variant="outline" className="w-full border-gray-200 text-gray-700 hover:border-blue-400 hover:text-blue-600 hover:bg-blue-50 py-2 rounded-lg flex items-center justify-center gap-2 text-xs font-bold transition-all">
                     <Eye size={14} /> View
                   </Button>
                 </Link>
                 <Button
+                  variant="outline"
                   onClick={() => handleDelete(blog.id)}
-                  className="px-3 bg-white border border-gray-200 text-gray-400 hover:border-red-400 hover:text-red-500 py-2 rounded-lg transition-all"
+                  className="px-3 border-gray-200 text-gray-400 hover:border-red-400 hover:text-red-500 hover:bg-red-50 py-2 rounded-lg transition-all"
                 >
                   <Trash2 size={14} />
                 </Button>

@@ -9,7 +9,7 @@ function ShipmentDetailsContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const idParam = searchParams.get('id');
-  
+
   const [shipment, setShipment] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
@@ -41,6 +41,16 @@ function ShipmentDetailsContent() {
     fetchShipment();
   }, [idParam]);
 
+
+  if(loading){
+    return (
+      <div>
+        <div className = " dloe  iher iwithi neit eit ekje ireirYU tieiuer oieii ok">
+
+        </div>
+      </div>
+    )
+  }
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[50vh]">
@@ -62,7 +72,7 @@ function ShipmentDetailsContent() {
 
   const sid = shipment.id || shipment._id;
   const shortId = typeof sid === 'string' ? sid.substring(0, 5).toUpperCase() : String(sid).toUpperCase();
-  
+
   const status = shipment.status || 'OPEN';
   let statusBadge = { bg: 'bg-orange-100', text: 'text-orange-600', icon: 'schedule', label: 'Pending' };
   let currentStepIndex = 0;
@@ -140,8 +150,8 @@ function ShipmentDetailsContent() {
             </div>
           </div>
           <div className="relative h-96 w-full bg-slate-100">
-            <img alt="Map background" className="w-full h-full object-cover grayscale opacity-30 mix-blend-multiply" src="https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=2074&auto=format&fit=crop"/>
-            
+            <img alt="Map background" className="w-full h-full object-cover grayscale opacity-30 mix-blend-multiply" src="https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=2074&auto=format&fit=crop" />
+
             {/* Overlay SVG for the line */}
             <div className="absolute inset-0 flex items-center justify-center p-20 pointer-events-none">
               <div className="relative w-full h-full border-b-2 border-dashed border-rose-300 flex items-end justify-between px-10">
@@ -170,7 +180,7 @@ function ShipmentDetailsContent() {
             </div>
             <div className="flex items-center flex-col justify-center">
               <span className="material-symbols-outlined text-rose-500">trending_flat</span>
-              <span className="text-[10px] font-[700] text-rose-500">{shipment.distanceKm ? `${shipment.distanceKm} km total` : 'Distance Pending'}</span>
+              <span className="text-[10px] font-[700] text-rose-500">{shipment.distanceMiles ? `${shipment.distanceMiles} miles total` : 'Distance Pending'}</span>
             </div>
             <div className="flex-1 md:text-right">
               <p className="text-[10px] font-[700] text-slate-400 uppercase mb-1">Estimated Arrival</p>
@@ -184,7 +194,7 @@ function ShipmentDetailsContent() {
         <div className="col-span-12 lg:col-span-4 bg-white rounded-xl shadow-sm p-6 border border-slate-100">
           <h3 className="text-[12px] font-[700] tracking-[0.05em] text-slate-500 uppercase mb-8">Journey Status</h3>
           <div className="space-y-8 relative before:content-[''] before:absolute before:left-[11px] before:top-2 before:bottom-2 before:w-[2px] before:bg-slate-100">
-            
+
             {/* Step 1: Booked */}
             <div className="relative flex gap-4">
               <div className={`z-10 w-6 h-6 rounded-full flex items-center justify-center ${currentStepIndex >= 1 ? 'bg-slate-900 text-white' : (currentStepIndex === 0 ? 'bg-rose-500 text-white ring-4 ring-rose-100' : 'bg-slate-200')}`}>
@@ -259,7 +269,7 @@ function ShipmentDetailsContent() {
               <p className="text-[10px] font-[700] text-slate-400 uppercase mb-1">Hazardous</p>
               <p className="text-[14px] font-[700] text-slate-900 text-green-600">No / Class A</p>
             </div>
-            
+
             <div className="col-span-2 bg-rose-50 p-3 rounded-xl border border-rose-100 mt-2">
               <div className="flex items-center gap-2 mb-2">
                 <span className="material-symbols-outlined text-rose-600 text-sm">thermostat</span>
@@ -287,12 +297,12 @@ function ShipmentDetailsContent() {
           </div>
           <div className="flex items-center gap-4 mb-6">
             <div className="w-14 h-14 rounded-xl border-2 border-slate-100 bg-slate-100 flex items-center justify-center shrink-0">
-               <span className="material-symbols-outlined text-3xl text-slate-400">person</span>
+              <span className="material-symbols-outlined text-3xl text-slate-400">person</span>
             </div>
             <div className="truncate">
               <p className="text-xs font-[700] text-rose-600 uppercase tracking-tight">Main Driver</p>
               <p className="text-[18px] font-[700] text-slate-900 truncate">{shipment.carrier?.name || 'Unassigned'}</p>
-              <p className="text-xs text-slate-500">ID: {shipment.carrier?.id ? `#CR-${shipment.carrier.id.substring(0,4)}` : 'N/A'}</p>
+              <p className="text-xs text-slate-500">ID: {shipment.carrier?.id ? `#CR-${shipment.carrier.id.substring(0, 4)}` : 'N/A'}</p>
             </div>
           </div>
           <div className="space-y-4 flex-1">

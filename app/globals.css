@@ -1,5 +1,26 @@
 @import "tailwindcss";
 
+:root {
+  --primary: #13182C;
+  --secondary: #22C55E;
+  --tertiary: #FBBF24;
+  --neutral: #F8FAFC;
+  
+  --font-hanken: 'Hanken Grotesk', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+body {
+  font-family: var(--font-hanken);
+  color: var(--primary);
+  background-color: var(--neutral);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-hanken);
+  font-weight: 900;
+}
+
 /* Custom Scrollbar for Admin Sidebar */
 .custom-scrollbar::-webkit-scrollbar {
   width: 4px;
