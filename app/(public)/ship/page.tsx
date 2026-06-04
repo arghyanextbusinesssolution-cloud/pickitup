@@ -7,8 +7,8 @@ import BackToTop from '@/components/shared/BackToTop';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-    title: 'How to Ship | PickItUp',
-    description: 'Learn how to ship your heavy items, vehicles, and freight with confidence on PickItUp.',
+    title: 'Reliable pickup and delivery service in the USA',
+    description: 'Fast and reliable pickup and delivery service in the USA Same-day courier solutions for businesses, packages, and local deliveries.',
 };
 
 export default function ShipPage() {

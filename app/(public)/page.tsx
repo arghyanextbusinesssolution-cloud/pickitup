@@ -1,4 +1,6 @@
+import { Metadata } from 'next';
 import HeroSection from '@/components/shared/HeroSection';
+
 import TrustSection from '@/components/shared/TrustSection';
 import CategoryCards from '@/components/shared/CategoryCards';
 import ConfidenceSection from '@/components/shared/ConfidenceSection';
@@ -10,6 +12,11 @@ import BusinessDelivery from '@/components/shared/BusinessDelivery';
 import ValueCTA from '@/components/shared/ValueCTA';
 import FAQSection from '@/components/shared/FAQSection';
 import BackToTop from '@/components/shared/BackToTop';
+
+export const metadata: Metadata = {
+    title: 'Local pickup and delivery service in the USA',
+    description: 'Trusted local pickup and delivery service in the USA offering fast, secure, and same-day courier solutions for businesses and individuals.',
+};
 
 export default function Home() {
     return (

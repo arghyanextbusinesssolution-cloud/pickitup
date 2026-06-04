@@ -8,8 +8,8 @@ import Link from 'next/link';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-    title: 'Find Shipments | PickItUp for Carriers',
-    description: 'Find loads, reduce empty miles, and grow your transport business with PickItUp.',
+    title: 'Reliable door to door pickup service in the USA',
+    description: 'Reliable door to door pickup service in the USA with fast, secure, and affordable same-day delivery solutions for homes and businesses.',
 };
 
 export default function FindShipmentsLandingPage() {

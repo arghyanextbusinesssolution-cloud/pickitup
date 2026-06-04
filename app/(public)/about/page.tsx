@@ -1,7 +1,13 @@
 import React from 'react';
+import { Metadata } from 'next';
 import Link from 'next/link';
 import AboutGallery from '@/components/shared/AboutGallery';
 import BackToTop from '@/components/shared/BackToTop';
+
+export const metadata: Metadata = {
+  title: 'Professional pickup service in the USA',
+  description: 'Professional pickup service in the USA offering fast, secure, and affordable parcel collection and same-day delivery solutions nationwide.',
+};
 
 export default function AboutPage() {
   return (
