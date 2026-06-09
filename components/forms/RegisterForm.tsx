@@ -26,7 +26,7 @@ export const RegisterForm: React.FC = () => {
             const response = await authService.register(formData);
             const userRole = response.user?.role;
             console.log(`[RegisterForm] Registration successful. User Role: ${userRole}`);
-            
+
             if (userRole === 'CARRIER') {
                 window.location.href = '/carrier/dashboard';
             } else {
@@ -44,7 +44,7 @@ export const RegisterForm: React.FC = () => {
     };
 
     return (
-        <Card title="Create Account" description="Join the uShip community today">
+        <Card title="Create Account" description="Join the PickItUp community today">
             <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="grid grid-cols-2 gap-4">
                     <Input

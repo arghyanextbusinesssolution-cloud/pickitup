@@ -3,6 +3,8 @@ import { Geist, Geist_Mono, Hanken_Grotesk, JetBrains_Mono } from "next/font/goo
 
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
+import Script from "next/script";
+
 
 const hankenGrotesk = Hanken_Grotesk({
   variable: "--font-hanken",
@@ -40,6 +42,19 @@ export default function RootLayout({
       >
         {children}
         <Analytics />
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-VDVGYNT8EG"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-VDVGYNT8EG');
+          `}
+        </Script>
       </body>
     </html>
   );
