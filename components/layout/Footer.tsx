@@ -63,11 +63,11 @@ export default function Footer() {
                         <span className="text-sm font-[900] uppercase tracking-widest">Areas We Serve</span>
                         <div className="flex flex-wrap gap-x-6 gap-y-2">
                             {[
-                                { name: 'Brooklyn', href: '/brooklyn' },
-                                { name: 'Delaware', href: '/delaware' },
-                                { name: 'Boston', href: '/boston' },
-                                { name: 'New Jersey', href: '/new-jersey' },
-                                { name: 'New York', href: '/new-york' }
+                                { name: 'Brooklyn', href: '/reliable-freight-service-in-brooklyn' },
+                                { name: 'Delaware', href: '/reliable-freight-service-in-delaware' },
+                                { name: 'Boston', href: '/reliable-freight-service-in-boston' },
+                                { name: 'New Jersey', href: '/reliable-freight-service-in-new-jersey' },
+                                { name: 'New York', href: '/reliable-freight-service-in-new-york' }
                             ].map((area) => (
                                 <Link key={area.name} href={area.href} className="text-sm font-bold text-purple-400 hover:text-[#7C3AED] transition-colors">
                                     {area.name}
