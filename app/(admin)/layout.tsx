@@ -35,7 +35,8 @@ import {
     Shield,
     LogOut,
     BookOpen,
-    Newspaper
+    Newspaper,
+    Inbox
 } from 'lucide-react';
 import { authService } from '../../services/auth.service';
 import { User } from '../../types/auth.types';
@@ -165,6 +166,12 @@ export default function AdminDashboardLayout({
             group: 'CMS',
             items: [
                 { name: 'Blogs', href: '/admin/cms/blog', icon: <Newspaper size={20} /> },
+            ]
+        },
+        {
+            group: 'Support',
+            items: [
+                { name: 'Enquiries', href: '/admin/enquiries', icon: <Inbox size={20} /> },
             ]
         },
         {

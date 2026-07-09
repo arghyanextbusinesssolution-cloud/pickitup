@@ -1,10 +1,49 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import BackToTop from '@/components/shared/BackToTop';
 import Link from 'next/link';
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+
 export default function ContactPage() {
+    const [form, setForm] = useState({
+        name: '',
+        email: '',
+        inquiryType: 'General Support',
+        message: ''
+    });
+    const [loading, setLoading] = useState(false);
+    const [success, setSuccess] = useState(false);
+    const [error, setError] = useState('');
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+        setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
+    };
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setLoading(true);
+        setError('');
+        try {
+            const res = await fetch(`${API_URL}/enquiries/submit`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(form)
+            });
+            if (!res.ok) {
+                const data = await res.json();
+                throw new Error(data.error || 'Failed to send message');
+            }
+            setSuccess(true);
+            setForm({ name: '', email: '', inquiryType: 'General Support', message: '' });
+        } catch (err: any) {
+            setError(err.message || 'Something went wrong. Please try again.');
+        } finally {
+            setLoading(false);
+        }
+    };
+
     return (
         <div className="min-h-screen bg-white">
 
@@ -36,75 +75,116 @@ export default function ContactPage() {
                                 Do you need help with general logistical support, vehicle delivery, freight transportation, or shipping? Complete the contact form, and our staff will get back to you immediately away with the best answer to your question. For each shipment, we are dedicated to provide dependable client service and effective communication.
                             </p>
 
-                            <form className="space-y-6">
-                                <div className="grid sm:grid-cols-2 gap-6">
-                                    <div>
-                                        <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2 ml-1">Full Name</label>
-                                        <input
-                                            type="text"
-                                            placeholder="Enter your name"
-                                            className="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-purple-100 focus:border-purple-600 bg-gray-50/50 text-[15px] font-bold text-gray-900 placeholder-gray-400 transition-all outline-none"
-                                        />
-                                    </div>
-                                    <div>
-                                        <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2 ml-1">Email Address</label>
-                                        <input
-                                            type="email"
-                                            placeholder="name@company.com"
-                                            className="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-purple-100 focus:border-purple-600 bg-gray-50/50 text-[15px] font-bold text-gray-900 placeholder-gray-400 transition-all outline-none"
-                                        />
-                                    </div>
+                            {success ? (
+                                <div className="bg-green-50 border border-green-200 rounded-2xl p-8 text-center">
+                                    <div className="text-5xl mb-4">✅</div>
+                                    <h4 className="text-xl font-[900] text-green-800 uppercase mb-2">Message Sent!</h4>
+                                    <p className="text-green-700 font-medium">Thank you for reaching out. We&apos;ll get back to you within 1–2 business hours.</p>
+                                    <button
+                                        onClick={() => setSuccess(false)}
+                                        className="mt-6 bg-[#1a1b3a] text-white font-[900] px-6 py-3 rounded-xl text-sm uppercase tracking-wider hover:bg-black transition-all"
+                                    >
+                                        Send Another Message
+                                    </button>
                                 </div>
-
-                                <div>
-                                    <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-4 ml-1">Inquiry Support Includes:</label>
-                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-6 mb-8">
-                                        {[
-                                            'Assistance with general shipping',
-                                            'Courier pickup scheduling',
-                                            'Questions about freight and transportation',
-                                            'Support for tracking shipments',
-                                            'Business and carrier partnerships',
-                                            'Talk to us'
-                                        ].map((item, i) => (
-                                            <div key={i} className="flex items-center gap-2">
-                                                <div className="w-1.5 h-1.5 rounded-full bg-yellow-400"></div>
-                                                <span className="text-[13px] font-bold text-gray-600">{item}</span>
-                                            </div>
-                                        ))}
-                                    </div>
-                                    <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2 ml-1">Inquiry Type</label>
-                                    <div className="relative">
-                                        <select className="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-purple-100 focus:border-purple-600 appearance-none bg-gray-50/50 text-[15px] font-bold text-gray-900 transition-all cursor-pointer outline-none">
-                                            <option>General Support</option>
-                                            <option>Account Issues</option>
-                                            <option>Billing & Payments</option>
-                                            <option>Carrier Verification</option>
-                                            <option>Platform feedback</option>
-                                        </select>
-                                        <div className="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none text-gray-900">
-                                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
-                                            </svg>
+                            ) : (
+                                <form className="space-y-6" onSubmit={handleSubmit}>
+                                    {error && (
+                                        <div className="bg-red-50 border border-red-200 text-red-700 rounded-xl px-5 py-4 text-sm font-bold">
+                                            ⚠️ {error}
+                                        </div>
+                                    )}
+                                    <div className="grid sm:grid-cols-2 gap-6">
+                                        <div>
+                                            <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2 ml-1">Full Name</label>
+                                            <input
+                                                type="text"
+                                                name="name"
+                                                value={form.name}
+                                                onChange={handleChange}
+                                                required
+                                                placeholder="Enter your name"
+                                                className="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-purple-100 focus:border-purple-600 bg-gray-50/50 text-[15px] font-bold text-gray-900 placeholder-gray-400 transition-all outline-none"
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2 ml-1">Email Address</label>
+                                            <input
+                                                type="email"
+                                                name="email"
+                                                value={form.email}
+                                                onChange={handleChange}
+                                                required
+                                                placeholder="name@company.com"
+                                                className="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-purple-100 focus:border-purple-600 bg-gray-50/50 text-[15px] font-bold text-gray-900 placeholder-gray-400 transition-all outline-none"
+                                            />
                                         </div>
                                     </div>
-                                </div>
 
-                                <div>
-                                    <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2 ml-1">Your Message</label>
-                                    <textarea
-                                        rows={5}
-                                        placeholder="How can we help you?"
-                                        className="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-purple-100 focus:border-purple-600 bg-gray-50/50 text-[15px] font-bold text-gray-900 placeholder-gray-400 transition-all outline-none resize-none"
-                                    ></textarea>
-                                </div>
+                                    <div>
+                                        <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-4 ml-1">Inquiry Support Includes:</label>
+                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-6 mb-8">
+                                            {[
+                                                'Assistance with general shipping',
+                                                'Courier pickup scheduling',
+                                                'Questions about freight and transportation',
+                                                'Support for tracking shipments',
+                                                'Business and carrier partnerships',
+                                                'Talk to us'
+                                            ].map((item, i) => (
+                                                <div key={i} className="flex items-center gap-2">
+                                                    <div className="w-1.5 h-1.5 rounded-full bg-yellow-400"></div>
+                                                    <span className="text-[13px] font-bold text-gray-600">{item}</span>
+                                                </div>
+                                            ))}
+                                        </div>
+                                        <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2 ml-1">Inquiry Type</label>
+                                        <div className="relative">
+                                            <select
+                                                name="inquiryType"
+                                                value={form.inquiryType}
+                                                onChange={handleChange}
+                                                className="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-purple-100 focus:border-purple-600 appearance-none bg-gray-50/50 text-[15px] font-bold text-gray-900 transition-all cursor-pointer outline-none"
+                                            >
+                                                <option>General Support</option>
+                                                <option>Account Issues</option>
+                                                <option>Billing &amp; Payments</option>
+                                                <option>Carrier Verification</option>
+                                                <option>Platform feedback</option>
+                                            </select>
+                                            <div className="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none text-gray-900">
+                                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                                <button type="button" className="w-full bg-[#1a1b3a] hover:bg-black text-white font-[900] px-8 py-5 rounded-2xl transition-all shadow-xl shadow-gray-200/50 flex items-center justify-center gap-3 group text-[16px] uppercase tracking-wider">
-                                    Send Inquiry
-                                    <span className="group-hover:translate-x-1 transition-transform">➡️</span>
-                                </button>
-                            </form>
+                                    <div>
+                                        <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2 ml-1">Your Message</label>
+                                        <textarea
+                                            name="message"
+                                            value={form.message}
+                                            onChange={handleChange}
+                                            required
+                                            rows={5}
+                                            placeholder="How can we help you?"
+                                            className="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:ring-4 focus:ring-purple-100 focus:border-purple-600 bg-gray-50/50 text-[15px] font-bold text-gray-900 placeholder-gray-400 transition-all outline-none resize-none"
+                                        ></textarea>
+                                    </div>
+
+                                    <button
+                                        type="submit"
+                                        disabled={loading}
+                                        className="w-full bg-[#1a1b3a] hover:bg-black disabled:opacity-60 disabled:cursor-not-allowed text-white font-[900] px-8 py-5 rounded-2xl transition-all shadow-xl shadow-gray-200/50 flex items-center justify-center gap-3 group text-[16px] uppercase tracking-wider"
+                                    >
+                                        {loading ? 'Sending...' : 'Send Inquiry'}
+                                        {!loading && <span className="group-hover:translate-x-1 transition-transform">➡️</span>}
+                                    </button>
+                                </form>
+                            )}
                         </div>
+
 
                         {/* Contact Info Cards */}
                         <div className="lg:col-span-2 space-y-6 animate-in fade-in slide-in-from-right-8 duration-1000">

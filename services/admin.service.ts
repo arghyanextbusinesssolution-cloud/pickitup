@@ -50,5 +50,15 @@ export const adminService = {
             data: { confirmToken: 'WIPE_ALL_DATA_CONFIRMED' }
         });
         return response.data;
+    },
+
+    // Enquiries
+    getEnquiries: async () => {
+        const response = await api.get('/enquiries');
+        return response.data;
+    },
+    updateEnquiryStatus: async (id: string, status: string) => {
+        const response = await api.patch(`/enquiries/${id}/status`, { status });
+        return response.data;
     }
 };
