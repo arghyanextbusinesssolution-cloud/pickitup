@@ -58,6 +58,26 @@ export default function Footer() {
 
                     <div className="h-px bg-purple-50 w-full" />
 
+                    {/* Areas We Serve Row */}
+                    <div className="flex flex-wrap items-center gap-x-8 gap-y-4">
+                        <span className="text-sm font-[900] uppercase tracking-widest">Areas We Serve</span>
+                        <div className="flex flex-wrap gap-x-6 gap-y-2">
+                            {[
+                                { name: 'Brooklyn', href: '/brooklyn' },
+                                { name: 'Delaware', href: '/delaware' },
+                                { name: 'Boston', href: '/boston' },
+                                { name: 'New Jersey', href: '/new-jersey' },
+                                { name: 'New York', href: '/new-york' }
+                            ].map((area) => (
+                                <Link key={area.name} href={area.href} className="text-sm font-bold text-purple-400 hover:text-[#7C3AED] transition-colors">
+                                    {area.name}
+                                </Link>
+                            ))}
+                        </div>
+                    </div>
+
+                    <div className="h-px bg-purple-50 w-full" />
+
                     {/* Company Row & Socials */}
                     <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8">
                         <div className="flex flex-wrap items-center gap-x-8 gap-y-4">
