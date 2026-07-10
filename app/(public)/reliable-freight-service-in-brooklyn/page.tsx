@@ -1,9 +1,13 @@
-'use client';
-
+import { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import FAQSection from '@/components/shared/FAQSection';
 import BackToTop from '@/components/shared/BackToTop';
+
+export const metadata: Metadata = {
+    title: 'Reliable Freight Service in Brooklyn | PickItUp',
+    description: 'Looking for reliable freight service in Brooklyn? PickItUp offers fast, secure, and affordable freight shipping solutions for businesses and individuals.',
+};
 
 export default function BrooklynFreightPage() {
     const brooklynFaqs = [

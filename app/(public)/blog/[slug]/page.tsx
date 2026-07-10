@@ -1,7 +1,6 @@
 import React from 'react';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { cmsService } from '@/services/cms.service';
 import SingleBlogPostClient from '@/components/SingleBlogPostClient';
 
 export const dynamic = 'force-dynamic';
@@ -12,10 +11,20 @@ interface Props {
     }>;
 }
 
+// Server-safe fetch — no axios, no localStorage
+async function getBlogBySlugServer(slug: string) {
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+    const res = await fetch(`${apiUrl}/cms/blogs/slug/${slug}`, {
+        cache: 'no-store',
+    });
+    if (!res.ok) return null;
+    return res.json();
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
     try {
         const { slug } = await params;
-        const blog = await cmsService.getBlogBySlug(slug);
+        const blog = await getBlogBySlugServer(slug);
 
         if (!blog) {
             return {
@@ -59,7 +68,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function Page({ params }: Props) {
     try {
         const { slug } = await params;
-        const blog = await cmsService.getBlogBySlug(slug);
+        const blog = await getBlogBySlugServer(slug);
 
         if (!blog) {
             notFound();

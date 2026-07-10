@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+
+# Block private/dashboard routes from indexing
+Disallow: /shipper/
+Disallow: /carrier/
+Disallow: /admin/
+Disallow: /login
+Disallow: /register
+Disallow: /tracking/
+Disallow: /invoices/
+
+Sitemap: https://www.pickitup.com/sitemap.xml
