@@ -117,7 +117,9 @@ export default function ServicesLocationGrid() {
 
     const handleLocationSelect = (locationSlug: string) => {
         if (!selectedService) return;
-        const url = `/${selectedService.slug}-in-${locationSlug}`;
+        const url = selectedService.slug === 'reliable-freight-service'
+            ? `/${selectedService.slug}-in-${locationSlug}`
+            : `/services/${selectedService.slug}-in-${locationSlug}`;
         document.body.style.overflow = '';
         router.push(url);
     };
