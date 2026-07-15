@@ -56,6 +56,9 @@ export default function Navbar() {
                         <Link href="/ship" className="text-[15px] font-medium text-gray-800 hover:text-purple-600 transition-colors">
                             Ship
                         </Link>
+                        <Link href="/services" className="text-[15px] font-medium text-gray-800 hover:text-purple-600 transition-colors">
+                            Services
+                        </Link>
                         <Link href="/find-shipments" className="text-[15px] font-medium text-gray-800 hover:text-purple-600 transition-colors">
                             Find Shipments
                         </Link>
@@ -125,6 +128,13 @@ export default function Navbar() {
                                 className="text-base font-medium text-gray-800 hover:text-purple-600 hover:bg-gray-50 px-8 py-3 transition-colors"
                             >
                                 Ship
+                            </Link>
+                            <Link
+                                href="/services"
+                                onClick={() => setMobileMenuOpen(false)}
+                                className="text-base font-medium text-gray-800 hover:text-purple-600 hover:bg-gray-50 px-8 py-3 transition-colors"
+                            >
+                                Services
                             </Link>
                             <Link
                                 href="/find-shipments"
