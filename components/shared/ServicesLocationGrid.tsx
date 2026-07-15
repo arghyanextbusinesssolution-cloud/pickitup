@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 export default function ServicesLocationGrid() {
     const router = useRouter();
@@ -116,6 +117,7 @@ export default function ServicesLocationGrid() {
     };
 
     const handleLocationSelect = (locationSlug: string) => {
+        // Keeping here just in case, but no longer used in render
         if (!selectedService) return;
         const url = selectedService.slug === 'reliable-freight-service'
             ? `/${selectedService.slug}-in-${locationSlug}`
@@ -123,6 +125,7 @@ export default function ServicesLocationGrid() {
         document.body.style.overflow = '';
         router.push(url);
     };
+
 
     const openModal = (service: typeof services[0]) => {
         setSelectedService({ title: service.title, slug: service.slug });
@@ -236,30 +239,36 @@ export default function ServicesLocationGrid() {
                         </div>
 
                         <div className="space-y-3">
-                            {locations.map((location) => (
-                                <button
-                                    key={location.slug}
-                                    onClick={() => handleLocationSelect(location.slug)}
-                                    className="w-full flex items-center justify-between p-4 sm:p-5 rounded-xl border-2 border-gray-100 hover:border-purple-600 group transition-all duration-300 hover:bg-purple-50"
-                                >
-                                    <div className="flex items-center gap-4">
-                                        <div className="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center group-hover:bg-purple-600 transition-colors duration-300">
-                                            <svg className="w-5 h-5 text-gray-400 group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            {locations.map((location) => {
+                                const url = selectedService.slug === 'reliable-freight-service'
+                                    ? `/${selectedService.slug}-in-${location.slug}`
+                                    : `/services/${selectedService.slug}-in-${location.slug}`;
+                                return (
+                                    <Link
+                                        key={location.slug}
+                                        href={url}
+                                        onClick={closeModal}
+                                        className="w-full flex items-center justify-between p-4 sm:p-5 rounded-xl border-2 border-gray-100 hover:border-purple-600 group transition-all duration-300 hover:bg-purple-50"
+                                    >
+                                        <div className="flex items-center gap-4">
+                                            <div className="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center group-hover:bg-purple-600 transition-colors duration-300">
+                                                <svg className="w-5 h-5 text-gray-400 group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                </svg>
+                                            </div>
+                                            <span className="text-lg font-bold text-gray-800 group-hover:text-purple-900 transition-colors">
+                                                {location.name}
+                                            </span>
+                                        </div>
+                                        <div className="text-purple-600 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 -translate-x-4 transition-all duration-300">
+                                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                                             </svg>
                                         </div>
-                                        <span className="text-lg font-bold text-gray-800 group-hover:text-purple-900 transition-colors">
-                                            {location.name}
-                                        </span>
-                                    </div>
-                                    <div className="text-purple-600 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 -translate-x-4 transition-all duration-300">
-                                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                        </svg>
-                                    </div>
-                                </button>
-                            ))}
+                                    </Link>
+                                );
+                            })}
                         </div>
                     </div>
                 </div>
